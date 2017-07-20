@@ -9,26 +9,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/template.css"/>
         <title>Facelets Template</title>
-        
+
     </h:head>
 
     <h:body>
-        <div id="container">
-            <div id="top">
-                <ui:insert name="top">Top</ui:insert>
-            </div>
-            <div id="mainContent">
-                <div id="left">
-                    <ui:include src="./menu.xhtml" />
-                </div>
-                <div id="content" class="left_content">
-                    <ui:insert name="content">Content</ui:insert>
-                </div>
-            </div>
-            <div id="bottom">
-                <ui:insert name="bottom">Bottom</ui:insert>
-            </div>
-        </div>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" resizable="true" size="100" minSize="40" maxSize="200">
+                <ui:insert name="Navbar">Navbar</ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" resizable="true" size="300" >
+                <ui:include src="./menu.xhtml" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="content">Content</ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100">
+                <ui:insert name="footer">Footer</ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+
     </h:body>
 
 </html>
