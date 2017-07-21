@@ -6,16 +6,15 @@
 package pl.lodz.p.it.spjava.medcenter.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,8 +24,11 @@ import javax.validation.constraints.Size;
  * @author pawkos
  */
 @Entity
-@Table(name = "CATEGORY")
-public class Category implements Serializable {
+@Table(name = "EXAMINATION")
+@NamedQueries ({
+    @NamedQuery(name="Examination.findByCategory", query="SELECT e FROM Examination e WHERE e.examinationCategory=:id"),
+})
+public class Examination implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,17 +46,19 @@ public class Category implements Serializable {
     @Column(name = "DESCRIPTION")
     @NotNull
     @Size(min = 10, max = 300)
-    private String categoryDescription;
-    
-    @OneToMany(mappedBy = "examinationCategory")
-    private List<Examination> examinationList = new ArrayList<>();
+    private String examinationDescription;
 
-    public List<Examination> getExaminationList() {
-        return examinationList;
+    @JoinColumn(name = "ID_CATEGORY", referencedColumnName = "ID", nullable = false)
+    @ManyToOne
+    private Category examinationCategory;
+    
+
+    public Category getExaminationCategory() {
+        return examinationCategory;
     }
 
-    public void setExaminationList(List<Examination> examinationList) {
-        this.examinationList = examinationList;
+    public void setExaminationCategory(Category category) {
+        this.examinationCategory = category;
     }
 
     public Long getId() {
@@ -69,12 +73,12 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getExaminationDescription() {
+        return examinationDescription;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setExaminationDescription(String examinationDescription) {
+        this.examinationDescription = examinationDescription;
     }
 
     @Override
@@ -87,16 +91,16 @@ public class Category implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
+        if (!(object instanceof Examination)) {
             return false;
         }
-        Category other = (Category) object;
+        Examination other = (Examination) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
-        return "medcenter.model.Category[ id=" + id + " ]";
+        return "medcenter.model.Examination[ id=" + id + " ]";
     }
 
 }

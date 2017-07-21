@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="createExamination">
+
+                    <p:panelGrid columns="2" transient="true">
+                        <p:outputLabel for="examinationName" value="Examination name: " />
+                        <p:inputText id="examinationName" value="#{createExamination.examinationDto.name}" required="true"/>
+
+                        <p:outputLabel for="examinationDescription" value="Examination description: " />
+                        <p:inputText id="examinationDescription" value="#{createExamination.examinationDto.examinationDescription}" required="true"/>
+
+                        <p:outputLabel for="category" value="Category " />
+                        <p:selectOneMenu id="category" value="#{createExamination.examinationDto.examinationCategory}">
+                            <f:selectItems value="#{selectOneMenuView.cars}" />
+                        </p:selectOneMenu>
+
+                        <h:commandButton value="create" action="#{createExamination.createExamination()}" />
+                    </p:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

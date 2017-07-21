@@ -3,11 +3,13 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
     <h:form id="menu">
         <ul>
-            <li><h:outputLink value="../home/index.xhtml" >Home</h:outputLink></li>
-            <li><h:outputLink value="../category/createCategory.xhtml" >Create category</h:outputLink></li>
+            <li><p:link value="HOME" outcome="home"/></li>
+            <li><p:link value="ADD CATEGORY" outcome="createCategory"/></li>
+            <li><p:link value="ADD EXAMINATION" outcome="createExamination"/></li>
 
         </ul>
     </h:form>
