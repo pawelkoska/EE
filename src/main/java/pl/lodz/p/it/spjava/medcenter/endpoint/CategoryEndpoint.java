@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.medcenter.endpoint;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import pl.lodz.p.it.spjava.medcenter.dto.CategoryDTO;
@@ -24,6 +25,10 @@ public class CategoryEndpoint {
         categoryEntity.setCategoryDescription(category.getCategoryDescription());
         
         categoryFacade.create(categoryEntity);
+    }
+    
+    public List<Category> getAllCategories(){
+        return categoryFacade.findAll();
     }
     
 }

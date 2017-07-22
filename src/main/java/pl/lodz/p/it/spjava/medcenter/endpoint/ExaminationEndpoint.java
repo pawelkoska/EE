@@ -43,5 +43,7 @@ public class ExaminationEndpoint {
         examinationEntity.setExaminationCategory(selectedCategory);
         examinationFacade.create(examinationEntity);
     }
+    
+    
 
 }
