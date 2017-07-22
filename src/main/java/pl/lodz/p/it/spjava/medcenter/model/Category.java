@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,11 +33,11 @@ public class Category implements Serializable {
 
     @Id
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", unique = true)
     @NotNull
     @Size(min = 1, max = 50)
     private String name;
@@ -46,7 +47,7 @@ public class Category implements Serializable {
     @Size(min = 10, max = 300)
     private String categoryDescription;
     
-    @OneToMany(mappedBy = "examinationCategory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationCategory")
     private List<Examination> examinationList = new ArrayList<>();
 
     public List<Examination> getExaminationList() {

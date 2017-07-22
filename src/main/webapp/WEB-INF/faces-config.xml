@@ -33,7 +33,8 @@
             <from-outcome>examinationSuccess</from-outcome>
             <to-view-id>/faces/status/examinationCreateSuccess.xhtml</to-view-id>
             <redirect />
-        </navigation-case>        
+        </navigation-case>    
+                  
         
     </navigation-rule>
 </faces-config>
