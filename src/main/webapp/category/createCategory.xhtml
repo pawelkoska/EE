@@ -22,10 +22,10 @@
 
                     <p:panelGrid columns="2" transient="true">
                         <p:outputLabel for="categoryName" value="Category name: " />
-                        <p:inputText id="categoryName" value="#{createCategory.categoryDto.name}" required="true"/>
+                        <p:inputText id="categoryName" value="#{categoryManageBean.categoryDto.name}" required="true"/>
                         <p:outputLabel for="categoryDescription" value="Category description: " />
-                        <p:inputText id="categoryDescription" value="#{createCategory.categoryDto.categoryDescription}" required="true"/>
-                        <h:commandButton value="create" action="#{createCategory.createCategory()}" />
+                        <p:inputText id="categoryDescription" value="#{categoryManageBean.categoryDto.categoryDescription}" required="true"/>
+                        <h:commandButton value="create" action="#{categoryManageBean.createCategory()}" />
                     </p:panelGrid>
 
                 </h:form>

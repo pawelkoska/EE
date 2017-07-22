@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "EXAMINATION")
 @NamedQueries ({
-    @NamedQuery(name="Examination.findByCategory", query="SELECT e FROM Examination e WHERE e.examinationCategory=:id"),
+    @NamedQuery(name="Examination.findByCategory", query="SELECT e FROM Examination e WHERE e.categoryId = :id"),
 })
 public class Examination implements Serializable {
 
@@ -48,17 +48,17 @@ public class Examination implements Serializable {
     @Size(min = 10, max = 300)
     private String examinationDescription;
 
-    @JoinColumn(name = "ID_CATEGORY", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
-    private Category examinationCategory;
+    private Category categoryId;
     
 
-    public Category getExaminationCategory() {
-        return examinationCategory;
+    public Category getcategoryId() {
+        return categoryId;
     }
 
-    public void setExaminationCategory(Category category) {
-        this.examinationCategory = category;
+    public void setcategoryId(Category category) {
+        this.categoryId = category;
     }
 
     public Long getId() {

@@ -47,7 +47,7 @@ public class Category implements Serializable {
     @Size(min = 10, max = 300)
     private String categoryDescription;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationCategory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<Examination> examinationList = new ArrayList<>();
 
     public List<Examination> getExaminationList() {

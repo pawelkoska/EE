@@ -7,9 +7,9 @@ import pl.lodz.p.it.spjava.medcenter.dto.CategoryDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.CategoryEndpoint;
 
 
-@Named(value = "createCategory")
+@Named(value = "CategoryManageBean")
 @RequestScoped
-public class CreateCategory {
+public class CategoryManageBean {
 
     @EJB
     private CategoryEndpoint categoryEndpoint;
@@ -24,7 +24,7 @@ public class CreateCategory {
         this.categoryDto = categoryDto;
     }
 
-    public CreateCategory() {
+    public CategoryManageBean() {
         categoryDto = new CategoryDTO();
     }
 

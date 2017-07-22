@@ -9,7 +9,6 @@ import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
-
 /**
  *
  * @author pawkos
@@ -39,11 +38,12 @@ public class ExaminationEndpoint {
 
         Examination examinationEntity = new Examination();
         examinationEntity.setName(examination.getName());
-        examinationEntity.setExaminationDescription(examination.getExaminationDescription());  
-        examinationEntity.setExaminationCategory(selectedCategory);
+        examinationEntity.setExaminationDescription(examination.getExaminationDescription());
+        examinationEntity.setcategoryId(selectedCategory);
         examinationFacade.create(examinationEntity);
     }
-    
-    
 
+    public List<Examination> getExaminationsByCategory(Category category) {
+        return examinationFacade.getExaminationsByCategory(category);
+    }
 }
