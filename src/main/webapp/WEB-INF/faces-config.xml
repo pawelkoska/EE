@@ -33,23 +33,37 @@
             <from-outcome>examinationSuccess</from-outcome>
             <to-view-id>/faces/status/examinationCreateSuccess.xhtml</to-view-id>
             <redirect />
-        </navigation-case>    
+        </navigation-case>   
+         
         <navigation-case>
             <from-outcome>ourOffer</from-outcome>
             <to-view-id>/faces/examination/ourOffer.xhtml</to-view-id>
             <redirect />
-        </navigation-case>    
+        </navigation-case>   
+         
         <navigation-case>
             <from-outcome>allCategories</from-outcome>
             <to-view-id>/faces/category/allCategories.xhtml</to-view-id>
             <redirect />
-        </navigation-case>    
+        </navigation-case> 
+           
         <navigation-case>
             <from-outcome>allExaminations</from-outcome>
             <to-view-id>/faces/examination/allExaminations.xhtml</to-view-id>
             <redirect />
-        </navigation-case>    
-                  
+        </navigation-case> 
+           
+        <navigation-case>
+            <from-outcome>editCategory</from-outcome>
+            <to-view-id>/faces/category/editCategory.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
         
+        <navigation-case>
+            <from-outcome>editSuccess</from-outcome>
+            <to-view-id>/faces/category/editCategory.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+                                
     </navigation-rule>
 </faces-config>

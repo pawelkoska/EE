@@ -12,21 +12,29 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
-                <p:dataTable id="categories" var="category" value="#{examinationManageBean.categoryObjList}">
-                    <f:facet name="header">
-                        LIST OF CATEGORIES:
+                <h:form>
+                    <p:dataTable id="categories" var="category" value="#{examinationManageBean.categoryObjList}">
+                        <f:facet name="header">
 
-                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-                        <p:columnToggler datasource="categories" trigger="toggler" />
-                    </f:facet>
-
-<!--                    <c:forEach var="property" items="">
-                        <p:column headerText="">
-                            
+                        </f:facet>
+                        <p:column headerText="ID">
+                            <h:outputText value="#{category.id}" />
                         </p:column>
-                    </c:forEach>-->
 
-                </p:dataTable>
+                        <p:column headerText="NAME">
+                            <h:outputText value="#{category.name}" />
+                        </p:column>
+
+                        <p:column headerText="DESCRIPTION">
+                            <h:outputText value="#{category.categoryDescription}" />
+                        </p:column>
+
+                        <p:column style="width:50px">
+                            <h:commandButton value="EDIT" action="#{categoryManageBean.getCategoryToEdit(category)}" />
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
             </ui:define>
 
 

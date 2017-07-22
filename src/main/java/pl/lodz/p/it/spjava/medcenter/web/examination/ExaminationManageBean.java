@@ -1,4 +1,4 @@
-package pl.lodz.p.it.spjava.medcenter.web.category;
+package pl.lodz.p.it.spjava.medcenter.web.examination;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +16,16 @@ import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
-@Named(value = "ExaminationManageBean")
+@Named(value = "examinationManageBean")
 @RequestScoped
 public class ExaminationManageBean {
 
+    public ExaminationManageBean() {
+        examiantionDto = new ExaminationDTO();
+    }
+    
     @EJB
     private ExaminationEndpoint examinationEndpoint;
-    @EJB
-    private ExaminationFacade examinationFacade;
 
     @EJB
     private CategoryEndpoint categoryEndpoint;
@@ -31,15 +33,14 @@ public class ExaminationManageBean {
     private ExaminationDTO examiantionDto;
 
     private List<Category> categoryObjList = new ArrayList<>();
+    private List<String> categoryNamesList = new ArrayList<>();
 
-    private List<String> categoryList = new ArrayList<>();
-
-    public List<String> getCategoryList() {
-        return categoryList;
+    public List<String> getCategoryNamesList() {
+        return categoryNamesList;
     }
 
-    public void setCategoryList(List<String> categoryList) {
-        this.categoryList = categoryList;
+    public void setCategoryNamesList(List<String> categoryNamesList) {
+        this.categoryNamesList = categoryNamesList;
     }
 
     public List<Category> getCategoryObjList() {
@@ -55,7 +56,7 @@ public class ExaminationManageBean {
         List<Category> allCategories = categoryEndpoint.getAllCategories();
         for (Category category : allCategories) {
             categoryObjList.add(category);
-            categoryList.add(category.getName());
+            categoryNamesList.add(category.getName());
         }
     }
 
@@ -69,10 +70,6 @@ public class ExaminationManageBean {
 
     public void setExaminationDto(ExaminationDTO examiantionDto) {
         this.examiantionDto = examiantionDto;
-    }
-
-    public ExaminationManageBean() {
-        examiantionDto = new ExaminationDTO();
     }
 
     public String createExamination() {
