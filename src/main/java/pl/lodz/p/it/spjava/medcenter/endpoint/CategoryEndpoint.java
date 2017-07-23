@@ -39,5 +39,9 @@ public class CategoryEndpoint {
     public void saveEditedCategory(Category c) {
         categoryFacade.edit(c);
     }
+    
+    public void deleteCategory(Category category){
+        categoryFacade.remove(category);
+    }
 
 }

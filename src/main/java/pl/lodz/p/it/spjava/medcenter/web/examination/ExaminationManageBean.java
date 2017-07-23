@@ -32,34 +32,6 @@ public class ExaminationManageBean {
 
     private ExaminationDTO examiantionDto;
 
-    private List<Category> categoryObjList = new ArrayList<>();
-    private List<String> categoryNamesList = new ArrayList<>();
-
-    public List<String> getCategoryNamesList() {
-        return categoryNamesList;
-    }
-
-    public void setCategoryNamesList(List<String> categoryNamesList) {
-        this.categoryNamesList = categoryNamesList;
-    }
-
-    public List<Category> getCategoryObjList() {
-        return categoryObjList;
-    }
-
-    public void setCategoryObjList(List<Category> categoryObjList) {
-        this.categoryObjList = categoryObjList;
-    }
-
-    @PostConstruct
-    public void getAllCategories() {
-        List<Category> allCategories = categoryEndpoint.getAllCategories();
-        for (Category category : allCategories) {
-            categoryObjList.add(category);
-            categoryNamesList.add(category.getName());
-        }
-    }
-
     public List<Examination> getExaminationsByCategory(Category category) {
        return examinationEndpoint.getExaminationsByCategory(category);
     }

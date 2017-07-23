@@ -30,7 +30,7 @@
 
                         <p:outputLabel for="category" value="Category " />
                         <p:selectOneMenu id="category" value="#{examinationManageBean.examinationDto.examinationCategory}">
-                            <f:selectItems value="#{examinationManageBean.categoryNamesList}" />
+                            <f:selectItems value="#{categoryManageBean.categoryNamesList}" />
                         </p:selectOneMenu>
                         
                         <h:commandButton value="create" action="#{examinationManageBean.createExamination()}" />

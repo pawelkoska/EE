@@ -64,6 +64,12 @@
             <to-view-id>/faces/category/editCategory.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>deleteSuccess</from-outcome>
+            <to-view-id>/faces/status/deleteCategorySuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
                                 
     </navigation-rule>
 </faces-config>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -25,21 +26,32 @@ public class CategoryManageBean {
 
     @EJB
     private CategoryEndpoint categoryEndpoint;
-    
+
     @Inject
     private CategorySession categorySession;
 
     private CategoryDTO categoryDto;
 
+    private List<Category> categoryObjList = new ArrayList<>();
+    private List<String> categoryNamesList = new ArrayList<>();
+
+    public List<String> getCategoryNamesList() {
+        return categoryNamesList;
+    }
+
+    public void setCategoryNamesList(List<String> categoryNamesList) {
+        this.categoryNamesList = categoryNamesList;
+    }
+
     public Category getEditingCategory() {
         return categorySession.getEditingCategory();
     }
-    
+
     public String getCategoryToEdit(Category category) {
         categorySession.getCategoryToEdit(category);
         return "editCategory";
     }
-    
+
     public String saveEditedCategory() {
         categorySession.saveEditedCategory();
         return "editSuccess";
@@ -56,6 +68,28 @@ public class CategoryManageBean {
     public String createCategory() {
         categoryEndpoint.createCategory(categoryDto);
         return "success";
+    }
+
+    public String deleteCategory(Category category) {
+        categoryEndpoint.deleteCategory(category);
+        return "deleteSuccess";
+    }
+
+    public List<Category> getCategoryObjList() {
+        return categoryObjList;
+    }
+
+    public void setCategoryObjList(List<Category> categoryObjList) {
+        this.categoryObjList = categoryObjList;
+    }
+
+    @PostConstruct
+    public void getAllCategories() {
+        List<Category> allCategories = categoryEndpoint.getAllCategories();
+        for (Category category : allCategories) {
+            categoryObjList.add(category);
+            categoryNamesList.add(category.getName());
+        }
     }
 
 }
