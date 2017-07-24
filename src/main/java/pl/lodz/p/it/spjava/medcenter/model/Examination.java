@@ -53,11 +53,11 @@ public class Examination implements Serializable {
     private Category categoryId;
     
 
-    public Category getcategoryId() {
+    public Category getCategoryId() {
         return categoryId;
     }
 
-    public void setcategoryId(Category category) {
+    public void setCategoryId(Category category) {
         this.categoryId = category;
     }
 

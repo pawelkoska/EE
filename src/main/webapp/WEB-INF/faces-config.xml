@@ -70,6 +70,19 @@
             <to-view-id>/faces/status/deleteCategorySuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>deleteExaminationSuccess</from-outcome>
+            <to-view-id>/faces/status/deleteExaminationSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>editExamination</from-outcome>
+            <to-view-id>/faces/examination/editExamination.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+       
                                 
     </navigation-rule>
 </faces-config>

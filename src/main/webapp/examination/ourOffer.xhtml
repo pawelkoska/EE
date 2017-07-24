@@ -14,7 +14,7 @@
                 <h3>OUR OFFER:</h3>
                 <p:accordionPanel>
                     <c:forEach var="category" items="#{categoryManageBean.categoryObjList}">
-                        <p:tab title="#{category.name}">
+                        <p:tab title="#{category.name}: #{category.categoryDescription}">                           
                             <h:panelGrid columns="2" cellpadding="10">
                                 <c:forEach var="examination" items="#{examinationManageBean.getExaminationsByCategory(category)}">
                                     #{examination.name}: #{examination.examinationDescription}

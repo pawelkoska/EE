@@ -39,11 +39,29 @@ public class ExaminationEndpoint {
         Examination examinationEntity = new Examination();
         examinationEntity.setName(examination.getName());
         examinationEntity.setExaminationDescription(examination.getExaminationDescription());
-        examinationEntity.setcategoryId(selectedCategory);
+        examinationEntity.setCategoryId(selectedCategory);
         examinationFacade.create(examinationEntity);
     }
 
     public List<Examination> getExaminationsByCategory(Category category) {
         return examinationFacade.getExaminationsByCategory(category);
+    }
+
+    public List<Examination> getAllExaminations() {
+        return examinationFacade.findAll();
+    }
+
+    public void deleteExamination(Examination examination) {
+        examinationFacade.remove(examination);
+    }
+
+    public Examination getExaminationToEdit(Examination examination) {
+        Examination examinationEntity = examinationFacade.find(examination.getId());
+//        kontoFacade.refresh(encja);
+        return examinationEntity;
+    }
+
+    public void saveEditedExamination(Examination e) {
+        examinationFacade.edit(e);
     }
 }
