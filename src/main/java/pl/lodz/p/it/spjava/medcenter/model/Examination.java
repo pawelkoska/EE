@@ -48,7 +48,7 @@ public class Examination extends AbstractEntity implements Serializable {
     @Size(min = 10, max = 300)
     private String examinationDescription;
 
-    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID",  nullable = false)
     @ManyToOne
     private Category categoryId;
     

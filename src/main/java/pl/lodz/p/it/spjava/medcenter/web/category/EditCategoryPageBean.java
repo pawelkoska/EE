@@ -28,13 +28,6 @@ public class EditCategoryPageBean {
     @Inject
     private CategorySession categorySession;
 
-    private List<Category> categoryObjList = new ArrayList<>();
-    private List<String> categoryNamesList = new ArrayList<>();
-
-    public List<String> getCategoryNamesList() {
-        return categoryNamesList;
-    }
-
     public String getCategoryToEdit(Category category) {
         categorySession.getCategoryToEdit(category);
         return "editCategory";
@@ -45,21 +38,9 @@ public class EditCategoryPageBean {
         return "editSuccess";
     }
 
-    public List<Category> getCategoryObjList() {
-        return categoryObjList;
-    }
-
     public Category getEditingCategory() {
         return categorySession.getEditingCategory();
     }
 
-    @PostConstruct
-    public void getAllCategories() {
-        List<Category> allCategories = categoryEndpoint.getAllCategories();
-        for (Category category : allCategories) {
-            categoryObjList.add(category);
-            categoryNamesList.add(category.getName());
-        }
-    }
 
 }
