@@ -7,7 +7,6 @@ package pl.lodz.p.it.spjava.medcenter.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,24 +25,23 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "CATEGORY")
-public class Category implements Serializable {
+public class Category extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @NotNull
     @Column(name = "ID", updatable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME", unique = true)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Column(name = "NAME", unique = true, nullable = false)
+    @NotNull(message = "Field can not be empty")
+    @Size(min = 3, max = 30, message = "Category name has to be between 3 and 30 characters")
     private String name;
 
-    @Column(name = "DESCRIPTION")
-    @NotNull
-    @Size(min = 10, max = 300)
+    @Column(name = "DESCRIPTION", nullable = false)
+    @NotNull(message = "Field can not be empty")
+    @Size(min = 10, max = 300, message = "Category description has to be between 10 and 300 characters")
     private String categoryDescription;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
@@ -98,6 +95,11 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return "medcenter.model.Category[ id=" + id + " ]";
+    }
+
+    @Override
+    protected Object getBusinessKey() {
+        return name;
     }
 
 }

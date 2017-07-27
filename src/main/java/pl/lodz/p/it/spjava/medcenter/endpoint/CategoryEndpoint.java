@@ -3,7 +3,6 @@ package pl.lodz.p.it.spjava.medcenter.endpoint;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import pl.lodz.p.it.spjava.medcenter.dto.CategoryDTO;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 
@@ -17,13 +16,8 @@ public class CategoryEndpoint {
     @EJB
     private CategoryFacade categoryFacade;
 
-    public void createCategory(CategoryDTO category) {
-
-        Category categoryEntity = new Category();
-        categoryEntity.setName(category.getName());
-        categoryEntity.setCategoryDescription(category.getCategoryDescription());
-
-        categoryFacade.create(categoryEntity);
+    public void createCategory(Category category) {
+        categoryFacade.create(category);
     }
 
     public List<Category> getAllCategories() {
@@ -39,9 +33,10 @@ public class CategoryEndpoint {
     public void saveEditedCategory(Category c) {
         categoryFacade.edit(c);
     }
-    
-    public void deleteCategory(Category category){
+
+    public String deleteCategory(Category category) {
         categoryFacade.remove(category);
+        return "deleteCategorySuccess";
     }
 
 }

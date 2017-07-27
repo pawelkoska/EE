@@ -12,9 +12,12 @@
             <ui:define name="content">
                 <h:form id="editCategory">
                     <p:panelGrid columns="2" transient="true">
-                        Name: <h:inputText id="categoryName" value="#{categoryManageBean.editingCategory.name}" />
-                        Description: <h:inputText id="categoryDescription" value="#{categoryManageBean.editingCategory.categoryDescription}" /> 
-                        <h:commandButton action="#{categoryManageBean.saveEditedCategory()}" value="OK"/>
+                        Name: <h:inputText id="categoryName" value="#{editCategoryManageBean.editingCategory.name}" />
+                        <h:message for="categoryName"/>
+                        Description: <h:inputText id="categoryDescription" value="#{editCategoryManageBean.editingCategory.categoryDescription}" />                         
+                        <h:message for="categoryDescription"/>
+                        
+                        <h:commandButton action="#{editCategoryManageBean.saveEditedCategory()}" value="OK"/>
                         <h:commandButton value="BACK" action="allCategories" immediate="true"/>
                     </p:panelGrid>
                 </h:form>

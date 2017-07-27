@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
 @NamedQueries ({
     @NamedQuery(name="Examination.findByCategory", query="SELECT e FROM Examination e WHERE e.categoryId = :id"),
 })
-public class Examination implements Serializable {
+public class Examination extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class Examination implements Serializable {
     @Size(min = 10, max = 300)
     private String examinationDescription;
 
-    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     @ManyToOne
     private Category categoryId;
     
@@ -101,6 +101,11 @@ public class Examination implements Serializable {
     @Override
     public String toString() {
         return "medcenter.model.Examination[ id=" + id + " ]";
+    }
+
+    @Override
+    protected Object getBusinessKey() {
+        return name;
     }
 
 }

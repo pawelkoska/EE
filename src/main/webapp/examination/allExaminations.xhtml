@@ -13,7 +13,7 @@
 
             <ui:define name="content">
                  <h:form>
-                     <p:dataTable id="examinations" var="examination" value="#{examinationManageBean.examinationObjList}">
+                     <p:dataTable id="examinations" var="examination" value="#{listExaminationPageBean.examinationObjList}">
                         <f:facet name="header">
 
                         </f:facet>
@@ -34,10 +34,10 @@
                         </p:column>
 
                         <p:column style="width:75px">
-                            <p:commandButton value="EDIT" action="#{examinationManageBean.getCategoryToEdit(examination)}" />
+                            <p:commandButton value="EDIT" action="#{editExaminationManageBean.getExaminationToEdit(examination)}" />
                         </p:column>
                         <p:column style="width:105px">
-                            <p:commandButton value="DELETE"  action="#{examinationManageBean.deleteExamination(examination)}"/>
+                            <p:commandButton value="DELETE"  action="#{deleteExaminationPageBean.deleteExamination(examination)}"/>
                         </p:column>
 
                     </p:dataTable>

@@ -13,16 +13,16 @@
             <ui:define name="content">
                 <h:form id="editCategory">
                     <p:panelGrid columns="2" transient="true">
-                        Name: <h:inputText id="examinationName" value="#{examinationManageBean.editingExamination.name}" />
+                        Name: <h:inputText id="examinationName" value="#{editExaminationManageBean.editingExamination.name}" />
 
-                        Description: <h:inputText id="examinationDescription" value="#{examinationManageBean.editingExamination.examinationDescription}" /> 
+                        Description: <h:inputText id="examinationDescription" value="#{editExaminationManageBean.editingExamination.examinationDescription}" /> 
 
                         Category:
-                        <p:selectOneMenu id="examinationCategory" value="#{examinationManageBean.examinationDto.examinationCategory}">
-                            <f:selectItems value="#{categoryManageBean.categoryObjList}" />
+                        <p:selectOneMenu id="examinationCategory" value="#{editExaminationManageBean.editingExamination.categoryId}">
+                            <f:selectItems value="#{listCategoryPageBean.categoryObjList}" />
                         </p:selectOneMenu>
 
-                        <h:commandButton action="#{examinationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="UPDATE"/>
+                        <h:commandButton action="#{editExaminationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="UPDATE" />
                         <h:commandButton value="BACK" action="allExaminations" immediate="true"/>
                     </p:panelGrid>
                 </h:form>

@@ -23,7 +23,6 @@ public class ExaminationEndpoint {
     private CategoryFacade categoryFacade;
 
     public void createExamination(ExaminationDTO examination) {
-
         List<Category> categories = categoryFacade.findAll();
         Category selectedCategory = null;
         for (Category category : categories) {

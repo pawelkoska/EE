@@ -1,27 +1,20 @@
 package pl.lodz.p.it.spjava.medcenter.web.category;
 
-import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.persistence.Column;
-import pl.lodz.p.it.spjava.medcenter.dto.CategoryDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.CategoryEndpoint;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
-import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
-@Named(value = "categoryManageBean")
+@Named(value = "createCategoryPageBean")
 @RequestScoped
-public class CategoryManageBean {
+public class CreateCategoryPageBean {
 
-    public CategoryManageBean() {
-        categoryDto = new CategoryDTO();
+    public CreateCategoryPageBean() {
     }
 
     @EJB
@@ -30,10 +23,13 @@ public class CategoryManageBean {
     @Inject
     private CategorySession categorySession;
 
-    private CategoryDTO categoryDto;
-
     private List<Category> categoryObjList = new ArrayList<>();
     private List<String> categoryNamesList = new ArrayList<>();
+    private Category category = new Category();
+
+    public String createCategory() {
+        return categorySession.createCategory(category);
+    }
 
     public List<String> getCategoryNamesList() {
         return categoryNamesList;
@@ -41,38 +37,6 @@ public class CategoryManageBean {
 
     public void setCategoryNamesList(List<String> categoryNamesList) {
         this.categoryNamesList = categoryNamesList;
-    }
-
-    public Category getEditingCategory() {
-        return categorySession.getEditingCategory();
-    }
-
-    public String getCategoryToEdit(Category category) {
-        categorySession.getCategoryToEdit(category);
-        return "editCategory";
-    }
-
-    public String saveEditedCategory() {
-        categorySession.saveEditedCategory();
-        return "editSuccess";
-    }
-
-    public CategoryDTO getCategoryDto() {
-        return categoryDto;
-    }
-
-    public void setCategoryDto(CategoryDTO categoryDto) {
-        this.categoryDto = categoryDto;
-    }
-
-    public String createCategory() {
-        categoryEndpoint.createCategory(categoryDto);
-        return "success";
-    }
-
-    public String deleteCategory(Category category) {
-        categoryEndpoint.deleteCategory(category);
-        return "deleteSuccess";
     }
 
     public List<Category> getCategoryObjList() {
@@ -90,6 +54,14 @@ public class CategoryManageBean {
             categoryObjList.add(category);
             categoryNamesList.add(category.getName());
         }
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }

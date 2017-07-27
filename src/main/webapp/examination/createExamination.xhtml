@@ -23,17 +23,17 @@
 
                     <p:panelGrid columns="2" transient="true">
                         <p:outputLabel for="examinationName" value="Examination name: " />
-                        <p:inputText id="examinationName" value="#{examinationManageBean.examinationDto.name}" required="true"/>
+                        <p:inputText id="examinationName" value="#{createExaminationPageBean.examinationDto.name}" />
 
                         <p:outputLabel for="examinationDescription" value="Examination description: " />
-                        <p:inputText id="examinationDescription" value="#{examinationManageBean.examinationDto.examinationDescription}" required="true"/>
+                        <p:inputText id="examinationDescription" value="#{createExaminationPageBean.examinationDto.examinationDescription}" />
 
                         <p:outputLabel for="category" value="Category " />
-                        <p:selectOneMenu id="category" value="#{examinationManageBean.examinationDto.examinationCategory}">
-                            <f:selectItems value="#{categoryManageBean.categoryNamesList}" />
+                        <p:selectOneMenu id="category" value="#{createExaminationPageBean.examinationDto.examinationCategory}">
+                            <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
                         
-                        <h:commandButton value="create" action="#{examinationManageBean.createExamination()}" />
+                        <h:commandButton value="create" action="#{createExaminationPageBean.createExamination()}" />
                     </p:panelGrid>
 
                 </h:form>

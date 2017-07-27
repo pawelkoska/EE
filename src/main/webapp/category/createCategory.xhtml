@@ -16,13 +16,17 @@
             <ui:define name="content">
                 <h:form id="createCategory">
 
-                    <p:panelGrid columns="2" transient="true">
-                        <p:outputLabel for="categoryName" value="Category name: " />
-                        <p:inputText id="categoryName" value="#{categoryManageBean.categoryDto.name}" required="true"/>
-                        <p:outputLabel for="categoryDescription" value="Category description: " />
-                        <p:inputText id="categoryDescription" value="#{categoryManageBean.categoryDto.categoryDescription}" required="true"/>
-                        <h:commandButton value="create" action="#{categoryManageBean.createCategory()}" />
-                    </p:panelGrid>
+                    
+                        <h:outputLabel for="name" value="Category name: " />
+                        <h:inputText id="name" value="#{createCategoryPageBean.category.name}" />
+                        <h:message for="name" /><br/>
+
+                        <h:outputLabel for="categoryDescription" value="Category description: " />
+                        <h:inputText id="categoryDescription" value="#{createCategoryPageBean.category.categoryDescription}" />
+                        <h:message for="categoryDescription" /><br/>
+
+                        <h:commandButton value="create" action="#{createCategoryPageBean.createCategory()}" />
+                    
 
                 </h:form>
             </ui:define>
