@@ -18,8 +18,8 @@
                         Description: <h:inputText id="examinationDescription" value="#{editExaminationManageBean.editingExamination.examinationDescription}" /> 
 
                         Category:
-                        <p:selectOneMenu id="examinationCategory" value="#{editExaminationManageBean.editingExamination.categoryId}">
-                            <f:selectItems value="#{listCategoryPageBean.categoryObjList}" />
+                        <p:selectOneMenu id="examinationCategory" value="#{editExaminationManageBean.editingExamination.categoryId.name}">
+                            <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
 
                         <h:commandButton action="#{editExaminationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="UPDATE" />

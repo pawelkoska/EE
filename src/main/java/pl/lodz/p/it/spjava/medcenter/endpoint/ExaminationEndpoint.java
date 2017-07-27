@@ -60,7 +60,13 @@ public class ExaminationEndpoint {
         return examinationEntity;
     }
 
-    public void saveEditedExamination(Examination e) {
+    public void saveEditedExamination(Examination e) {            
+        List<Category> categories = categoryFacade.findAll();
+        for (Category category : categories) {
+            if (category.getName().equals(e.getCategoryId().getName())) {
+                e.setCategoryId(category);
+            }
+        }
         examinationFacade.edit(e);
     }
 }
