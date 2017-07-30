@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 29, 2017, 9:52:58 PM
+    Author     : pawkos
+*/
+
+body {
+    background-image: url("poison2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+
+.loginForm {
+    background-color: transparent;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+
+}
+
+.loginForm input {
+    height: 60px;
+    width: 500px;
+    border: 2px solid white;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 20px;
+    background-color: transparent;
+    font-size: 25px;
+    font-weight: initial;
+    color: white;
+    font-family: Roboto;
+}
+
+.loginForm input[type=submit] {
+    background-color: white;
+    color: lightgray;
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.logo {
+    color: white;
+    font-family: Roboto;
+    font-weight: lighter;
+    font-size: 40px;
+}

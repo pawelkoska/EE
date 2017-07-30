@@ -5,11 +5,14 @@
     <class>pl.lodz.p.it.spjava.medcenter.model.Category</class>
     <class>pl.lodz.p.it.spjava.medcenter.model.Examination</class>
     <class>pl.lodz.p.it.spjava.medcenter.model.Account</class>
+    <class>pl.lodz.p.it.spjava.medcenter.model.Admin</class>
+    <class>pl.lodz.p.it.spjava.medcenter.model.Doctor</class>
+    <class>pl.lodz.p.it.spjava.medcenter.model.Patient</class>
+    <class>pl.lodz.p.it.spjava.medcenter.model.Reception</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>

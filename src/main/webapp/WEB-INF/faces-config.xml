@@ -13,73 +13,85 @@
              
         <navigation-case>
             <from-outcome>home</from-outcome>
-            <to-view-id>/faces/index.xhtml</to-view-id>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>logOut</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
                
         <navigation-case>
             <from-outcome>createCategory</from-outcome>
-            <to-view-id>/faces/category/createCategory.xhtml</to-view-id>
+            <to-view-id>/category/createCategory.xhtml</to-view-id>
             <redirect />
         </navigation-case>
         
         <navigation-case>
             <from-outcome>createExamination</from-outcome>
-            <to-view-id>/faces/examination/createExamination.xhtml</to-view-id>
+            <to-view-id>/examination/createExamination.xhtml</to-view-id>
             <redirect />
         </navigation-case>
                 
         <navigation-case>
             <from-outcome>examinationSuccess</from-outcome>
-            <to-view-id>/faces/status/examinationCreateSuccess.xhtml</to-view-id>
+            <to-view-id>/status/examinationCreateSuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case>   
          
         <navigation-case>
             <from-outcome>ourOffer</from-outcome>
-            <to-view-id>/faces/examination/ourOffer.xhtml</to-view-id>
+            <to-view-id>/examination/ourOffer.xhtml</to-view-id>
             <redirect />
         </navigation-case>   
          
         <navigation-case>
             <from-outcome>allCategories</from-outcome>
-            <to-view-id>/faces/category/allCategories.xhtml</to-view-id>
+            <to-view-id>/category/allCategories.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
            
         <navigation-case>
             <from-outcome>allExaminations</from-outcome>
-            <to-view-id>/faces/examination/allExaminations.xhtml</to-view-id>
+            <to-view-id>/examination/allExaminations.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
            
         <navigation-case>
             <from-outcome>editCategory</from-outcome>
-            <to-view-id>/faces/category/editCategory.xhtml</to-view-id>
+            <to-view-id>/category/editCategory.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>editSuccess</from-outcome>
-            <to-view-id>/faces/category/editCategory.xhtml</to-view-id>
+            <to-view-id>/category/editCategory.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>deleteCategorySuccess</from-outcome>
-            <to-view-id>/faces/status/deleteCategorySuccess.xhtml</to-view-id>
+            <to-view-id>/status/deleteCategorySuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>deleteExaminationSuccess</from-outcome>
-            <to-view-id>/faces/status/deleteExaminationSuccess.xhtml</to-view-id>
+            <to-view-id>/status/deleteExaminationSuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>editExamination</from-outcome>
-            <to-view-id>/faces/examination/editExamination.xhtml</to-view-id>
+            <to-view-id>/examination/editExamination.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login/loginForm.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
        

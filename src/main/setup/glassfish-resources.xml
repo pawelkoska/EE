@@ -12,4 +12,5 @@
     <property name="User" value="med"/>
     <property name="Password" value="med"/>
   </jdbc-connection-pool>
+  
 </resources>

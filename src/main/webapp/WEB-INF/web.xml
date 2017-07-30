@@ -10,6 +10,57 @@
         </param-name>
         <param-value>true</param-value>
     </context-param>
+    
+    <security-constraint>
+        <display-name>AdminConstraints</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin</web-resource-name>
+            <url-pattern>/faces/category/allCategories.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>GeneralConstraints</display-name>
+        <web-resource-collection>
+            <web-resource-name>General</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+     
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>dbMedCenterRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login/loginForm.xhtml</form-login-page>
+            <form-error-page>/login/loginFormError.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <security-role>
+        <description/>
+        <role-name>Admin</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Doctor</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Reception</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Patient</role-name>
+    </security-role>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -25,12 +76,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/home.xhtml</welcome-file>
     </welcome-file-list>
-    
-    <!--    <error-page>
-        <exception-type>javax.servlet.ServletException</exception-type>
-        <location>/error/categoryError.xhtml</location>
-    </error-page>-->
-    
 </web-app>

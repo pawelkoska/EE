@@ -4,13 +4,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Jul 23, 2017, 9:18:05 PM
+    Created on : Jul 30, 2017, 12:33:45 AM
     Author     : pawkos
 */
 
-.ui-icon {
-    text-indent: 0;
-}
-.body {
-    background-color: red;
+body {
+    background-image: url("poison2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
 }

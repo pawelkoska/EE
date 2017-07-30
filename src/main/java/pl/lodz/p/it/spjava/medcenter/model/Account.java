@@ -26,13 +26,18 @@ public class Account extends AbstractEntity implements Serializable {
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 3, max = 32, message = "{constraint.string.length.notinrange}")
     @Pattern(regexp = "^[a-z0-9_-]$", message = "{constraint.string.incorrectchar}")
-    @Column(name = "login", length = 32, nullable = false, unique = true, updatable = false)
+    @Column(name = "LOGIN", length = 32, nullable = false, unique = true, updatable = false)
     private String login;
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 6, message = "{constraint.string.length.tooshort}")
-    @Column(name = "haslo", length = 256, nullable = false)
+    @Column(name = "PASSWORD", length = 256, nullable = false)
     private String password;
+
+    @NotNull(message = "{constraint.notnull}")
+    @Size(min = 11, max = 11, message = "{constraint.string.length.tooshort}")
+    @Column(name = "pesel", length = 11, nullable = false)
+    private String pesel;
 
     @Column(name = "confirmed", nullable = false)
     private boolean confirmed;
@@ -40,7 +45,7 @@ public class Account extends AbstractEntity implements Serializable {
     @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "type", updatable = false)
+    @Column(name = "TYPE", updatable = false)
     private String type;
 
     @NotNull(message = "{constraint.notnull}")
@@ -111,6 +116,14 @@ public class Account extends AbstractEntity implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     public String getName() {

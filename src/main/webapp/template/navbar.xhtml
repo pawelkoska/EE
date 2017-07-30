@@ -4,7 +4,24 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-    <h:head></h:head>
-    
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <h:form id="navbar" style="display: flex; background-color: lightgray;">
+        <div style="flex:10">
+            <h2>MEDCENTER</h2>
+            <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if>
+            <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if>
+        </div>
+        <div style="flex: 2;">
+            <c:if test="#{request.remoteUser == null}">
+                <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>
+            </c:if>
+            <c:if test="#{request.remoteUser != null}">
+                <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/>
+            </c:if>          
+        </div>
+    </h:form>
+
 </ui:composition>
