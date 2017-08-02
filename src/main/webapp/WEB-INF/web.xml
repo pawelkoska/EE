@@ -10,7 +10,10 @@
         </param-name>
         <param-value>true</param-value>
     </context-param>
-    
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>start</param-value>
+    </context-param>
     <security-constraint>
         <display-name>AdminConstraints</display-name>
         <web-resource-collection>

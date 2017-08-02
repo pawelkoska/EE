@@ -6,6 +6,9 @@
 package pl.lodz.p.it.spjava.medcenter.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,9 +29,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "EXAMINATION")
-@NamedQueries ({
-    @NamedQuery(name="Examination.findByCategory", query="SELECT e FROM Examination e WHERE e.categoryId = :id"),
-})
+@NamedQueries({
+    @NamedQuery(name = "Examination.findByCategory", query = "SELECT e FROM Examination e WHERE e.categoryId = :id"),})
 public class Examination extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,10 +51,20 @@ public class Examination extends AbstractEntity implements Serializable {
     @Size(min = 10, max = 300)
     private String examinationDescription;
 
-    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID",  nullable = false)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private Category categoryId;
-    
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationId")
+    private List<Appointment> appointmentList = new ArrayList<>();
+
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
 
     public Category getCategoryId() {
         return categoryId;

@@ -9,17 +9,18 @@ and open the template in the editor.
 */
 
 body {
-    background-image: url("poison2.jpg");
+    background-image: url("backgroundLogin.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:  cover;
     display: flex;
+    height: 100px;
 }
 
 .loginForm {
     background-color: transparent;
     position: absolute;
-    left: 50%;
+    left: 37%;
     top: 30%;
 
 }
@@ -28,7 +29,7 @@ body {
     height: 60px;
     width: 500px;
     border: 2px solid white;
-    border-radius: 2px;
+    border-radius: 4px;
     display: block;
     margin-bottom: 20px;
     background-color: transparent;

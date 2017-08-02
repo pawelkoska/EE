@@ -10,7 +10,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>template</title>
-
+        <h:outputStylesheet name="template.css"  />
     </h:head>
 
     <h:body>
@@ -24,7 +24,7 @@
 
             <p:layoutUnit position="west" resizable="true" size="300" >
                 <!--<c:if test="#{request.remoteUser == 'admin'}">-->
-                    <ui:include src="./menu.xhtml" />
+                <ui:include src="./menu.xhtml" />
                 <!--</c:if>-->
             </p:layoutUnit>
 

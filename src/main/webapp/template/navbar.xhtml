@@ -19,8 +19,9 @@
                 <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>
             </c:if>
             <c:if test="#{request.remoteUser != null}">
-                <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/>
-            </c:if>          
+                <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
+                <p:link value="MY ACCOUNT" outcome="createCategory"/>
+            </c:if>
         </div>
     </h:form>
 

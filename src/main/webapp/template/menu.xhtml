@@ -7,8 +7,6 @@
                 xmlns:p="http://primefaces.org/ui">
     <h:form id="menu">
 
-
-
         <p:menu rendered="#{request.isUserInRole('Admin')}">
             <p:submenu label="CATEGORIES">
                 <p:menuitem value="ALL CATEGORIES" outcome="allCategories" />
@@ -17,7 +15,6 @@
             <p:submenu label="EXAMINATIONS">
                 <p:menuitem value="ALL EXAMINATIONS" outcome="allExaminations"/>
                 <p:menuitem value="ADD EXAMINATION" outcome="createExamination"/>
-                <p:menuitem value="ALL ACCOUNT" outcome="allCategories" />
             </p:submenu>
             <p:submenu label="APPOINTMENTS">
                 <p:menuitem value="CREATE APPOINTMENT" outcome="allExaminations"/>
@@ -29,22 +26,19 @@
                 <p:menuitem value="ADD DOCTOR" outcome="allExaminations"/>
                 <p:menuitem value="ADD PATIENT" outcome="allExaminations"/>
                 <p:menuitem value="ADD RECEPTION" outcome="allExaminations"/>
-                <p:menuitem value="MY ACCOUNT" outcome="createCategory"/>
             </p:submenu>
         </p:menu> 
 
         <p:menu rendered="#{request.isUserInRole('Patient')}">
             <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
             <p:menuitem value="MAKE APPOINTMENT" outcome="allCategories" />
-            <p:menuitem value="MY ALL APPOINTMENTS" outcome="allCategories" />
+            <p:menuitem value="MY APPOINTMENTS" outcome="allCategories" />
             <p:menuitem value="MY HISTORY" outcome="createCategory"/>
-            <p:menuitem value="MY ACCOUNT" outcome="createCategory"/>
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Doctor')}">
             <p:menuitem value="SHOW MY SHEDULE" outcome="allCategories" />
             <p:menuitem value="CREATE APPOINTMENT" outcome="allCategories" />
-            <p:menuitem value="MY ACCOUNT" outcome="createCategory"/>
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Reception')}">
@@ -52,13 +46,12 @@
             <p:menuitem value="REGISTER PATIENT" outcome="allCategories" />
             <p:menuitem value="CONFIRM REGISTRATION" outcome="allCategories" />
             <p:menuitem value="MAKE APPOINTMENT" outcome="allCategories" />
-            <p:menuitem value="MY ACCOUNT" outcome="createCategory"/>
         </p:menu>   
 
-        <p:menu rendered="#{request.userPrincipal == null}">
+<!--        <p:menu rendered="#{request.userPrincipal == null}">
             <p:menuitem value="HOME" outcome="home"/><br/>
             <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
-        </p:menu>        
+        </p:menu>        -->
 
     </h:form>
 </ui:composition>
