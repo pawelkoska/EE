@@ -9,6 +9,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "ACCOUNT")
 @SecondaryTable(name = "PERSONAL_DATA")
+@NamedQueries({
+    @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'DOCTOR'"),
+    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'PATIENT'")
+})
 //@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")

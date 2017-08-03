@@ -94,6 +94,12 @@
             <to-view-id>/login/loginForm.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createAppointment</from-outcome>
+            <to-view-id>/appointment/createAppointment.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
        
                                 
     </navigation-rule>

@@ -2,9 +2,12 @@ package pl.lodz.p.it.spjava.medcenter.web.account;
 
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Admin;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
@@ -16,6 +19,13 @@ import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 @SessionScoped
 public class AccountSession implements Serializable {
 
+    @EJB
+    private AccountEndpoint accountEndpoint;
+    
+    public List<Doctor> getAllDoctors(){
+        return accountEndpoint.getAllDoctors();
+    }
+    
     public String getLogin() {
         Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         return (null == p ? "Guest" : p.getName());
@@ -40,6 +50,10 @@ public class AccountSession implements Serializable {
 
     public static boolean isReception(Account account) {
         return (account instanceof Reception);
+    }
+
+    public List<Patient> getAllPatients() {
+        return accountEndpoint.getAllPatients();
     }
 
 }

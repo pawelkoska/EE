@@ -23,12 +23,14 @@ public class ListExaminationPageBean {
     private ExaminationSession examinationSession;
 
     private List<Examination> examinationObjList = new ArrayList<>();
+    private List<String> examinationNameList = new ArrayList<>();
 
     @PostConstruct
     public void getAllExaminations() {
         List<Examination> allExaminations = examinationSession.getAllExaminations();
         for (Examination examination : allExaminations) {
             examinationObjList.add(examination);
+            examinationNameList.add(examination.getName());
         }
     }
 
@@ -42,6 +44,14 @@ public class ListExaminationPageBean {
     
     public List<Examination> getExaminationsByCategory(Category category) {
         return examinationSession.getExaminationsByCategory(category);
+    }
+
+    public List<String> getExaminationNameList() {
+        return examinationNameList;
+    }
+
+    public void setExaminationNameList(List<String> examinationNameList) {
+        this.examinationNameList = examinationNameList;
     }
 
 }
