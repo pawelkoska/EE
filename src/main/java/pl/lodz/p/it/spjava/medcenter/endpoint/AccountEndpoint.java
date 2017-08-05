@@ -3,8 +3,11 @@ package pl.lodz.p.it.spjava.medcenter.endpoint;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
+import pl.lodz.p.it.spjava.medcenter.model.Account;
+import pl.lodz.p.it.spjava.medcenter.model.Admin;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
@@ -16,8 +19,15 @@ import pl.lodz.p.it.spjava.medcenter.model.Patient;
 @Stateful
 public class AccountEndpoint {
 
-    @EJB
+    @Inject
     private AccountFacade accountFacade;
+    
+    public void createAccount(Account account) {
+        account.setActive(true);
+        account.setConfirmed(true);
+        accountFacade.create(account);
+    }
+
 
 //    public void createCategory(Category category) {
 //        categoryFacade.create(category);
@@ -41,7 +51,11 @@ public class AccountEndpoint {
 //        categoryFacade.remove(category);
 //        return "deleteCategorySuccess";
 //    }
-
+    
+    public List<Account> getAllAccounts(){
+        return accountFacade.getAllAccounts();
+    }
+    
     public List<Doctor> getAllDoctors() {
         return accountFacade.getAllDoctors();
     }

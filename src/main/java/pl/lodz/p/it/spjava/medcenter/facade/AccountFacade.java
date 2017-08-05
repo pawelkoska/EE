@@ -33,6 +33,11 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
 
+    public List<Account> getAllAccounts() {
+        TypedQuery<Account> tq = em.createNamedQuery("Account.getAllAccounts", Account.class);
+        return tq.getResultList();
+    }
+
     public List<Doctor> getAllDoctors() {
         TypedQuery<Doctor> tq = em.createNamedQuery("Account.getAllDoctors", Doctor.class);
         return tq.getResultList();

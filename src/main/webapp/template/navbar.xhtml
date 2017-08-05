@@ -10,15 +10,15 @@
 
     <h:form id="navbar" style="display: flex; background-color: lightgray;">
         <div style="flex:10">
-            <h2>MEDCENTER</h2>
-            <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if>
-            <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if>
+            <h2>M E D <br/> C E N T E R</h2>
         </div>
         <div style="flex: 2;">
             <c:if test="#{request.remoteUser == null}">
+                <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
                 <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>
             </c:if>
             <c:if test="#{request.remoteUser != null}">
+                <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if>
                 <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
                 <p:link value="MY ACCOUNT" outcome="createCategory"/>
             </c:if>

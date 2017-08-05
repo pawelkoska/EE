@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:outputLabel value="name*" for="name" />
+    <h:inputText id="name" value="#{pageBean.account.name}" title="name" required="true" ></h:inputText>
+    <h:messages for="name" />
+
+    <h:outputLabel value="surname*" for="surname" />
+    <h:inputText id="surname" value="#{pageBean.account.secondName}" title="surname" required="true" ></h:inputText>
+    <h:messages for="surname" />
+
+    <p:outputLabel for="birthDate" value="birthDate" />
+    <p:calendar id="birthDate" value="#{pageBean.account.birthDate}" locale="de" navigator="true" pattern="dd/MM/yyyy" />
+    <h:messages for="birthDate" />
+    
+    
+    <h:outputLabel value="email*" for="email" />
+    <h:inputText id="email" value="#{pageBean.account.email}" title="email" required="true" ></h:inputText>
+    <h:messages for="email" />
+
+    <h:outputLabel value="phone" for="phone" />
+    <h:inputText id="phone" value="#{pageBean.account.phoneNumber}" title="phone" required="false" ></h:inputText>
+    <h:messages for="phone" />
+
+    <h:outputLabel value="pesel*" for="pesel" />
+    <h:inputText id="pesel" value="#{pageBean.account.pesel}" title="pesel" required="true" ></h:inputText>
+    <h:messages for="phone" />
+
+</ui:composition>

@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "PATIENT_DATA")
+@Table(name = "PERSONAL_DATA")
 //@DiscriminatorValue("PATIENT")
 //@NamedQueries({
 //    @NamedQuery(name = "Pracownik.findAll", query = "SELECT d FROM Pracownik d"),

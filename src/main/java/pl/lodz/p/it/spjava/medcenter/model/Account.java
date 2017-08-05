@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.medcenter.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,7 +12,8 @@ import javax.validation.constraints.Size;
 @SecondaryTable(name = "PERSONAL_DATA")
 @NamedQueries({
     @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'DOCTOR'"),
-    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'PATIENT'")
+    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'PATIENT'"),
+    @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a")
 })
 //@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,7 +31,7 @@ public class Account extends AbstractEntity implements Serializable {
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 3, max = 32, message = "{constraint.string.length.notinrange}")
-    @Pattern(regexp = "^[a-z0-9_-]$", message = "{constraint.string.incorrectchar}")
+//    @Pattern(regexp = "^[a-z0-9]$", message = "{constraint.string.incorrectchar}")
     @Column(name = "LOGIN", length = 32, nullable = false, unique = true, updatable = false)
     private String login;
 
@@ -40,7 +42,7 @@ public class Account extends AbstractEntity implements Serializable {
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 11, max = 11, message = "{constraint.string.length.tooshort}")
-    @Column(name = "pesel", length = 11, nullable = false)
+    @Column(name = "pesel", table = "PERSONAL_DATA", length = 11, nullable = false)
     private String pesel;
 
     @Column(name = "confirmed", nullable = false)
@@ -61,6 +63,10 @@ public class Account extends AbstractEntity implements Serializable {
     @Size(min = 3, max = 32, message = "{constraint.string.length.notinrange}")
     @Column(name = "secondName", table = "PERSONAL_DATA", length = 32, nullable = false)
     private String secondName;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birthDate", table = "PERSONAL_DATA", nullable = false)
+    private Date birthDate;
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 6, max = 64, message = "{constraint.string.length.notinrange}")
@@ -96,6 +102,14 @@ public class Account extends AbstractEntity implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public boolean isConfirmed() {

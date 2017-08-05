@@ -3,19 +3,19 @@
 <glassfish-web-app error-url="">
   <security-role-mapping>
     <role-name>Admin</role-name>
-    <group-name>ADMIN</group-name>
+    <group-name>Admin</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>Doctor</role-name>
-    <group-name>DOCTOR</group-name>
+    <group-name>Doctor</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>Patient</role-name>
-    <group-name>PATIENT</group-name>
+    <group-name>Patient</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>Reception</role-name>
-    <group-name>RECEPTION</group-name>
+    <group-name>Reception</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>

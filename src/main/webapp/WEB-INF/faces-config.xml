@@ -100,6 +100,42 @@
             <to-view-id>/appointment/createAppointment.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createAdmin</from-outcome>
+            <to-view-id>/account/createAdmin.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createPetient</from-outcome>
+            <to-view-id>/account/createPatient.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createReception</from-outcome>
+            <to-view-id>/account/createReception.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createDoctor</from-outcome>
+            <to-view-id>/account/createDoctor.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>successCreateAdmin</from-outcome>
+            <to-view-id>/status/createAdminSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>allAccounts</from-outcome>
+            <to-view-id>/account/allAccounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
        
                                 
     </navigation-rule>
