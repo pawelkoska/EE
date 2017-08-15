@@ -28,9 +28,14 @@
                         <p:outputLabel for="examinationDescription" value="Examination description: " />
                         <p:inputText id="examinationDescription" value="#{createExaminationPageBean.examinationDto.examinationDescription}" />
 
-                        <p:outputLabel for="category" value="Category " />
+                        <p:outputLabel for="category" value="Category: " />
                         <p:selectOneMenu id="category" value="#{createExaminationPageBean.examinationDto.examinationCategory}">
                             <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="duration" value="Duration: " />
+                        <p:selectOneMenu id="duration" value="#{createExaminationPageBean.examinationDto.examinationDuration}">
+                            <f:selectItems value="#{createExaminationPageBean.durationList}" />
                         </p:selectOneMenu>
                         
                         <h:commandButton value="create" action="#{createExaminationPageBean.createExamination()}" />

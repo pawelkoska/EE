@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Table(name = "ACCOUNT")
 @SecondaryTable(name = "PERSONAL_DATA")
 @NamedQueries({
-    @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'DOCTOR'"),
+    @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'Doctor'"),
     @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'PATIENT'"),
     @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a")
 })

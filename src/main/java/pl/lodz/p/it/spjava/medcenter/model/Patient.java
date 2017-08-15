@@ -1,9 +1,9 @@
 package pl.lodz.p.it.spjava.medcenter.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "PERSONAL_DATA")
@@ -17,5 +17,7 @@ public class Patient extends Account implements Serializable {
     public Patient() {
     }
     
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientId")
+    private List<Appointment> appointmentList = new ArrayList<>();
+
 }

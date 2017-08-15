@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.medcenter.web.examination;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -24,9 +25,9 @@ public class ExaminationSession implements Serializable {
         return deletedExamination;
     }
 
-    public String createExamination(ExaminationDTO examination) {
+    public String createExamination(ExaminationDTO examination) throws ParseException {
         examinationEndpoint.createExamination(examination);
-        return "createCategorySuccess";
+        return "createExaminationSuccess";
     }
 
     public List<Examination> getAllExaminations() {

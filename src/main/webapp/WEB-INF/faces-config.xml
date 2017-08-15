@@ -4,10 +4,42 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
+    
+
     <navigation-rule>
         <navigation-case>
             <from-outcome>createCategorySuccess</from-outcome>
             <to-view-id>/status/categoryCreateSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+          
+        <navigation-case>
+            <from-outcome>allAppointments</from-outcome>
+            <to-view-id>/appointment/allAppointments.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>   
+        
+        <navigation-case>
+            <from-outcome>createAppointmentSuccess</from-outcome>
+            <to-view-id>/status/createAppointmentSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>   
+        
+        <navigation-case>
+            <from-outcome>addRoom</from-outcome>
+            <to-view-id>/room/createRoom.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>   
+        
+        <navigation-case>
+            <from-outcome>editRoom</from-outcome>
+            <to-view-id>/room/editRoom.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>   
+        
+        <navigation-case>
+            <from-outcome>allRooms</from-outcome>
+            <to-view-id>/room/allRooms.xhtml</to-view-id>
             <redirect />
         </navigation-case>   
              
@@ -96,14 +128,19 @@
         </navigation-case> 
         
         <navigation-case>
-            <from-outcome>createAppointment</from-outcome>
-            <to-view-id>/appointment/createAppointment.xhtml</to-view-id>
+            <from-outcome>createSchedule</from-outcome>
+            <to-view-id>/appointment/createSchedule.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>createAdmin</from-outcome>
             <to-view-id>/account/createAdmin.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>createAccountSucess</from-outcome>
+            <to-view-id>/account/createAccountSuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
@@ -134,6 +171,30 @@
         <navigation-case>
             <from-outcome>allAccounts</from-outcome>
             <to-view-id>/account/allAccounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/login/registerForm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>successCreatePatient</from-outcome>
+            <to-view-id>/status/registerSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>deleteAccountSuccess</from-outcome>
+            <to-view-id>/status/deleteAccountSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>myAccount</from-outcome>
+            <to-view-id>/account/accountDetails.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
        

@@ -1,8 +1,8 @@
 package pl.lodz.p.it.spjava.medcenter.web.appointment;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -20,11 +20,14 @@ public class AppointmentSession implements Serializable {
     private Appointment editingAppointment;
     private Appointment deletedAppointment;
 
+    private Map<String, String> rooms;
+    private Map<String, String> doctors;
+
     public Appointment getDeletedAppointment() {
         return deletedAppointment;
     }
 
-    public String createAppointment(AppointmentDTO appointment) throws ParseException {
+    public String createAppointment(AppointmentDTO appointment) {
         appointmentEndpoint.createAppointment(appointment);
         return "createAppointmentSuccess";
     }
@@ -48,4 +51,22 @@ public class AppointmentSession implements Serializable {
     public void getAppointmentToEdit(Appointment appointment) {
         editingAppointment = appointmentEndpoint.getAppointmentToEdit(appointment);
     }
+
+    public Map<String, String> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Map<String, String> rooms) {
+        this.rooms = rooms;
+    }
+
+    public Map<String, String> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(Map<String, String> doctors) {
+        this.doctors = doctors;
+    }
+    
+    
 }

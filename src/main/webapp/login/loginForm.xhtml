@@ -5,21 +5,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <h:outputStylesheet library="css" name="loginForm.css"  />
-        
+        <h:outputStylesheet library="css" name="loginForm.css"  />     
         <style>
             @import url('https://fonts.googleapis.com/css?family=Roboto');          
         </style>  
     </h:head>
     <h:body>
-
         <form class="loginForm" method="post" action="j_security_check">
             <span class="logo">M E D   C E N T E R</span>
             <input type="text" placeholder=" username*" name= "j_username"/>
             <input type="password" placeholder=" password*" name= "j_password" />
             <input type="submit" value="LOGIN" />
         </form>
-
-
     </h:body>
 </html>

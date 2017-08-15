@@ -5,29 +5,29 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    <h:outputLabel value="name*" for="name" />
-    <h:inputText id="name" value="#{pageBean.account.name}" title="name" required="true" ></h:inputText>
+    <p:outputLabel value="name" for="name" />
+    <p:inputText id="name" value="#{pageBean.account.name}" title="name" placeholder="eg. John" required="true" ></p:inputText>
     <h:messages for="name" />
 
-    <h:outputLabel value="surname*" for="surname" />
-    <h:inputText id="surname" value="#{pageBean.account.secondName}" title="surname" required="true" ></h:inputText>
+    <p:outputLabel value="surname" for="surname" />
+    <p:inputText id="surname" value="#{pageBean.account.secondName}" title="surname" placeholder="eg. Smith" required="true" ></p:inputText>
     <h:messages for="surname" />
 
     <p:outputLabel for="birthDate" value="birthDate" />
-    <p:calendar id="birthDate" value="#{pageBean.account.birthDate}" locale="de" navigator="true" pattern="dd/MM/yyyy" />
+    <p:calendar id="birthDate" value="#{pageBean.account.birthDate}" locale="de" navigator="true" placeholder="dd/MM/yyyy" pattern="dd/MM/yyyy" />
     <h:messages for="birthDate" />
     
     
-    <h:outputLabel value="email*" for="email" />
-    <h:inputText id="email" value="#{pageBean.account.email}" title="email" required="true" ></h:inputText>
+    <p:outputLabel value="email" for="email" />
+    <p:inputText id="email" value="#{pageBean.account.email}" title="email" placeholder="eg. johntsmith@gmail.com" required="true" ></p:inputText>
     <h:messages for="email" />
 
-    <h:outputLabel value="phone" for="phone" />
-    <h:inputText id="phone" value="#{pageBean.account.phoneNumber}" title="phone" required="false" ></h:inputText>
+    <p:outputLabel value="phone" for="phone" />
+    <p:inputText id="phone" value="#{pageBean.account.phoneNumber}" title="phone" placeholder="eg. 540 122 320" required="false" ></p:inputText>
     <h:messages for="phone" />
 
-    <h:outputLabel value="pesel*" for="pesel" />
-    <h:inputText id="pesel" value="#{pageBean.account.pesel}" title="pesel" required="true" ></h:inputText>
-    <h:messages for="phone" />
+    <p:outputLabel value="pesel" for="pesel" />
+    <p:inputText id="pesel" value="#{pageBean.account.pesel}" title="pesel" placeholder="eg. 58509088921" required="true" ></p:inputText>
+    <h:messages for="pesel" />
 
 </ui:composition>

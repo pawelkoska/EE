@@ -28,9 +28,13 @@
                         <p:column headerText="DESCRIPTION">
                             <h:outputText value="#{examination.examinationDescription}" />
                         </p:column>
+                         
+                        <p:column headerText="DURATION">
+                            <h:outputText value="#{examination.duration}" />
+                        </p:column>
                         
                         <p:column headerText="CATEGORY_ID">
-                            <h:outputText value="#{examination.categoryId.id}" />
+                            <h:outputText value="#{examination.categoryId.name}" />
                         </p:column>
 
                         <p:column style="width:75px">

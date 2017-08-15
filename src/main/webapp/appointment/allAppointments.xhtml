@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="appoitnmentList" var="appointment" value="#{listAppointmentPageBean.appointmentObjList}">
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:column headerText="ID">
+                            <h:outputText value="#{appointment.id}" />
+                        </p:column>
+
+                        <p:column headerText="EXAMINATION TYPE">
+                            <h:outputText value="#{appointment.examinationId.name}" />
+                        </p:column>
+
+                        <p:column headerText="ROOM">
+                            <h:outputText value="#{appointment.roomId.roomNumber}" />
+                        </p:column>
+
+                        <p:column headerText="EXAMINATION RESULT">
+                            <h:outputText value="#{appointment.appointmentResult}" />
+                        </p:column>
+
+                        <p:column headerText="DATE">
+                            <h:outputText value="#{appointment.date}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="TIME START">
+                            <h:outputText value="#{appointment.timeStart}" >
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="TIME END">
+                            <h:outputText value="#{appointment.timeEnd}" >
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="PATIENT">
+                            <h:outputText value="#{appointment.patientId.name}" />
+                        </p:column>
+
+                        <p:column headerText="DOCTOR">
+                            <h:outputText value="#{appointment.doctorId.name}" />
+                        </p:column>
+
+                        <p:column style="width:75px">
+                            <p:commandButton value="EDIT" action="#{editExaminationManageBean.getExaminationToEdit(examination)}" />
+                        </p:column>
+                        <p:column style="width:105px">
+                            <p:commandButton value="DELETE"  action="#{deleteExaminationPageBean.deleteExamination(examination)}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

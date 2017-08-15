@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="registerForm.css"  />
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto');          
+        </style>  
+    </h:head>
+    <h:body>         
+        <ui:param name="pageBean" value="#{createPatientPageBean}" />
+        <span class="header">REGISTER</span>
+        <h:form id="createPatientForm">
+            <h:panelGrid columns="3">
+                <ui:include src="../account/_loginEditTemplate.xhtml"/>
+                <ui:include src="../account/_passwordEditTemplate.xhtml"/>
+                <ui:include src="../account/_commonDataEditTemplate.xhtml"/>
+            </h:panelGrid>
+            <br />
+            <h:commandButton action="#{pageBean.createPatient()}" value="create" />
+            <h:commandButton value="cancel" action="home" immediate="true" />
+        </h:form>
+    </h:body>
+</html>

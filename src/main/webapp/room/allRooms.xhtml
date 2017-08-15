@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../template/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="rooms" var="room" value="#{listRoomPageBean.roomObjList}">
+                        <f:facet name="header">
+                        </f:facet>
+                        <p:column headerText="ID">
+                            <h:outputText value="#{room.id}" />
+                        </p:column>
+                        <p:column headerText="ROOM NUMBER">
+                            <h:outputText value="#{room.roomNumber}" />
+                        </p:column>
+                        <p:column headerText="EXAMINATION TYPE">
+                            <h:outputText value="#{room.examinationType.name}" />
+                        </p:column>
+                        <p:column style="width:75px">
+                            <p:commandButton value="EDIT" action="editRoom" actionListener="#{editRoomManageBean.getRoomToEdit(room)}" />
+                        </p:column>
+                        <p:column style="width:105px">
+                            <p:commandButton                                          
+                                value="DELETE" 
+                                action="allRooms"
+                                actionListener="#{deleteRoomPageBean.deleteRoom(room)}" > 
+                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

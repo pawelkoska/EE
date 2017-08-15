@@ -16,7 +16,7 @@
                     <ui:include src="_commonDataEditTemplate.xhtml"/>
                 </h:panelGrid>
                 <br />
-                <h:commandButton action="#{pageBean.createDoctor()}" value="create" />
+                <h:commandButton actionListener="#{pageBean.createDoctor()}" action="createAccountSuccess" value="create" />
                 <br />
                 <h:commandButton value="cancel" action="cancelAction" immediate="true" />
             </h:form>

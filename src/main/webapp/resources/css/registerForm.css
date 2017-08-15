@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 29, 2017, 9:52:58 PM
+    Author     : pawkos
+*/
+
+body {
+
+}
+
+#createPatientForm {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin: -100px 0 0 -150px;
+}

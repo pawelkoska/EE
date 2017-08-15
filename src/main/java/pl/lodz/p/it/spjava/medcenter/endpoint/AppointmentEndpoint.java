@@ -7,18 +7,21 @@ import java.util.Date;
 
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import org.joda.time.Interval;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
+import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
-import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
-import pl.lodz.p.it.spjava.medcenter.model.Patient;
+import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 /**
  *
@@ -37,22 +40,12 @@ public class AppointmentEndpoint {
     private AccountFacade accountFacade;
     
     @EJB
+    private RoomFacade roomFacade;
+    
+    @EJB
     private ExaminationFacade examinationFacade;
 
-    public void createAppointment(AppointmentDTO appointment) throws ParseException {
-        
-        List<Category> categories = categoryFacade.findAll();
-        Category selectedCategory = null;
-        for (Category category : categories) {
-            if (category.getName().equals(appointment.getCategory())) {
-                selectedCategory = category;
-                break;
-            }
-        }
-        if (selectedCategory == null) {
-            throw new IllegalArgumentException("Błędna nazwa kategorii"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
-        }
-        
+    public void createAppointment(AppointmentDTO appointment) {    
         List<Examination> examinations = examinationFacade.findAll();
         Examination selectedExamination = null;
         for (Examination examination : examinations) {
@@ -61,52 +54,54 @@ public class AppointmentEndpoint {
                 break;
             }
         }
-        if (selectedCategory == null) {
+        if (selectedExamination == null) {
             throw new IllegalArgumentException("Błędna nazwa badania"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
         
         List<Doctor> doctors = accountFacade.getAllDoctors();
         Doctor selectedDoctor = null;
         for (Doctor d : doctors) {
-            if (d.getName().equals(appointment.getExamination())) {
+            if (d.getSecondName().equals(appointment.getDoctor())) {
                 selectedDoctor = d;
                 break;
             }
         }
-        if (selectedCategory == null) {
+        if (selectedDoctor == null) {
             throw new IllegalArgumentException("Błędna nazwa doktora"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
         
-        List<Patient> patients = accountFacade.getAllPatients();
-        Patient selectedPatient = null;
-        for (Patient p : patients) {
-            if (p.getName().equals(appointment.getPatient())) {
-                selectedPatient = p;
+        List<Room> rooms = roomFacade.findAll();
+        Room selectedRoom = null;
+        for (Room r : rooms) {
+            if (r.getRoomNumber().equals(appointment.getRoomNumber())) {
+                selectedRoom = r;
                 break;
             }
         }
-        if (selectedCategory == null) {
-            throw new IllegalArgumentException("Błędna nazwa pacjenta"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
+        if (selectedDoctor == null) {
+            throw new IllegalArgumentException("Błędna nazwa pokoju"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
-
+             
+        
+        
+        
+        
+        
         Appointment appointmentEntity = new Appointment();
-        appointmentEntity.setCategoryId(selectedCategory);
         appointmentEntity.setExaminationId(selectedExamination);
         appointmentEntity.setDoctorId(selectedDoctor);
-        appointmentEntity.setPatientId(selectedPatient);
+        appointmentEntity.setRoomId(selectedRoom);      
+        appointmentEntity.setDate(appointment.getDate());  
+        
 
+        long interval = appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime();       
+        LOG.log(Level.INFO, Long.toString(interval));
         
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = format.parse(appointment.getDate());       
-        appointmentEntity.setAppointmentDate(date);
-        
-        SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
-        Date time = formatTime.parse(appointment.getTime());       
-        appointmentEntity.setAppointmentDate(time);   
-        
+        appointmentEntity.setTimeStart(appointment.getTimeStart());
+        appointmentEntity.setTimeEnd(appointment.getTimeEnd());      
         appointmentFacade.create(appointmentEntity);
-
     }
+    private static final Logger LOG = Logger.getLogger(AppointmentEndpoint.class.getName());
 
     public List<Appointment> getAllAppointments() {
         return appointmentFacade.findAll();

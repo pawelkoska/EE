@@ -1,5 +1,8 @@
 package pl.lodz.p.it.spjava.medcenter.endpoint;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -22,7 +25,7 @@ public class ExaminationEndpoint {
     @EJB
     private CategoryFacade categoryFacade;
 
-    public void createExamination(ExaminationDTO examination) {
+    public void createExamination(ExaminationDTO examination) throws ParseException {
         List<Category> categories = categoryFacade.findAll();
         Category selectedCategory = null;
         for (Category category : categories) {
@@ -38,7 +41,8 @@ public class ExaminationEndpoint {
         Examination examinationEntity = new Examination();
         examinationEntity.setName(examination.getName());
         examinationEntity.setExaminationDescription(examination.getExaminationDescription());
-        examinationEntity.setCategoryId(selectedCategory);
+        examinationEntity.setCategoryId(selectedCategory);        
+        examinationEntity.setDuration(examination.getExaminationDuration());
         examinationFacade.create(examinationEntity);
     }
 

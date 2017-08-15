@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 29, 2017, 9:52:58 PM
+    Author     : pawkos
+*/
+
+body {
+  background-image: url("backgroundLogin.jpg");
+}
+
+.register-success {
+  display: block;
+  text-align: center;
+  margin: auto;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: grey;
+  background-color: white;
+  margin-top: 200px;
+}
+
+.success-info {
+  font-size: 35px;
+  font-weight:bold;
+}
+
+.ui-link {
+    color: lightseagreen;
+    text-decoration: none;
+    font-size: 30px !important;
+}

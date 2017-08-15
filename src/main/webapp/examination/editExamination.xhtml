@@ -21,6 +21,11 @@
                         <p:selectOneMenu id="examinationCategory" value="#{editExaminationManageBean.editingExamination.categoryId.name}">
                             <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
+                        
+                        Duration:
+                        <p:selectOneMenu id="examinationDuration" value="#{editExaminationManageBean.editingExamination.duration}">
+                            <f:selectItems value="#{createExaminationPageBean.durationList}" />
+                        </p:selectOneMenu>
 
                         <h:commandButton action="#{editExaminationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="UPDATE" />
                         <h:commandButton value="BACK" action="allExaminations" immediate="true"/>

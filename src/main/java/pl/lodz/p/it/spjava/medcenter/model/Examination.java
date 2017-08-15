@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -51,13 +52,25 @@ public class Examination extends AbstractEntity implements Serializable {
     @Size(min = 10, max = 300)
     private String examinationDescription;
 
+    @Column(name = "DURATION", nullable = false)
+    private int duration;
+
+    
+    
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private Category categoryId;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationType")
+    private List<Room> roomList = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationId")
     private List<Appointment> appointmentList = new ArrayList<>();
 
+    
+    
+    
+    
     public List<Appointment> getAppointmentList() {
         return appointmentList;
     }
@@ -72,6 +85,22 @@ public class Examination extends AbstractEntity implements Serializable {
 
     public void setCategoryId(Category category) {
         this.categoryId = category;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public List<Room> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public Long getId() {

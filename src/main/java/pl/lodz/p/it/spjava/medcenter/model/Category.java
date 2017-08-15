@@ -45,19 +45,12 @@ public class Category extends AbstractEntity implements Serializable {
     private String categoryDescription;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Examination> examinationList = new ArrayList<>();
+    private List<Examination> examinationList = new ArrayList<>();  
+
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Appointment> appointmentList = new ArrayList<>();
-
-    public List<Appointment> getAppointmentList() {
-        return appointmentList;
-    }
-
-    public void setAppointmentList(List<Appointment> appointmentList) {
-        this.appointmentList = appointmentList;
-    }
-
+    
+    
+    
     public List<Examination> getExaminationList() {
         return examinationList;
     }

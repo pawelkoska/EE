@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="editRoom">
+                        Room number: <h:inputText id="roomNumber" value="#{editRoomManageBean.editingRoom.roomNumber}" />
+                        <h:message for="roomNumber"/><br/>
+                        <p:outputLabel for="examinationType" value="Examination type: " />
+                        <p:selectOneMenu id="examinationType" value="#{editRoomManageBean.editingRoom.examinationType.name}">
+                            <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
+                        </p:selectOneMenu><br/>
+                        
+                        <h:commandButton action="#{editRoomManageBean.saveEditedRoom()}" value="OK"/>
+                        <h:commandButton value="BACK" action="allRooms" immediate="true"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -16,11 +16,13 @@
             <c:if test="#{request.remoteUser == null}">
                 <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
                 <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>
+                
+                <p:link value="REGISTER" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
             </c:if>
             <c:if test="#{request.remoteUser != null}">
                 <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if>
                 <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
-                <p:link value="MY ACCOUNT" outcome="createCategory"/>
+                <p:link value="MY ACCOUNT" outcome="myAccount"/>
             </c:if>
         </div>
     </h:form>

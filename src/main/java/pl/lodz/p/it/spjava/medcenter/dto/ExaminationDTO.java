@@ -14,6 +14,17 @@ public class ExaminationDTO {
     private String name;
     private String examinationDescription;
     private String examinationCategory;
+    private int examinationDuration;
+
+    public int getExaminationDuration() {
+        return examinationDuration;
+    }
+
+    public void setExaminationDuration(int examinationDuration) {
+        this.examinationDuration = examinationDuration;
+    }
+    
+    
 
     public String getExaminationCategory() {
         return examinationCategory;
@@ -41,4 +52,11 @@ public class ExaminationDTO {
     public void setExaminationDescription(String description) {
         this.examinationDescription = description;
     }
+
+    @Override
+    public String toString() {
+        return "ExaminationDTO{" + "name=" + name + ", examinationDescription=" + examinationDescription + ", examinationCategory=" + examinationCategory + ", examinationDuration=" + examinationDuration + '}';
+    }
+    
+    
 }

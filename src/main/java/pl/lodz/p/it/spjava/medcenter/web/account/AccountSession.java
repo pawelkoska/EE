@@ -30,12 +30,12 @@ public class AccountSession implements Serializable {
     private Patient createPatient;
     private Reception createReception;
     private Doctor createDoctor;
-    
-    public List<Account> getAllAccounts(){
+    private Account editedAccount;
+
+    public List<Account> getAllAccounts() {
         return accountEndpoint.getAllAccounts();
     }
-    
-    
+
     public List<Doctor> getAllDoctors() {
         return accountEndpoint.getAllDoctors();
     }
@@ -58,6 +58,10 @@ public class AccountSession implements Serializable {
         return (account instanceof Doctor);
     }
 
+    public Account getMyAccount() {
+        return accountEndpoint.getMyAccount();
+    }
+
     public static boolean isPatient(Account account) {
         return (account instanceof Patient);
     }
@@ -70,11 +74,29 @@ public class AccountSession implements Serializable {
         return accountEndpoint.getAllPatients();
     }
 
+    public Account getEditedAccount() {
+        return editedAccount;
+    }
+
+    public void setEditedAccount(Account editedAccount) {
+        this.editedAccount = editedAccount;
+    }
+
+    public String getAccountToEdit(Account account) {
+        editedAccount = accountEndpoint.getAccountToEdit(account);
+        return "editAccount";
+    }
+
+    public String saveEditedAccount(Account account) {
+        accountEndpoint.saveEditedAccount(account);
+        return "successEditedAccount";
+    }
+
     public String createAdmin(Admin admin) {
         createAdmin = admin;
         accountEndpoint.createAccount(createAdmin);
         createAdmin = null;
-        return "successCreateAdmin";
+        return "createAccountSuccess";
     }
 
     public String createPatient(Patient patient) {
