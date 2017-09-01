@@ -57,7 +57,7 @@ public class Appointment extends AbstractEntity implements Serializable {
 
     @JoinColumn(name = "EXAMINATION_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
-    private Examination examinationId;
+    public Examination examinationId;
 
     @JoinColumn(name = "DOCTOR", referencedColumnName = "ID", nullable = false)
     @ManyToOne

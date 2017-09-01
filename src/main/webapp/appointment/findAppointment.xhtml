@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="findAppointment">
+
+                    <p:outputLabel for="examination" value="Examination: " />
+                    <p:selectOneMenu id="examination" value="#{findAppointmentPageBean.appointmentDto.examination}">
+                        <f:selectItem itemLabel="Select examination" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="doctorName" value="Doctor: " />
+                    <p:selectOneMenu id="doctorName" value="#{findAppointmentPageBean.appointmentDto.doctor}">
+                        <f:selectItem itemLabel="Select doctor" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{listAccountPageBean.doctorNameList}" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="date" value="Date: " />
+                    <p:calendar id="date" 
+                                value="#{findAppointmentPageBean.appointmentDto.date}" 
+                                locale="de" navigator="true" 
+                                placeholder="dd/MM/yyyy" 
+                                pattern="dd/MM/yyyy" />
+
+                    <h:commandButton value="find" action="appointmentResult" actionListener="#{findAppointmentPageBean.setAppointmentResultList()}" />
+
+
+                </h:form>
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

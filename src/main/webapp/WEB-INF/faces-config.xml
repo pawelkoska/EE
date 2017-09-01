@@ -12,6 +12,18 @@
             <to-view-id>/status/categoryCreateSuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>findAppointment</from-outcome>
+            <to-view-id>/appointment/findAppointment.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>appointmentResult</from-outcome>
+            <to-view-id>/appointment/resultListAppointment.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
           
         <navigation-case>
             <from-outcome>allAppointments</from-outcome>

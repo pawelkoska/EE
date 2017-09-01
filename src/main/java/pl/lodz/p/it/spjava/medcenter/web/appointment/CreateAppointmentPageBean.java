@@ -27,8 +27,6 @@ public class CreateAppointmentPageBean {
 
     private static final Logger LOG = Logger.getLogger(CreateAppointmentPageBean.class.getName());
 
-    
-    
     public CreateAppointmentPageBean() {
     }
 
@@ -46,29 +44,28 @@ public class CreateAppointmentPageBean {
 
     @Inject
     private AppointmentSession appointmentSession;
-   
+
     private List<Appointment> appointmentObjList = new ArrayList<>();
-    
+
     private Map<String, Map<String, String>> data = new HashMap<>();
     private Map<String, Map<String, String>> dataDoctor = new HashMap<>();
-    
+
     private Map<String, String> examinations = new HashMap<>();
 
-    
     private AppointmentDTO appointmentDto = new AppointmentDTO();
-          
+
     public String createAppointment() {
         LOG.log(Level.INFO, appointmentDto.toString());
         return appointmentSession.createAppointment(appointmentDto);
     }
-    
+
     @PostConstruct
     public void init() {
         List<Appointment> allAppointments = appointmentEndpoint.getAllAppointments();
         for (Appointment a : allAppointments) {
             appointmentObjList.add(a);
         }
-        
+
         for (Examination e : examinationEndpoint.getAllExaminations()) {
             examinations.put(e.getName(), e.getName());
             Map<String, String> mapRoom = new HashMap<>();
@@ -89,23 +86,24 @@ public class CreateAppointmentPageBean {
     }
 
     public void onExaminationChange() {
-        if ( appointmentDto.getExamination() != null && !appointmentDto.getExamination().equals("")) { 
+        if (appointmentDto.getExamination() != null && !appointmentDto.getExamination().equals("")) {
             appointmentSession.setRooms(data.get(appointmentDto.getExamination()));
-        } 
-     
+        }
+
         if (appointmentDto.getExamination() != null && !appointmentDto.getExamination().equals("")) {
             appointmentSession.setDoctors(dataDoctor.get(appointmentDto.getExamination()));
-        } 
+        }
     }
 
     public Map<String, Map<String, String>> getData() {
         return data;
     }
 
-    public Map<String, String> getFilteredRooms () {
+    public Map<String, String> getFilteredRooms() {
         return appointmentSession.getRooms();
     }
-    public Map<String, String> getFilteredDoctors () {
+
+    public Map<String, String> getFilteredDoctors() {
         return appointmentSession.getDoctors();
     }
 

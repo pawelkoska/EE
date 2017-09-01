@@ -25,11 +25,17 @@ public class ListAccountsPageBean {
 
     private List<Account> accountObjList = new ArrayList<>();
     private List<String> accountNameList = new ArrayList<>();
+    private List<String> doctorNameList = new ArrayList<>();
 
     @PostConstruct
     public void getAllAccounts() {
         List<Account> allAccounts = accountSession.getAllAccounts();
         for (Account account : allAccounts) {
+            
+            if(account.getType().equals("Doctor")){
+                doctorNameList.add(account.getName());
+            }
+            
             accountObjList.add(account);
             accountNameList.add(account.getName());
         }
@@ -45,6 +51,10 @@ public class ListAccountsPageBean {
     public String deleteAccount(Account account) {
         accountEndpoint.deleteAccount(account);
         return "deleteAccountSuccess";
+    }
+
+    public List<String> getDoctorNameList() {
+        return doctorNameList;
     }
 
     public List<String> getAccountNameList() {

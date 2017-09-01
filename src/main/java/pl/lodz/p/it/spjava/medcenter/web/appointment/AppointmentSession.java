@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.medcenter.web.appointment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -8,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
+import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 
 @Named(value = "appointmentSession")
@@ -22,6 +24,8 @@ public class AppointmentSession implements Serializable {
 
     private Map<String, String> rooms;
     private Map<String, String> doctors;
+    
+    private List<String> doctorsNamesList;
 
     public Appointment getDeletedAppointment() {
         return deletedAppointment;
@@ -63,10 +67,17 @@ public class AppointmentSession implements Serializable {
     public Map<String, String> getDoctors() {
         return doctors;
     }
+    
+    public List<String> getDoctorsNamesList() {
+        doctorsNamesList = new ArrayList<>(doctors.values());
+        return doctorsNamesList;
+    }
 
     public void setDoctors(Map<String, String> doctors) {
         this.doctors = doctors;
     }
+
+
     
     
 }
