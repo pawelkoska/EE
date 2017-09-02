@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @SecondaryTable(name = "PERSONAL_DATA")
 @NamedQueries({
     @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'Doctor'"),
-    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'PATIENT'"),
+    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'Patient'"),
     @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a")
 })
 //@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)

@@ -133,4 +133,12 @@ public class AppointmentEndpoint {
         return appointmentFacade.matchAppointments(examination);
     }
 
+    public Appointment getUpdatingAppointment(Appointment appointment) {
+        return appointmentFacade.find(appointment.getId());
+    }
+
+    public void updateAppointment(Appointment updatingAppointment) {
+        appointmentFacade.edit(updatingAppointment);
+    }
+
 }

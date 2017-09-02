@@ -26,6 +26,18 @@ public class AppointmentSession implements Serializable {
     private Map<String, String> doctors;
     
     private List<String> doctorsNamesList;
+    
+    private List<Appointment> myAppointments = new ArrayList<>();
+
+    public List<Appointment> getMyAppointments() {
+        return myAppointments;
+    }
+
+    public void setMyAppointments(List<Appointment> myAppointments) {
+        this.myAppointments = myAppointments;
+    }
+    
+    
 
     public Appointment getDeletedAppointment() {
         return deletedAppointment;

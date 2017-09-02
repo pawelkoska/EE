@@ -7,9 +7,28 @@
     
 
     <navigation-rule>
+        
         <navigation-case>
             <from-outcome>createCategorySuccess</from-outcome>
             <to-view-id>/status/categoryCreateSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>myAppointmentHistory</from-outcome>
+            <to-view-id>/appointment/myAppointmentHistory.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>myAppointments</from-outcome>
+            <to-view-id>/appointment/myAppointments.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>makeAnAppointmentSuccess</from-outcome>
+            <to-view-id>/status/makeAnAppointmentSuccess.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         

@@ -1,25 +1,15 @@
 package pl.lodz.p.it.spjava.medcenter.web.appointment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
-import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
-import pl.lodz.p.it.spjava.medcenter.endpoint.ExaminationEndpoint;
-import pl.lodz.p.it.spjava.medcenter.endpoint.RoomEndpoint;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
-import pl.lodz.p.it.spjava.medcenter.model.Doctor;
-import pl.lodz.p.it.spjava.medcenter.model.Examination;
-import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 @Named(value = "listAppointmentPageBean")
 @RequestScoped
@@ -28,10 +18,15 @@ public class listAppointmentPageBean {
     public listAppointmentPageBean() {
     }
 
+    @Inject
+    private AppointmentSession appointmentSession;
+    
     @EJB
     private AppointmentEndpoint appointmentEndpoint;
 
     private List<Appointment> appointmentObjList = new ArrayList<>();
+    
+    private List<Appointment> myAppointmentList;
 
     @PostConstruct
     public void init() {
@@ -47,6 +42,18 @@ public class listAppointmentPageBean {
 
     public void setAppointmentObjList(List<Appointment> appointmentObjList) {
         this.appointmentObjList = appointmentObjList;
+    }
+    
+    public List<Appointment> getMyAppointments(){
+        myAppointmentList = null;
+        myAppointmentList = new ArrayList<>();
+        String userName = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+        for (Appointment a : appointmentEndpoint.getAllAppointments()) {
+            if(a.getPatientId() != null && a.getPatientId().getLogin().equals(userName)) {
+                myAppointmentList.add(a);
+            }
+        }
+        return myAppointmentList;
     }
 
 }

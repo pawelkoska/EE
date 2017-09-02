@@ -12,10 +12,10 @@
 
             <ui:define name="content">
                 <h:form id="createRoom">
-                    
+                     <h:panelGrid columns="2" transient="true" cellpadding="10">
                         <h:outputLabel for="roomNumber" value="Room number: " />
                         <h:inputText id="roomNumber" value="#{createRoomPageBean.roomDTO.roomNumber}" />
-                        <h:message for="roomNumber" /><br/>
+
 
                         <p:outputLabel for="examinationType" value="Examination type: " />
                         <p:selectOneMenu id="examinationType" value="#{createRoomPageBean.roomDTO.examinationType}">
@@ -23,7 +23,7 @@
                         </p:selectOneMenu>
 
                         <h:commandButton value="create" action="#{createRoomPageBean.createRoom()}" />                 
-
+                     </h:panelGrid>
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -6,9 +6,6 @@
                 xmlns:p="http://primefaces.org/ui">
     <h:form id="menu">
         
-        <p:menu>
-            <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
-        </p:menu>
 
         <p:menu rendered="#{request.isUserInRole('Admin')}">
             <p:submenu label="ACCOUNTS">
@@ -23,8 +20,8 @@
         <p:menu rendered="#{request.isUserInRole('Patient')}">
             <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
             <p:menuitem value="MAKE AN APPOINTMENT" outcome="findAppointment" />
-            <p:menuitem value="MY ACTIVE APPOINTMENTS" outcome="allCategories" />
-            <p:menuitem value="MY HISTORY" outcome="createCategory"/>
+            <p:menuitem value="MY APPOINTMENTS" outcome="myAppointments" />
+            <p:menuitem value="MY HISTORY" outcome="myAppointmentHistory"/>
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Doctor')}">

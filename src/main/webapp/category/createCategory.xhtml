@@ -9,24 +9,17 @@
 
         <ui:composition template="./../template/template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
             <ui:define name="content">
                 <h:form id="createCategory">
-                    
+                    <h:panelGrid columns="2" transient="true" cellpadding="10" >
                         <h:outputLabel for="name" value="Category name: " />
                         <h:inputText id="name" value="#{createCategoryPageBean.category.name}" />
-                        <h:message for="name" /><br/>
 
                         <h:outputLabel for="categoryDescription" value="Category description: " />
                         <h:inputText id="categoryDescription" value="#{createCategoryPageBean.category.categoryDescription}" />
-                        <h:message for="categoryDescription" /><br/>
 
                         <h:commandButton value="create" action="#{createCategoryPageBean.createCategory()}" />
-                    
-
+                    </h:panelGrid>
                 </h:form>
             </ui:define>
         </ui:composition>
