@@ -15,6 +15,36 @@
         </navigation-case> 
         
         <navigation-case>
+            <from-outcome>doctorMedicalHistory</from-outcome>
+            <to-view-id>/appointment/doctorMedicalHistory.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>myMedicalHistory</from-outcome>
+            <to-view-id>/appointment/myMedicalHistory.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>appointmentResultSuccess</from-outcome>
+            <to-view-id>/status/appointmentResultSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>setAppointmentResultPage</from-outcome>
+            <to-view-id>/appointment/setAppointmentResultPage.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>showMyDailyShedule</from-outcome>
+            <to-view-id>/appointment/showMyDailyShedule.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
             <from-outcome>myAppointmentHistory</from-outcome>
             <to-view-id>/appointment/myAppointmentHistory.xhtml</to-view-id>
             <redirect />

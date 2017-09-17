@@ -14,7 +14,6 @@ import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
-import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
@@ -49,6 +48,7 @@ public class FindAppointmentPageBean implements Serializable {
     private AccountFacade accountFacade;
 
     private List<Appointment> appointmentResult;
+    private List<Appointment> totalResult;
     private AppointmentDTO appointmentDto = new AppointmentDTO();
     private Appointment updatingAppointment;
 
@@ -62,6 +62,17 @@ public class FindAppointmentPageBean implements Serializable {
                 appointmentResult = appointmentEndpoint.matchAppointments(e);
             }
         }
+        totalResult = new ArrayList<>();
+        for (Appointment a : appointmentResult) {
+            if (a.getPatientId() == null) {
+                totalResult.add(a);
+                LOG.log(Level.INFO, totalResult.toString());
+            }
+        }
+    }
+
+    public List<Appointment> getTotalResult() {
+        return totalResult;
     }
 
     public String makeAnAppointment(Appointment appointment) {
@@ -71,13 +82,25 @@ public class FindAppointmentPageBean implements Serializable {
 
         for (Patient p : accountSession.getAllPatients()) {
             if (p.getLogin().equals(userName)) {
-                LOG.log(Level.SEVERE, p.toString());
                 updatingAppointment.setPatientId(p);
                 appointmentEndpoint.updateAppointment(updatingAppointment);
-//                LOG.log(Level.SEVERE, appointment.toString());
             }
         }
         return "makeAnAppointmentSuccess";
+    }
+
+    public Appointment getAppointmentDetails(Appointment appointment) {
+        updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
+        return updatingAppointment;
+    }
+
+    public String setAppointmentResult() {
+        appointmentEndpoint.updateAppointment(updatingAppointment);
+        return "appointmentResultSuccess";
+    }
+
+    public Appointment getUpdatingAppointment() {
+        return updatingAppointment;
     }
 
     public List<Appointment> getAppointmentResult() {

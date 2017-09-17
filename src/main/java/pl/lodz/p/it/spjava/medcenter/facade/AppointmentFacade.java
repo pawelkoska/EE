@@ -65,9 +65,8 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
 //            criteria = cb.and(criteria, cb.greaterThan(from.get(Appointment_.date), appointmentDto.getDate()));
 //        }
         
-        query = query.where(criteria);      
+        query = query.where(criteria);
         TypedQuery<Appointment> tq = em.createQuery(query);
-        LOG.log(Level.INFO, tq.getResultList().toString());
         return tq.getResultList();
     }
 

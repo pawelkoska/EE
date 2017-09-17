@@ -12,17 +12,13 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="appointments" var="appointment" value="#{findAppointmentPageBean.totalResult}">
+                    <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.doctorMedicalHistory}">
                         <f:facet name="header">
 
                         </f:facet>
                         
                         <p:column headerText="EXAMINATION:">
                             <h:outputText value="#{appointment.examinationId.name}" />
-                        </p:column>
-
-                        <p:column headerText="DOCTOR:">
-                            <h:outputText value="#{appointment.doctorId.name}" />
                         </p:column>
 
                         <p:column headerText="DATE: ">
@@ -36,9 +32,13 @@
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
-
-                        <p:column style="width:75px">
-                            <p:commandButton value="GO" action="#{findAppointmentPageBean.makeAnAppointment(appointment)}"/>
+                        
+                        <p:column headerText="PATIENT: ">
+                            <h:outputText value="#{appointment.patientId.name}"/>
+                        </p:column>
+                        
+                        <p:column headerText="RESULT ">
+                            <h:outputText value="#{appointment.appointmentResult}"/>
                         </p:column>
 
                     </p:dataTable>

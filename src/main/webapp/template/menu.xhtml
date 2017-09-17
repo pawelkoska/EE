@@ -21,13 +21,14 @@
             <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
             <p:menuitem value="MAKE AN APPOINTMENT" outcome="findAppointment" />
             <p:menuitem value="MY APPOINTMENTS" outcome="myAppointments" />
-            <p:menuitem value="MY HISTORY" outcome="myAppointmentHistory"/>
+            <p:menuitem value="MY MEDICAL HISTORY" outcome="myMedicalHistory"/>
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Doctor')}">
-            <p:menuitem value="SHOW MY SHEDULE" outcome="allCategories" />
+            <p:menuitem value="SHOW MY DAILY SHEDULE" outcome="showMyDailyShedule" />
+            <p:menuitem value="SHOW MY GENERAL SHEDULE" outcome="showMyDailyShedule" />
+            <p:menuitem value="MEDICAL HISTORY" outcome="doctorMedicalHistory" />
             <p:menuitem value="SET MY SHEDULE" outcome="allCategories" />
-            <p:menuitem value="SET APPOINTMENT RESULT" outcome="allCategories" />
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Reception')}">
