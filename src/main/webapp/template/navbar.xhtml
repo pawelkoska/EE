@@ -8,15 +8,14 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
-    <h:form id="navbar" style="display: flex; background-color: lightgray;">
-        <div style="flex:10">
-            <h2>M E D <br/> C E N T E R</h2>
-        </div>
-        <div style="flex: 2;">
+    <h:form>
+        <div class="navbar-container">
+            <div>
+                <h2>M E D <br/> C E N T E R</h2>
+            </div>
             <c:if test="#{request.remoteUser == null}">
                 <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
-                <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>
-                
+                <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>               
                 <p:link value="REGISTER" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
             </c:if>
             <c:if test="#{request.remoteUser != null}">

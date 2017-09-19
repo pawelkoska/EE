@@ -59,6 +59,8 @@ public class listAppointmentPageBean {
         return myAppointmentList;
     }
     
+
+    
     public List<Appointment> getDoctorMedicalHistory() {
         doctorMedicalHistory = null;
         doctorMedicalHistory = new ArrayList<>();

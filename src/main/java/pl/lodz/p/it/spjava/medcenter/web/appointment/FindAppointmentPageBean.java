@@ -89,6 +89,13 @@ public class FindAppointmentPageBean implements Serializable {
         return "makeAnAppointmentSuccess";
     }
 
+    public String cancelAppointment(Appointment appointment) {
+        updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
+        updatingAppointment.setPatientId(null);
+        appointmentEndpoint.updateAppointment(updatingAppointment);
+        return "myAppointments";
+    }
+
     public Appointment getAppointmentDetails(Appointment appointment) {
         updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
         return updatingAppointment;

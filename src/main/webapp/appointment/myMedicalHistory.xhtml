@@ -13,7 +13,9 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="appoitnmentList" var="appointment" value="#{listAppointmentPageBean.myMedicalHistory}">
+                    <p:dataTable id="appoitnmentList" var="appointment" 
+                                 value="#{listAppointmentPageBean.myMedicalHistory}"
+                                 emptyMessage="No medical history found.">
                         <f:facet name="header">
                         </f:facet>
 

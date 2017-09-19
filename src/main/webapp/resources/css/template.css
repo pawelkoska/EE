@@ -1,0 +1,13 @@
+.ui-layout-container {
+    width: 90% !important;
+    margin: 10px auto !important;
+    background-image: url("backgroundLogin.jpg");
+    
+}
+
+.navbar-container {
+    background-color: activeborder;
+    overflow: hidden;
+    display: flex;
+    
+}
