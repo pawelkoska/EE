@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.4" status="GENERATED" sm="false" id="_15017908193631" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
-    <jpa:entity abs="false" class="Account" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193782">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.4" rws="_15066258512751" cws="_15066258512751" sm="false" xs="false" id="_15017908193631" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="AccountPK" abs="false" class="Account" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193782">
         <jpa:attributes>
             <jpa:basic optional="true" attribute-type="String" v="true" name="type" id="_150179081938212">
                 <jpa:column name="TYPE" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="31"/>
@@ -23,13 +23,13 @@
             <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_150179081938218">
                 <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT"/>
             </jpa:basic>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938345" v="true" name="appointmentCollection" id="_150179081938322"/>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938346" v="true" name="appointmentCollection1" id="_150179081938323"/>
-            <jpa:one-to-one own="true" connected-entity-id="_15017908193783" connected-attribute-id="_150179081938328" v="true" name="adminData" id="_150179081938219"/>
-            <jpa:one-to-one own="true" connected-entity-id="_15017908193784" connected-attribute-id="_150179081938330" v="true" name="doctorData" id="_150179081938320"/>
-            <jpa:one-to-one own="true" connected-entity-id="_15017908193796" connected-attribute-id="_150179081938340" v="true" name="receptionData" id="_150179081938321"/>
-            <jpa:one-to-one own="true" connected-entity-id="_15017908193798" connected-attribute-id="_150179081938354" v="true" name="personalData" id="_150179081938324"/>
-            <jpa:one-to-one own="true" connected-entity-id="_150179081937910" connected-attribute-id="_150179081938462" v="true" name="patientData" id="_150179081938325"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938345" v="true" name="appointmentCollection" id="_150179081938322"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938346" v="true" name="appointmentCollection1" id="_150179081938323"/>
+            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_15017908193783" connected-attribute-id="_150179081938328" v="true" name="adminData" id="_150179081938219"/>
+            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_15017908193784" connected-attribute-id="_150179081938330" v="true" name="doctorData" id="_150179081938320"/>
+            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_15017908193796" connected-attribute-id="_150179081938340" v="true" name="receptionData" id="_150179081938321"/>
+            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_15017908193798" connected-attribute-id="_150179081938354" v="true" name="personalData" id="_150179081938324"/>
+            <jpa:one-to-one own="true" primaryKey="false" connected-entity-id="_150179081937910" connected-attribute-id="_150179081938462" v="true" name="patientData" id="_150179081938325"/>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938211">
                 <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT"/>
             </jpa:id>
@@ -40,12 +40,12 @@
             </jpa:unique-constraint>
         </jpa:table>
     </jpa:entity>
-    <jpa:entity abs="false" class="AdminData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193783">
+    <jpa:entity compositePrimaryKeyClass="AdminDataPK" abs="false" class="AdminData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193783">
         <jpa:attributes>
             <jpa:basic optional="false" attribute-type="String" v="true" name="alarmnumber" id="_150179081938327">
                 <jpa:column name="ALARMNUMBER" unique="false" nullable="false" insertable="true" updatable="true" table="ADMIN_DATA" length="12"/>
             </jpa:basic>
-            <jpa:one-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938219" v="true" name="account" id="_150179081938328">
+            <jpa:one-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938219" v="true" name="account" id="_150179081938328">
                 <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
             </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938326">
@@ -58,12 +58,12 @@
             </jpa:unique-constraint>
         </jpa:table>
     </jpa:entity>
-    <jpa:entity abs="false" class="DoctorData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193784">
+    <jpa:entity compositePrimaryKeyClass="DoctorDataPK" abs="false" class="DoctorData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193784">
         <jpa:attributes>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938336" v="true" name="categoryId" id="_150179081938331">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938336" v="true" name="categoryId" id="_150179081938331">
                 <jpa:join-column name="CATEGORY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:one-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938320" v="true" name="account" id="_150179081938330">
+            <jpa:one-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938320" v="true" name="account" id="_150179081938330">
                 <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
             </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938329">
@@ -72,7 +72,7 @@
         </jpa:attributes>
         <jpa:table name="DOCTOR_DATA"/>
     </jpa:entity>
-    <jpa:entity abs="false" class="Category" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193785">
+    <jpa:entity compositePrimaryKeyClass="CategoryPK" abs="false" class="Category" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193785">
         <jpa:attributes>
             <jpa:basic optional="false" attribute-type="String" v="true" name="description" id="_150179081938333">
                 <jpa:column name="DESCRIPTION" unique="false" nullable="false" insertable="true" updatable="true" table="CATEGORY" length="255"/>
@@ -83,9 +83,9 @@
             <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_150179081938335">
                 <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="CATEGORY"/>
             </jpa:basic>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193784" connected-attribute-id="_150179081938331" v="true" name="doctorDataCollection" id="_150179081938336"/>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938347" v="true" name="appointmentCollection" id="_150179081938337"/>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193799" connected-attribute-id="_150179081938460" v="true" name="examinationCollection" id="_150179081938338"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193784" connected-attribute-id="_150179081938331" v="true" name="doctorDataCollection" id="_150179081938336"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938347" v="true" name="appointmentCollection" id="_150179081938337"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193799" connected-attribute-id="_150179081938460" v="true" name="examinationCollection" id="_150179081938338"/>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938332">
                 <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="CATEGORY"/>
             </jpa:id>
@@ -96,9 +96,9 @@
             </jpa:unique-constraint>
         </jpa:table>
     </jpa:entity>
-    <jpa:entity abs="false" class="ReceptionData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193796">
+    <jpa:entity compositePrimaryKeyClass="ReceptionDataPK" abs="false" class="ReceptionData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193796">
         <jpa:attributes>
-            <jpa:one-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938321" v="true" name="account" id="_150179081938340">
+            <jpa:one-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938321" v="true" name="account" id="_150179081938340">
                 <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
             </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938339">
@@ -107,7 +107,7 @@
         </jpa:attributes>
         <jpa:table name="RECEPTION_DATA"/>
     </jpa:entity>
-    <jpa:entity abs="false" class="Appointment" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193797">
+    <jpa:entity compositePrimaryKeyClass="AppointmentPK" abs="false" class="Appointment" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193797">
         <jpa:attributes>
             <jpa:basic optional="true" attribute-type="java.util.Date" v="true" name="appointmentDate" id="_150179081938342">
                 <jpa:temporal>DATE</jpa:temporal>
@@ -120,16 +120,16 @@
             <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_150179081938344">
                 <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="APPOINTMENT"/>
             </jpa:basic>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938322" v="true" name="doctor" id="_150179081938345">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938322" v="true" name="doctor" id="_150179081938345">
                 <jpa:join-column name="DOCTOR" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938323" v="true" name="patient" id="_150179081938346">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938323" v="true" name="patient" id="_150179081938346">
                 <jpa:join-column name="PATIENT" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938337" v="true" name="categoryId" id="_150179081938347">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938337" v="true" name="categoryId" id="_150179081938347">
                 <jpa:join-column name="CATEGORY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193799" connected-attribute-id="_150179081938459" v="true" name="examinationId" id="_150179081938348">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193799" connected-attribute-id="_150179081938459" v="true" name="examinationId" id="_150179081938348">
                 <jpa:join-column name="EXAMINATION_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938341">
@@ -138,7 +138,7 @@
         </jpa:attributes>
         <jpa:table name="APPOINTMENT"/>
     </jpa:entity>
-    <jpa:entity abs="false" class="PersonalData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193798">
+    <jpa:entity compositePrimaryKeyClass="PersonalDataPK" abs="false" class="PersonalData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193798">
         <jpa:attributes>
             <jpa:basic optional="false" attribute-type="String" v="true" name="email" id="_150179081938350">
                 <jpa:column name="EMAIL" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="64"/>
@@ -152,7 +152,7 @@
             <jpa:basic optional="false" attribute-type="String" v="true" name="secondname" id="_150179081938353">
                 <jpa:column name="SECONDNAME" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="32"/>
             </jpa:basic>
-            <jpa:one-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938324" v="true" name="account" id="_150179081938354">
+            <jpa:one-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938324" v="true" name="account" id="_150179081938354">
                 <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
             </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938349">
@@ -165,7 +165,7 @@
             </jpa:unique-constraint>
         </jpa:table>
     </jpa:entity>
-    <jpa:entity abs="false" class="Examination" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193799">
+    <jpa:entity compositePrimaryKeyClass="ExaminationPK" abs="false" class="Examination" v="true" xre="false" m="false" rootElement="_15017908193631" id="_15017908193799">
         <jpa:attributes>
             <jpa:basic optional="true" attribute-type="String" v="true" name="description" id="_150179081938456">
                 <jpa:column name="DESCRIPTION" unique="false" nullable="true" insertable="true" updatable="true" table="EXAMINATION" length="255"/>
@@ -176,19 +176,19 @@
             <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_150179081938458">
                 <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="EXAMINATION"/>
             </jpa:basic>
-            <jpa:many-to-one optional="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938338" v="true" name="categoryId" id="_150179081938460">
+            <jpa:many-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193785" connected-attribute-id="_150179081938338" v="true" name="categoryId" id="_150179081938460">
                 <jpa:join-column name="CATEGORY_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
             </jpa:many-to-one>
-            <jpa:one-to-many own="false" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938348" v="true" name="appointmentCollection" id="_150179081938459"/>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15017908193797" connected-attribute-id="_150179081938348" v="true" name="appointmentCollection" id="_150179081938459"/>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938455">
                 <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION"/>
             </jpa:id>
         </jpa:attributes>
         <jpa:table name="EXAMINATION"/>
     </jpa:entity>
-    <jpa:entity abs="false" class="PatientData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_150179081937910">
+    <jpa:entity compositePrimaryKeyClass="PatientDataPK" abs="false" class="PatientData" v="true" xre="false" m="false" rootElement="_15017908193631" id="_150179081937910">
         <jpa:attributes>
-            <jpa:one-to-one optional="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938325" v="true" name="account" id="_150179081938462">
+            <jpa:one-to-one optional="false" primaryKey="false" connected-entity-id="_15017908193782" connected-attribute-id="_150179081938325" v="true" name="account" id="_150179081938462">
                 <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
             </jpa:one-to-one>
             <jpa:id attribute-type="Long" v="true" name="id" id="_150179081938461">
@@ -200,4 +200,17 @@
     <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
  * This file was generated by the Jeddict
  */</jpa:snp>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_15066258512751">
+            <i ref="_15017908193782" x="267" y="222"/>
+            <i ref="_15017908193799" x="953" y="497"/>
+            <i ref="_15017908193798" x="511" y="421"/>
+            <i ref="_15017908193797" x="734" y="497"/>
+            <i ref="_15017908193785" x="734" y="143"/>
+            <i ref="_15017908193796" x="46" y="192"/>
+            <i ref="_15017908193784" x="509" y="289"/>
+            <i ref="_15017908193783" x="511" y="143"/>
+            <i ref="_150179081937910" x="63" y="310"/>
+        </jpa:ws>
+    </jpa:wsl>
 </jpa:entity-mappings>

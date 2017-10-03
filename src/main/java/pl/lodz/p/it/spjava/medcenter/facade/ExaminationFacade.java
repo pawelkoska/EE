@@ -26,8 +26,6 @@ public class ExaminationFacade extends AbstractFacade<Examination> {
     private EntityManager em;
     private static final Logger LOG = Logger.getLogger(ExaminationFacade.class.getName());
     
-    
-    
     @Override
     protected EntityManager getEntityManager() {
         return em;

@@ -37,28 +37,6 @@ public class AccountEndpoint {
         accountFacade.create(account);
     }
 
-//    public void createCategory(Category category) {
-//        categoryFacade.create(category);
-//    }
-//
-//    public List<Category> getAllCategories() {
-//        return categoryFacade.findAll();
-//    }
-//
-//    public Category getCategoryToEdit(Category category) {
-//        Category categoryEntity = categoryFacade.find(category.getId());
-////        kontoFacade.refresh(encja);
-//        return categoryEntity;
-//    }
-//
-//    public void saveEditedCategory(Category c) {
-//        categoryFacade.edit(c);
-//    }
-//
-//    public String deleteCategory(Category category) {
-//        categoryFacade.remove(category);
-//        return "deleteCategorySuccess";
-//    }
     public Account getAccountToEdit(Account account) {
         accountEditHandler = accountFacade.findLogin(account.getLogin());
         return accountEditHandler;
