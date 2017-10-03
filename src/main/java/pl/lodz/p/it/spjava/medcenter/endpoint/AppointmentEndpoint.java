@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
@@ -24,6 +26,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Room;
  * @author pawkos
  */
 @Stateful
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class AppointmentEndpoint {
 
     @EJB

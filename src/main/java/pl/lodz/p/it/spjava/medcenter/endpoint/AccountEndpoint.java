@@ -20,7 +20,7 @@ import pl.lodz.p.it.spjava.medcenter.model.utils.AccountUtils;
  */
 @Stateful
 @LocalBean
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class AccountEndpoint {
 
     @Inject

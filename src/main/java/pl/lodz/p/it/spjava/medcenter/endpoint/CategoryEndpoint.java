@@ -3,6 +3,8 @@ package pl.lodz.p.it.spjava.medcenter.endpoint;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 
@@ -11,6 +13,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Category;
  * @author pawkos
  */
 @Stateful
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class CategoryEndpoint {
 
     @EJB

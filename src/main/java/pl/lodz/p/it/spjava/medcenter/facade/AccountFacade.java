@@ -7,6 +7,8 @@ package pl.lodz.p.it.spjava.medcenter.facade;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -23,6 +25,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Patient;
  * @author pawkos
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AccountFacade extends AbstractFacade<Account> {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")
