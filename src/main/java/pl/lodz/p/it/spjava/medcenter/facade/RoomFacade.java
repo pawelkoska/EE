@@ -8,8 +8,10 @@ package pl.lodz.p.it.spjava.medcenter.facade;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 /**
@@ -18,6 +20,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Room;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class RoomFacade extends AbstractFacade<Room> {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")

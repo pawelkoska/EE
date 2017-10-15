@@ -10,12 +10,14 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
+import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
@@ -27,6 +29,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Room;
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+@Interceptors(LoggingInterceptor.class)
 public class AppointmentEndpoint {
 
     @EJB

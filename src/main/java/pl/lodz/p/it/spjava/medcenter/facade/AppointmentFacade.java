@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -20,6 +21,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
+import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment_;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
@@ -32,6 +34,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Examination_;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class AppointmentFacade extends AbstractFacade<Appointment> {
 
     private static final Logger LOG = Logger.getLogger(AppointmentFacade.class.getName());

@@ -8,7 +8,9 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
+import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
@@ -21,6 +23,7 @@ import pl.lodz.p.it.spjava.medcenter.model.utils.AccountUtils;
 @Stateful
 @LocalBean
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+@Interceptors(LoggingInterceptor.class)
 public class AccountEndpoint {
 
     @Inject
