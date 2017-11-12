@@ -7,6 +7,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.RoomDTO;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.RoomException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
@@ -14,6 +16,7 @@ import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
+import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 
 /**
  *
@@ -30,7 +33,7 @@ public class RoomEndpoint {
     @EJB
     private ExaminationFacade examinationFacade;
 
-    public void createRoom(RoomDTO room) {
+    public void createRoom(RoomDTO room) throws AppBaseException{
 
         List<Examination> examinations = examinationFacade.findAll();
         Examination selectedExamination = null;
@@ -47,7 +50,13 @@ public class RoomEndpoint {
         Room roomEntity = new Room();
         roomEntity.setRoomNumber(room.getRoomNumber());
         roomEntity.setExaminationType(selectedExamination);
-        roomFacade.create(roomEntity);
+        try{
+            roomFacade.create(roomEntity);  
+            ContextUtils.emitSuccessMessage("examinationList");
+        } catch(RoomException re) {
+            ContextUtils.emitInternationalizedMessage(null, RoomException.KEY_DB_CONSTRAINT);
+        }
+        
     }
 
     public List<Room> getAllRooms() {

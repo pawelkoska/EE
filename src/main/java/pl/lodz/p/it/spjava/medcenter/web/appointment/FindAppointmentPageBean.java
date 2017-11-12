@@ -13,10 +13,13 @@ import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
+import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 import pl.lodz.p.it.spjava.medcenter.web.account.AccountSession;
 import pl.lodz.p.it.spjava.medcenter.web.examination.ExaminationSession;
 
@@ -75,33 +78,42 @@ public class FindAppointmentPageBean implements Serializable {
         return totalResult;
     }
 
-    public String makeAnAppointment(Appointment appointment) {
-        String userName = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+    public String makeAnAppointment(Appointment appointment) throws AppBaseException {
 
+        String userName = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
         updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
 
-        for (Patient p : accountSession.getAllPatients()) {
-            if (p.getLogin().equals(userName)) {
-                updatingAppointment.setPatientId(p);
-                appointmentEndpoint.updateAppointment(updatingAppointment);
+        try {
+            for (Patient p : accountSession.getAllPatients()) {
+                if (p.getLogin().equals(userName)) {
+                    if (!accountSession.getMyAccount().isConfirmed()) {
+                        throw AppointmentException.reserveAppointmentAccountNotConfirmed(appointment);
+                    }
+                    updatingAppointment.setPatientId(p);
+                    appointmentEndpoint.updateAppointment(updatingAppointment);
+                    return "makeAnAppointmentSuccess";
+                }
             }
+            
+        } catch (AppointmentException ae) {
+            ContextUtils.emitInternationalizedMessage(null, AppointmentException.KEY_ACC_NOT_CONFIRMED);
         }
-        return "makeAnAppointmentSuccess";
+        return null;
     }
 
-    public String cancelAppointment(Appointment appointment) {
+    public String cancelAppointment(Appointment appointment) throws AppBaseException {
         updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
         updatingAppointment.setPatientId(null);
         appointmentEndpoint.updateAppointment(updatingAppointment);
         return "myAppointments";
     }
 
-    public Appointment getAppointmentDetails(Appointment appointment) {
+    public Appointment getAppointmentDetails(Appointment appointment) throws AppBaseException {
         updatingAppointment = appointmentEndpoint.getUpdatingAppointment(appointment);
         return updatingAppointment;
     }
 
-    public String setAppointmentResult() {
+    public String setAppointmentResult() throws AppBaseException {
         appointmentEndpoint.updateAppointment(updatingAppointment);
         return "appointmentResultSuccess";
     }

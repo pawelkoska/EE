@@ -6,6 +6,8 @@
 package pl.lodz.p.it.spjava.medcenter.facade;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -56,6 +58,13 @@ public class AccountFacade extends AbstractFacade<Account> {
     public List<Patient> getAllPatients() {
         TypedQuery<Patient> tq = em.createNamedQuery("Account.getAllPatients", Patient.class);
         return tq.getResultList();
+    }
+    private static final Logger LOG = Logger.getLogger(AccountFacade.class.getName());
+    
+    public Account getAccountById (Account account){
+        TypedQuery<Account> tq = em.createNamedQuery("Account.getById", Account.class);
+        tq.setParameter("id", account.getId());
+        return tq.getSingleResult();
     }
 
     public Account findLogin(String login) {

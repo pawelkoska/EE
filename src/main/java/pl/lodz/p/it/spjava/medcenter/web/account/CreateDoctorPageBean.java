@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.dto.DoctorDTO;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
@@ -29,7 +30,7 @@ public class CreateDoctorPageBean {
 
     private String passwordRepeat = "";
 
-    public String createDoctor() {
+    public String createDoctor() throws AppBaseException{
         if (!(passwordRepeat.equals(account.getPassword()))) {
             ContextUtils.emitInternationalizedMessage("createDoctorForm:passwordRepeat", "passwords.not.matching");
             return null;

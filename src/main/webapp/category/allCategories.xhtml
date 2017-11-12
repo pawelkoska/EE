@@ -18,7 +18,9 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h3>CATEGORIES: </h3>
+                <h:form id="categoryListForm">
+                    <h:messages for="CategoryList"/>
                     <p:dataTable id="categories" var="category" value="#{listCategoryPageBean.categoryObjList}">
                         <f:facet name="header">
 
@@ -39,7 +41,13 @@
                             <p:commandButton value="EDIT" action="#{editCategoryManageBean.getCategoryToEdit(category)}" />
                         </p:column>
                         <p:column style="width:105px">
-                            <p:commandButton value="DELETE" action="#{deleteCategoryPageBean.deleteCategory(category)}" />
+                            <p:commandButton value="DELETE" action="#{deleteCategoryPageBean.deleteCategory(category)}" >
+                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:commandButton>
                         </p:column>
 
                     </p:dataTable>

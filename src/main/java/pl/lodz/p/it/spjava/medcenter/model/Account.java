@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'Doctor'"),
     @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'Patient'"),
-    @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a")
+    @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a"),
+    @NamedQuery(name = "Account.getById", query = "SELECT a FROM Account a WHERE a.id = :id"),
+    
 })
 //@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,7 +44,7 @@ public class Account extends AbstractEntity implements Serializable {
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 11, max = 11, message = "{constraint.string.length.tooshort}")
-    @Column(name = "pesel", table = "PERSONAL_DATA", length = 11, nullable = false)
+    @Column(name = "pesel", table = "PERSONAL_DATA", length = 11, unique=true, nullable = false)
     private String pesel;
 
     @Column(name = "confirmed", nullable = false)
@@ -70,7 +72,7 @@ public class Account extends AbstractEntity implements Serializable {
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 6, max = 64, message = "{constraint.string.length.notinrange}")
-    @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$", message = "{constraint.string.incorrectemail}")
+//    @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$", message = "{constraint.string.incorrectemail}")
     @Column(name = "email", table = "PERSONAL_DATA", length = 64, unique = true, nullable = false)
     private String email;
 

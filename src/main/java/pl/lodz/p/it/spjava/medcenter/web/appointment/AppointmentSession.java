@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 
@@ -43,9 +44,8 @@ public class AppointmentSession implements Serializable {
         return deletedAppointment;
     }
 
-    public String createAppointment(AppointmentDTO appointment) {
+    public void createAppointment(AppointmentDTO appointment) throws AppBaseException{
         appointmentEndpoint.createAppointment(appointment);
-        return "createAppointmentSuccess";
     }
 
     public List<Appointment> getAllAppointments() {

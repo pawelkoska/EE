@@ -7,6 +7,7 @@ package pl.lodz.p.it.spjava.medcenter.facade;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 
 /**
  *
@@ -22,7 +23,7 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
+    public void create(T entity) throws AppBaseException{
         getEntityManager().persist(entity);
     }
 

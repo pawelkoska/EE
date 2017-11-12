@@ -26,9 +26,9 @@
 
         <p:menu rendered="#{request.isUserInRole('Doctor')}">
             <p:menuitem value="SHOW MY DAILY SHEDULE" outcome="showMyDailyShedule" />
-            <p:menuitem value="SHOW MY GENERAL SHEDULE" outcome="showMyDailyShedule" />
+            <p:menuitem value="SHOW MY GENERAL SHEDULE" outcome="showMyGeneralyShedule" />
             <p:menuitem value="MEDICAL HISTORY" outcome="doctorMedicalHistory" />
-            <p:menuitem value="SET MY SHEDULE" outcome="allCategories" />
+            <p:menuitem value="CREATE MY SHEDULE" outcome="createSheduleByDoctor" />
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Reception')}">
@@ -49,8 +49,8 @@
                 <p:menuitem value="CREATE SCHEDULE" outcome="createSchedule"/>
             </p:submenu>
             <p:submenu label="PETIENT SERVICE">
-                <p:menuitem value="REGISTER PATIENT" outcome="allCategories" />
-                <p:menuitem value="CONFIRM REGISTRATION" outcome="allCategories" />
+                <p:menuitem value="REGISTER PATIENT" outcome="register" />
+                <p:menuitem value="CONFIRM REGISTRATION" outcome="confirmRegistration" />
                 <p:menuitem value="MAKE PATIENT APPOINTMENT" outcome="allCategories" />
             </p:submenu>
         </p:menu>   

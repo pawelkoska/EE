@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Admin;
 import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 
@@ -20,7 +21,7 @@ public class CreateAdminPageBean {
     private Admin account = new Admin();
     private String passwordRepeat = "";
 
-    public String createAdmin() {
+    public String createAdmin() throws AppBaseException{
         if (!(passwordRepeat.equals(account.getPassword()))) {
             ContextUtils.emitInternationalizedMessage("createAdminaForm:passwordRepeat", "passwords.not.matching");
             return null;

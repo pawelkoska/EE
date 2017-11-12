@@ -13,6 +13,30 @@
         </navigation-case> 
         
         <navigation-case>
+            <from-outcome>createExaminationSuccess</from-outcome>
+            <to-view-id>/status/createExaminationSuccess.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>showMyGeneralyShedule</from-outcome>
+            <to-view-id>/appointment/showMyGeneralyShedule.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>createSheduleByDoctor</from-outcome>
+            <to-view-id>/appointment/createSheduleByDoctor.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>confirmRegistration</from-outcome>
+            <to-view-id>/account/confirmRegistration.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
             <from-outcome>doctorMedicalHistory</from-outcome>
             <to-view-id>/appointment/doctorMedicalHistory.xhtml</to-view-id>
             <redirect />
@@ -257,6 +281,24 @@
             <redirect />
         </navigation-case> 
        
-                                
+        <application>
+            <locale-config>
+                <default-locale>en</default-locale>
+                <supported-locale>pl</supported-locale>
+                <supported-locale>en</supported-locale>
+            </locale-config>
+            <resource-bundle>
+                <base-name>i18n.messages</base-name>
+                <var>msg</var>
+            </resource-bundle>
+            <message-bundle>
+                i18n.jsf_messages
+            </message-bundle>
+            <resource-bundle>
+                <base-name>/Bundle</base-name>
+                <var>bundle</var>
+            </resource-bundle>
+        </application>
+                       
     </navigation-rule>
 </faces-config>

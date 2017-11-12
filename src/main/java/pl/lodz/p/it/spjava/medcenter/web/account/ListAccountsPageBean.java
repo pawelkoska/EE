@@ -2,6 +2,8 @@ package pl.lodz.p.it.spjava.medcenter.web.account;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -24,6 +26,10 @@ public class ListAccountsPageBean {
     private AccountEndpoint accountEndpoint;
 
     private List<Account> accountObjList = new ArrayList<>();
+    
+    private List<Account> accountsListToConfirm = new ArrayList<>();
+    private Account confirmedAccount = new Account();
+    
     private List<String> accountNameList = new ArrayList<>();
     private List<String> doctorNameList = new ArrayList<>();
 
@@ -31,15 +37,37 @@ public class ListAccountsPageBean {
     public void getAllAccounts() {
         List<Account> allAccounts = accountSession.getAllAccounts();
         for (Account account : allAccounts) {
-            
             if(account.getType().equals("Doctor")){
                 doctorNameList.add(account.getName());
             }
-            
+            if(!account.isConfirmed()){
+                accountsListToConfirm.add(account);
+            }
             accountObjList.add(account);
             accountNameList.add(account.getName());
         }
     }
+    private static final Logger LOG = Logger.getLogger(ListAccountsPageBean.class.getName());
+    
+    public String confirmRegistration(Account account){
+        confirmedAccount = accountEndpoint.getAccountById(account);
+        confirmedAccount.setActive(true);
+        confirmedAccount.setConfirmed(true);
+        accountEndpoint.saveAccountAfterConfiramtion(confirmedAccount);
+        
+        
+        return "confirmRegistration";
+    }
+
+    public List<Account> getAccountsListToConfirm() {
+        return accountsListToConfirm;
+    }
+
+    public void setAccountsListToConfirm(List<Account> accountsToConfirm) {
+        this.accountsListToConfirm = accountsToConfirm;
+    }
+    
+    
 
     public List<Account> getAccountObjList() {
         return accountObjList;

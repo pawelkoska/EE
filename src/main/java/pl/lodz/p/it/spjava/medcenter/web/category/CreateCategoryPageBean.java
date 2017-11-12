@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.endpoint.CategoryEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 
 @Named(value = "createCategoryPageBean")
@@ -27,8 +28,8 @@ public class CreateCategoryPageBean {
     private List<String> categoryNamesList = new ArrayList<>();
     private Category category = new Category();
 
-    public String createCategory() {
-        return categorySession.createCategory(category);
+    public void createCategory() throws AppBaseException{
+        categorySession.createCategory(category);
     }
 
     public List<String> getCategoryNamesList() {

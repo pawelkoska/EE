@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,21 +41,17 @@ public class Examination extends AbstractEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME")
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Column(name = "NAME", nullable = false, unique = true)
+    @Size(min = 3, max = 30, message = "Examination name has to be between 1 and 30 characters")
     private String name;
 
-    @Column(name = "DESCRIPTION")
-    @NotNull
-    @Size(min = 10, max = 300)
+    @Column(name = "DESCRIPTION", nullable = false)
+    @Size(min = 10, max = 300, message = "Examination name has to be between 10 and 300 characters")
     private String examinationDescription;
 
     @Column(name = "DURATION", nullable = false)
     private int duration;
 
-    
-    
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne
     private Category categoryId;
@@ -67,10 +62,6 @@ public class Examination extends AbstractEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "examinationId")
     private List<Appointment> appointmentList = new ArrayList<>();
 
-    
-    
-    
-    
     public List<Appointment> getAppointmentList() {
         return appointmentList;
     }

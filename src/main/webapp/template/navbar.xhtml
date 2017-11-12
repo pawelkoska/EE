@@ -9,20 +9,22 @@
 
 
     <h:form>
-        <div class="navbar-container">
-            <div>
+        <div class="navbar-container" style="display: flex; background-color: activeborder; overflow: hidden;">
+            <div class="header" style="margin-right: 60vw; margin-left: 2vw;">
                 <h2>M E D <br/> C E N T E R</h2>
             </div>
-            <c:if test="#{request.remoteUser == null}">
-                <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
-                <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>               
-                <p:link value="REGISTER" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
-            </c:if>
-            <c:if test="#{request.remoteUser != null}">
-                <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if>
-                <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
-                <p:link value="MY ACCOUNT" outcome="myAccount"/>
-            </c:if>
+            <div class="login-container">
+                <c:if test="#{request.remoteUser == null}">
+                    <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
+                    <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>               
+                    <p:link value="REGISTER" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
+                </c:if>
+                <c:if test="#{request.remoteUser != null}">
+                    <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if><br/>
+                    <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
+                    <p:link value="MY ACCOUNT" outcome="myAccount"/>
+                </c:if>
+            </div>
         </div>
     </h:form>
 

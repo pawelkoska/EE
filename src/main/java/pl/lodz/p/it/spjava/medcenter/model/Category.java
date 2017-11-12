@@ -35,22 +35,18 @@ public class Category extends AbstractEntity implements Serializable {
     private Long id;
 
     @Column(name = "NAME", unique = true, nullable = false)
-    @NotNull(message = "Field can not be empty")
+    @NotNull(message = "Category name can not be empty")
     @Size(min = 3, max = 30, message = "Category name has to be between 3 and 30 characters")
     private String name;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    @NotNull(message = "Field can not be empty")
+    @NotNull(message = "Category description can not be empty")
     @Size(min = 10, max = 300, message = "Category description has to be between 10 and 300 characters")
     private String categoryDescription;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Examination> examinationList = new ArrayList<>();  
 
-    
-    
-    
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
+    private List<Examination> examinationList = new ArrayList<>();
+
     public List<Examination> getExaminationList() {
         return examinationList;
     }

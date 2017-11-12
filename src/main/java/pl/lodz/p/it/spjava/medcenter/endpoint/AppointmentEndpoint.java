@@ -6,12 +6,18 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
+import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
@@ -22,6 +28,8 @@ import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
+import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
+import pl.lodz.p.it.spjava.medcenter.web.account.AccountSession;
 
 /**
  *
@@ -46,10 +54,23 @@ public class AppointmentEndpoint {
 
     @EJB
     private ExaminationFacade examinationFacade;
+    
+    @Inject
+    private AccountSession accountSession;
+    
+    @Resource
+    protected SessionContext sctx;
 
-    public void createAppointment(AppointmentDTO appointment) {
+    private static final Logger LOG = Logger.getLogger(AppointmentEndpoint.class.getName());
+    
+    public void createAppointment(AppointmentDTO appointment) throws AppBaseException {
+ 
         List<Examination> examinations = examinationFacade.findAll();
+        List<Doctor> doctors = accountFacade.getAllDoctors();
         Examination selectedExamination = null;
+        Doctor selectedDoctor = null;
+        List<Room> rooms = roomFacade.findAll();
+        
         for (Examination examination : examinations) {
             if (examination.getName().equals(appointment.getExamination())) {
                 selectedExamination = examination;
@@ -60,19 +81,25 @@ public class AppointmentEndpoint {
             throw new IllegalArgumentException("Błędna nazwa badania"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
 
-        List<Doctor> doctors = accountFacade.getAllDoctors();
-        Doctor selectedDoctor = null;
+        if (appointment.getDoctor() == null){
+            String accountType;
+            accountType = accountFacade.findLogin(sctx.getCallerPrincipal().getName()).getType();
+            if (accountType.equals("Doctor")){
+                selectedDoctor = (Doctor)accountFacade.findLogin(sctx.getCallerPrincipal().getName());
+            }
+        }
+          
         for (Doctor d : doctors) {
             if (d.getSecondName().equals(appointment.getDoctor())) {
                 selectedDoctor = d;
                 break;
-            }
+            } 
         }
+        
         if (selectedDoctor == null) {
-            throw new IllegalArgumentException("Błędna nazwa doktora"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
+            throw new IllegalArgumentException("Błędna nazwa lekarza");
         }
 
-        List<Room> rooms = roomFacade.findAll();
         Room selectedRoom = null;
         for (Room r : rooms) {
             if (r.getRoomNumber().equals(appointment.getRoomNumber())) {
@@ -84,37 +111,44 @@ public class AppointmentEndpoint {
             throw new IllegalArgumentException("Błędna nazwa pokoju"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
 
-        //DEBUGING
         long totalDurationMillisecond = appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime();
         long totalDurationMinutes = TimeUnit.MILLISECONDS.toMinutes(appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime());
         double timeSlotAmount = (double)totalDurationMinutes / selectedExamination.getDuration();
         long examinationSlotMillis = totalDurationMillisecond / (long)timeSlotAmount;
-        LOG.log(Level.INFO, "Total duration minutes: " + Long.toString(totalDurationMinutes) + "mins.");
-        LOG.log(Level.INFO, "Total duration milliseconds: " + totalDurationMillisecond);
-        LOG.log(Level.INFO, "Amount of time slots/examinations: " + timeSlotAmount);
 
-        if (timeSlotAmount % 1 != 0) {
-            throw new IllegalArgumentException("Nie mozna wyznaczyc wizyt z podanego przedzialu czasowego");
+        try{
+            if (timeSlotAmount % 1 != 0) {
+                throw AppointmentException.createWithInvalidTimeSlots();
+            }           
+        }catch(AppointmentException ae){
+            ContextUtils.emitInternationalizedMessage(null, AppointmentException.KEY_APPOINTMENT_INVALID_TIMESLOT);
+            return;
         }
 
         long timeStartHolder = appointment.getTimeStart().getTime();
 
-        for (int i = 0; i < timeSlotAmount; i++) {
-
-            long timeEndHolder = 0;
-            Appointment appointmentEntity = new Appointment();
-            appointmentEntity.setExaminationId(selectedExamination);
-            appointmentEntity.setDoctorId(selectedDoctor);
-            appointmentEntity.setRoomId(selectedRoom);
-            appointmentEntity.setDate(appointment.getDate());
-            appointmentEntity.setTimeStart(new Date(timeStartHolder));
-            timeEndHolder = timeStartHolder + examinationSlotMillis;
-            appointmentEntity.setTimeEnd(new Date(timeEndHolder));
-            appointmentFacade.create(appointmentEntity);
-            timeStartHolder = timeEndHolder;
+        try {
+            
+            for (int i = 0; i < timeSlotAmount; i++) {
+                long timeEndHolder = 0;
+                Appointment appointmentEntity = new Appointment();
+                appointmentEntity.setExaminationId(selectedExamination);
+                appointmentEntity.setDoctorId(selectedDoctor);
+                appointmentEntity.setRoomId(selectedRoom);
+                appointmentEntity.setDate(appointment.getDate());
+                appointmentEntity.setTimeStart(new Date(timeStartHolder));
+                timeEndHolder = timeStartHolder + examinationSlotMillis;
+                appointmentEntity.setTimeEnd(new Date(timeEndHolder));
+                appointmentFacade.create(appointmentEntity);
+                LOG.log(Level.INFO, appointmentEntity.toString());
+                timeStartHolder = timeEndHolder;
+            }
+            ContextUtils.emitSuccessMessage("appointment");
+        }catch(AppointmentException ae){
+            LOG.log(Level.INFO, ae.getCause().toString());
+            ContextUtils.emitInternationalizedMessage(null, AppointmentException.KEY_DB_CONSTRAINT);
         }
     }
-    private static final Logger LOG = Logger.getLogger(AppointmentEndpoint.class.getName());
 
     public List<Appointment> getAllAppointments() {
         return appointmentFacade.findAll();
@@ -143,8 +177,10 @@ public class AppointmentEndpoint {
         return appointmentFacade.find(appointment.getId());
     }
 
-    public void updateAppointment(Appointment updatingAppointment) {
+    public void updateAppointment(Appointment updatingAppointment) throws AppBaseException {
         appointmentFacade.edit(updatingAppointment);
+            
+        
     }
 
 }

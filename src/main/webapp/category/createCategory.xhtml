@@ -10,6 +10,7 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="createCategory">
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
                         <h:outputLabel for="name" value="Category name: " />
@@ -18,7 +19,7 @@
                         <h:outputLabel for="categoryDescription" value="Category description: " />
                         <h:inputText id="categoryDescription" value="#{createCategoryPageBean.category.categoryDescription}" />
 
-                        <h:commandButton value="create" action="#{createCategoryPageBean.createCategory()}" />
+                        <p:commandButton value="create" action="#{createCategoryPageBean.createCategory()}" update=":exceptionInfo"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>

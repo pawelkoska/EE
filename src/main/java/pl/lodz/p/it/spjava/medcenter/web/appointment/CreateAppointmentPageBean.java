@@ -16,6 +16,7 @@ import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.ExaminationEndpoint;
 import pl.lodz.p.it.spjava.medcenter.endpoint.RoomEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
@@ -54,9 +55,12 @@ public class CreateAppointmentPageBean {
 
     private AppointmentDTO appointmentDto = new AppointmentDTO();
 
-    public String createAppointment() {
-        LOG.log(Level.INFO, appointmentDto.toString());
-        return appointmentSession.createAppointment(appointmentDto);
+    public void createAppointment() throws AppBaseException{
+        appointmentSession.createAppointment(appointmentDto);
+    }
+
+    public void createAppointmentByDoctor() throws AppBaseException{
+        appointmentSession.createAppointment(appointmentDto);
     }
 
     @PostConstruct

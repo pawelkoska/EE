@@ -14,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.ExaminationEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
 @Named(value = "createExaminationPageBean")
@@ -51,9 +52,8 @@ public class CreateExamiantionPageBean {
         this.durationList = durationList;
     }
 
-    public String createExamination() throws ParseException {
-        LOG.log(Level.INFO, examinationDto.toString());
-        return examinationSession.createExamination(examinationDto);
+    public void createExamination() throws ParseException, AppBaseException{
+        examinationSession.createExamination(examinationDto);
     }
 
     public List<Examination> getExaminationObjList() {

@@ -6,9 +6,12 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
+import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 
 /**
  *
@@ -22,8 +25,15 @@ public class CategoryEndpoint {
     @EJB
     private CategoryFacade categoryFacade;
 
-    public void createCategory(Category category) {
-        categoryFacade.create(category);
+    public String createCategory(Category category) throws AppBaseException{
+        try{
+            categoryFacade.create(category);  
+            ContextUtils.emitSuccessMessage("categoryListForm:categoryList");
+            return "allCategories";
+        }catch(CategoryException ce){
+            ContextUtils.emitInternationalizedMessage(null, CategoryException.KEY_DB_CONSTRAINT);
+        }
+        return null;
     }
 
     public List<Category> getAllCategories() {

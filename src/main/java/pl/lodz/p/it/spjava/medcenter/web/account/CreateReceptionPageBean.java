@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Admin;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
 import pl.lodz.p.it.spjava.medcenter.model.Reception;
@@ -22,7 +23,7 @@ public class CreateReceptionPageBean {
     private Reception account = new Reception();
     private String passwordRepeat = "";
 
-    public String createReception() {
+    public String createReception() throws AppBaseException{
         if (!(passwordRepeat.equals(account.getPassword()))) {
             ContextUtils.emitInternationalizedMessage("createDoctorForm:passwordRepeat", "passwords.not.matching");
             return null;

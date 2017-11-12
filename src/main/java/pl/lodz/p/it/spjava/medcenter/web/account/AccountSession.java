@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Admin;
@@ -92,28 +93,28 @@ public class AccountSession implements Serializable {
         return "successEditedAccount";
     }
 
-    public String createAdmin(Admin admin) {
+    public String createAdmin(Admin admin) throws AppBaseException{
         createAdmin = admin;
         accountEndpoint.createAccount(createAdmin);
         createAdmin = null;
         return "createAccountSuccess";
     }
 
-    public String createPatient(Patient patient) {
+    public String createPatient(Patient patient) throws AppBaseException{
         createPatient = patient;
         accountEndpoint.createAccount(createPatient);
         createAdmin = null;
         return "successCreatePatient";
     }
 
-    public String createReception(Reception reception) {
+    public String createReception(Reception reception) throws AppBaseException{
         createReception = reception;
         accountEndpoint.createAccount(createReception);
         createReception = null;
         return "successCreateReception";
     }
 
-    public String createDoctor(Doctor doctor) {
+    public String createDoctor(Doctor doctor) throws AppBaseException{
         createDoctor = doctor;
         accountEndpoint.createAccount(createDoctor);
         createDoctor = null;

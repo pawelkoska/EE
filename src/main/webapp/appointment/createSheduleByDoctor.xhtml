@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="createAppointment">
+                    <h3>CREATE YOUR SHEDULE:</h3><br/>    
+
+                    <h:panelGrid columns="2" transient="true" cellpadding="10" >
+                        
+                        <p:outputLabel for="examination" value="Examination type: " />
+                        <p:selectOneMenu id="examination"  
+                                         required="true"
+                                         value="#{createAppointmentPageBean.appointmentDto.examination}">
+                            <p:ajax listener="#{createAppointmentPageBean.onExaminationChange()}" update="room" />
+                            <f:selectItem itemLabel="Select examination" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{createAppointmentPageBean.examinations}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="room" value="Room number: " />
+                        <p:selectOneMenu id="room"
+                                         required="true"
+                                         value="#{createAppointmentPageBean.appointmentDto.roomNumber}">
+                            <f:selectItem itemLabel="Select room" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{createAppointmentPageBean.filteredRooms}" />
+                        </p:selectOneMenu>
+
+                        <p:separator /><br/>
+
+                        <h:outputLabel for="date" value="Date: " />
+                        <p:calendar id="birthDate" 
+                                    required="true"
+                                    value="#{createAppointmentPageBean.appointmentDto.date}" 
+                                    locale="de"
+                                    navigator="true" 
+                                    placeholder="dd/MM/yyyy"
+                                    pattern="dd/MM/yyyy" />
+
+                        <h:outputLabel for="timeStart"  value="Time start:" />
+                        <p:calendar id="timeStart" 
+                                    required="true" 
+                                    placeholder="e.g 12:20" 
+                                    value="#{createAppointmentPageBean.appointmentDto.timeStart}" 
+                                    pattern="HH:mm"
+                                    timeOnly="true"  />
+
+                        <h:outputLabel for="timeEnd"  value="Time end:" />
+                        <p:calendar id="timeEnd" 
+                                    required="true" 
+                                    placeholder="e.g 14:20"
+                                    value="#{createAppointmentPageBean.appointmentDto.timeEnd}" 
+                                    pattern="HH:mm" 
+                                    timeOnly="true"  />
+                        <p:separator /><br/>
+                    </h:panelGrid>
+                    <p:separator />
+
+                    <h:commandButton action="#{createAppointmentPageBean.createAppointmentByDoctor()}" value="create" />
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

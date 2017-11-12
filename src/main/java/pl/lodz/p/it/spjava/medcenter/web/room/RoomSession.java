@@ -7,6 +7,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.p.it.spjava.medcenter.dto.RoomDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.RoomEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 @Named(value = "roomSession")
@@ -23,9 +24,8 @@ public class RoomSession implements Serializable {
         return deletedRoom;
     }
 
-    public String createRoom(RoomDTO room) {
+    public void createRoom(RoomDTO room) throws AppBaseException{
         roomEndpoint.createRoom(room);
-        return "createRoomSuccess";
     }
 
     public List<Room> getAllRooms() {

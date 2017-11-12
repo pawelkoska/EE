@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.ExaminationEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
@@ -25,9 +26,8 @@ public class ExaminationSession implements Serializable {
         return deletedExamination;
     }
 
-    public String createExamination(ExaminationDTO examination) throws ParseException {
+    public void createExamination(ExaminationDTO examination) throws ParseException, AppBaseException{
         examinationEndpoint.createExamination(examination);
-        return "createExaminationSuccess";
     }
 
     public List<Examination> getAllExaminations() {

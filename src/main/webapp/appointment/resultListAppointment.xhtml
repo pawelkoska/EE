@@ -11,6 +11,9 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                
+                <p:messages id="accountNotConfirmed" />
+                
                 <h:form>
                     <p:dataTable id="appointments" var="appointment" value="#{findAppointmentPageBean.totalResult}">
                         <f:facet name="header">
@@ -37,8 +40,8 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column style="width:75px">
-                            <p:commandButton value="GO" action="#{findAppointmentPageBean.makeAnAppointment(appointment)}"/>
+                        <p:column style="width:150px">
+                            <p:commandButton value="RESERVE" action="#{findAppointmentPageBean.makeAnAppointment(appointment)}" update=":accountNotConfirmed"/>
                         </p:column>
 
                     </p:dataTable>

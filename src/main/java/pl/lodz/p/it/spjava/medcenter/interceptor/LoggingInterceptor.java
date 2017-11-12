@@ -17,7 +17,7 @@ public class LoggingInterceptor {
         StringBuilder sb = new StringBuilder("Method called "
                 + invocation.getTarget().getClass().getName() + "."
                 + invocation.getMethod().getName());
-        sb.append("with identity: " + sessionContext.getCallerPrincipal().getName());
+        sb.append(" with identity: " + sessionContext.getCallerPrincipal().getName());
         try {
             Object[] parameters = invocation.getParameters();
             if (null != parameters) {

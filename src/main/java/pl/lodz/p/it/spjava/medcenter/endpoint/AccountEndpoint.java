@@ -9,6 +9,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
@@ -34,9 +35,9 @@ public class AccountEndpoint {
 
     private Account accountEditHandler;
 
-    public void createAccount(Account account) {
-        account.setActive(true);
-        account.setConfirmed(true);
+    public void createAccount(Account account) throws AppBaseException{
+        account.setActive(false);
+        account.setConfirmed(false);
         accountFacade.create(account);
     }
 
@@ -47,6 +48,14 @@ public class AccountEndpoint {
     
     public Account getMyAccount() {
         return accountFacade.findLogin(sctx.getCallerPrincipal().getName());
+    }
+    
+    public Account getAccountById(Account account){
+        return accountFacade.getAccountById(account);
+    }
+    
+    public void saveAccountAfterConfiramtion(Account account){
+        accountFacade.edit(account);
     }
 
     public void saveEditedAccount(Account account) {

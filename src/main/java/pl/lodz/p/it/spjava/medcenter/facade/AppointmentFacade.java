@@ -5,9 +5,8 @@
  */
 package pl.lodz.p.it.spjava.medcenter.facade;
 
-import java.util.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -15,18 +14,19 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
+import org.eclipse.persistence.exceptions.DatabaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment_;
-import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
-import pl.lodz.p.it.spjava.medcenter.model.Examination_;
 
 /**
  *
@@ -53,6 +53,20 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
         super(Appointment.class);
     }
 
+    @Override
+    public void create(Appointment entity) throws AppBaseException {
+        try {
+            super.create(entity);
+            em.flush();
+        } catch (PersistenceException ex) {
+            if (ex.getCause() instanceof DatabaseException && ex.getCause().getCause() instanceof SQLIntegrityConstraintViolationException) {
+                throw AppointmentException.createWithDbCheckConstraintKey(entity, ex);
+            } else {
+                throw ex;
+            }
+        }
+    }
+    
     public List<Appointment> matchAppointments(Examination examination) {
         
         CriteriaBuilder cb = em.getCriteriaBuilder();

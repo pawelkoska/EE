@@ -11,18 +11,26 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="createRoom">
                      <h:panelGrid columns="2" transient="true" cellpadding="10">
                         <h:outputLabel for="roomNumber" value="Room number: " />
-                        <h:inputText id="roomNumber" value="#{createRoomPageBean.roomDTO.roomNumber}" />
+                        <h:inputText id="roomNumber" 
+                                     value="#{createRoomPageBean.roomDTO.roomNumber}" 
+                                     required="true"
+                                     requiredMessage="Room number is required"/>
 
 
                         <p:outputLabel for="examinationType" value="Examination type: " />
-                        <p:selectOneMenu id="examinationType" value="#{createRoomPageBean.roomDTO.examinationType}">
+                        <p:selectOneMenu id="examinationType" 
+                                         value="#{createRoomPageBean.roomDTO.examinationType}"
+                                         required="true"
+                                         requiredMessage="Examination type is required">
+                            <f:selectItem itemLabel="Select examination" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
                         </p:selectOneMenu>
 
-                        <h:commandButton value="create" action="#{createRoomPageBean.createRoom()}" />                 
+                        <p:commandButton value="create" action="#{createRoomPageBean.createRoom()}" update=":exceptionInfo" />                 
                      </h:panelGrid>
                 </h:form>
             </ui:define>

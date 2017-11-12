@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,11 +37,12 @@ public class Room extends AbstractEntity implements Serializable {
     private Long id;
 
     @Column(name = "ROOM_NUMBER", nullable = false)
-    @NotNull(message = "Field can not be empty")
+    @NotNull(message = "Room number can not be empty")
     private String roomNumber;
 
     @ManyToOne
     @JoinColumn(name = "EXAMINATION_ID", referencedColumnName = "ID", nullable = false)
+    @NotNull(message = "Examination type is required")
     private Examination examinationType;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomId")

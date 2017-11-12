@@ -1,15 +1,12 @@
 package pl.lodz.p.it.spjava.medcenter.web.room;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.dto.RoomDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.RoomEndpoint;
-import pl.lodz.p.it.spjava.medcenter.model.Room;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 
 @Named(value = "createRoomPageBean")
 @RequestScoped
@@ -26,8 +23,8 @@ public class CreateRoomPageBean {
 
     private RoomDTO roomDTO = new RoomDTO();
 
-    public String createRoom() {
-        return roomSession.createRoom(roomDTO);
+    public void createRoom() throws AppBaseException{
+        roomSession.createRoom(roomDTO);
     }
 
     public RoomDTO getRoomDTO() {

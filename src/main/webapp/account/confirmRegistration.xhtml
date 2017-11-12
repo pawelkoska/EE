@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="accounts" var="account" value="#{listAccountPageBean.accountsListToConfirm}">
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:column headerText="ID">
+                            <p:outputLabel value="#{account.id}" />
+                        </p:column>
+
+                        <p:column headerText="LOGIN">
+                            <p:outputLabel value="#{account.login}" />
+                        </p:column>
+
+                        <p:column headerText="PASSWORD">
+                            <p:outputLabel value="#{account.password}" />
+                        </p:column>
+
+                        <p:column headerText="TYPE">
+                            <p:outputLabel value="#{account.type}" />
+                        </p:column>
+
+                        <p:column headerText="ACTIVE">
+                            <p:outputLabel value="#{account.active}" />
+                        </p:column>
+
+                        <p:column headerText="CONFIRMED">
+                            <p:outputLabel value="#{account.confirmed}" />
+                        </p:column>
+
+                        <p:column headerText="PESEL">
+                            <p:outputLabel value="#{account.pesel}" />
+                        </p:column>
+
+                        <p:column headerText="NAME">
+                            <p:outputLabel value="#{account.name}" />
+                        </p:column>
+
+                        <p:column headerText="SURNAME">
+                            <p:outputLabel value="#{account.secondName}" />
+                        </p:column>
+
+                        <p:column headerText="BIRTH DATE">
+                            <p:outputLabel value="#{account.birthDate}" />
+                        </p:column>
+
+                        <p:column headerText="EMAIL">
+                            <p:outputLabel value="#{account.email}" />
+                        </p:column>
+
+                        <p:column headerText="PHONE NUMBER">
+                            <p:outputLabel value="#{account.phoneNumber}" />
+                        </p:column>
+
+                        <p:column style="width:130px">
+                            <p:commandButton                                          
+                                value="CONFIRM" 
+                                action="confirmRegistration"
+                                actionListener="#{listAccountPageBean.confirmRegistration(account)}" > 
+                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

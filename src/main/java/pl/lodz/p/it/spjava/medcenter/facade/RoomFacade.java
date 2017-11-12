@@ -5,13 +5,20 @@
  */
 package pl.lodz.p.it.spjava.medcenter.facade;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import org.eclipse.persistence.exceptions.DatabaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
+import pl.lodz.p.it.spjava.medcenter.exception.RoomException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
+import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 /**
@@ -35,6 +42,18 @@ public class RoomFacade extends AbstractFacade<Room> {
         super(Room.class);
     }
     
-    
+    @Override
+    public void create(Room entity) throws AppBaseException {
+        try {
+            super.create(entity);
+            em.flush();
+        } catch (PersistenceException ex) {
+            if (ex.getCause() instanceof DatabaseException && ex.getCause().getCause() instanceof SQLIntegrityConstraintViolationException) {
+                throw RoomException.createWithDbCheckConstraintKey(entity, ex);
+            } else {
+                throw ex;
+            }
+        }
+    }
 
 }

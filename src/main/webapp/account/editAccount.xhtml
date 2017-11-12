@@ -15,6 +15,15 @@
             <h4>#{pageBean.account}</h4>
             <h:panelGrid columns="3">
                 <ui:include src="_commonDataEditTemplate.xhtml"/>
+                
+                <h:outputText value="confirmed: " />
+                <p:selectBooleanCheckbox value="#{pageBean.account.confirmed}" />
+                <h:messages for="confirmed" />
+
+                <h:outputText value="active: " />
+                <p:selectBooleanCheckbox value="#{pageBean.account.active}" />
+                <h:messages for="active" />
+                
                 <c:if test="#{pageBean.account.type == 'Doctor'}">
                     <ui:include src="_doctorDataEditTemplate.xhtml"/>
                 </c:if>

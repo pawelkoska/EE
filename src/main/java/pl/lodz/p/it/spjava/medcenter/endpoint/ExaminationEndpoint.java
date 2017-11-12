@@ -10,11 +10,15 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
+import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
+import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
+import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 
 /**
  *
@@ -31,7 +35,7 @@ public class ExaminationEndpoint {
     @EJB
     private CategoryFacade categoryFacade;
 
-    public void createExamination(ExaminationDTO examination) throws ParseException {
+    public void createExamination(ExaminationDTO examination) throws ParseException, AppBaseException {
         List<Category> categories = categoryFacade.findAll();
         Category selectedCategory = null;
         for (Category category : categories) {
@@ -49,7 +53,12 @@ public class ExaminationEndpoint {
         examinationEntity.setExaminationDescription(examination.getExaminationDescription());
         examinationEntity.setCategoryId(selectedCategory);        
         examinationEntity.setDuration(examination.getExaminationDuration());
-        examinationFacade.create(examinationEntity);
+        try{
+            examinationFacade.create(examinationEntity);  
+            ContextUtils.emitSuccessMessage("examinationList");
+        } catch(ExaminationException ee) {
+            ContextUtils.emitInternationalizedMessage(null, ExaminationException.KEY_DB_CONSTRAINT);
+        }
     }
 
     public List<Examination> getExaminationsByCategory(Category category) {

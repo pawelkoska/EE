@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<erd version="1.0">
+    <datasource>
+        <connection value="jdbc:derby://localhost:1527/medcenter"/>
+    </datasource>
+    <table tableId="ACCOUNT" x="538" y="337"/>
+    <table tableId="APPOINTMENT" x="387" y="35"/>
+    <table tableId="EXAMINATION" x="90" y="121"/>
+    <table tableId="DOCTOR_DATA" x="103" y="492"/>
+    <table tableId="CATEGORY" x="54" y="336"/>
+    <table tableId="PERSONAL_DATA" x="562" y="558"/>
+    <table tableId="SEQUENCE" x="1224" y="544"/>
+    <table tableId="ROOM" x="288" y="335"/>
+</erd>
