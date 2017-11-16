@@ -11,42 +11,51 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
-                
-                <p:messages id="accountNotConfirmed" />
-                
                 <h:form>
-                    <p:dataTable id="appointments" var="appointment" value="#{findAppointmentPageBean.totalResult}">
+                    <p:dataTable id="appoitnmentList" var="appointment" 
+                                 value="#{listAppointmentPageBean.myMedicalHistory}"
+                                 emptyMessage="No medical history found.">
                         <f:facet name="header">
-
                         </f:facet>
-                        
-                        <p:column headerText="EXAMINATION:">
+
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
 
-                        <p:column headerText="DOCTOR:">
-                            <h:outputText value="#{appointment.doctorId.name}" />
+                        <p:column headerText="#{msg['room']}">
+                            <h:outputText value="#{appointment.roomId.roomNumber}" />
                         </p:column>
 
-                        <p:column headerText="DATE: ">
+                        <p:column headerText="#{msg['date']}">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME: ">
+                        <p:column headerText="#{msg['time.start']}">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column style="width:150px">
-                            <p:commandButton value="RESERVE" action="#{findAppointmentPageBean.makeAnAppointment(appointment)}" update=":accountNotConfirmed"/>
+                        <p:column headerText="#{msg['time.end']}">
+                            <h:outputText value="#{appointment.timeEnd}" >
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="#{msg['result']}">
+                            <h:outputText value="#{appointment.appointmentResult}" />
+                        </p:column>
+
+                        <p:column headerText="#{msg['doctor']}">
+                            <h:outputText value="#{appointment.doctorId.secondName}" />
                         </p:column>
 
                     </p:dataTable>
                 </h:form>
             </ui:define>
+
 
         </ui:composition>
 

@@ -13,57 +13,63 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="appoitnmentList" var="appointment" value="#{listAppointmentPageBean.appointmentObjList}">
+                    <p:dataTable style="label: 10px !important;" id="appoitnmentList" var="appointment" scrollable="true" scrollWidth="700" value="#{listAppointmentPageBean.appointmentObjList}">
                         <f:facet name="header">
 
                         </f:facet>
-                        <p:column headerText="ID">
+<!--                        <p:column headerText="#{msg['id']}">
                             <h:outputText value="#{appointment.id}" />
-                        </p:column>
+                        </p:column>-->
 
-                        <p:column headerText="EXAMINATION TYPE">
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
 
-                        <p:column headerText="ROOM">
+                        <p:column headerText="#{msg['room']}">
                             <h:outputText value="#{appointment.roomId.roomNumber}" />
                         </p:column>
 
-                        <p:column headerText="EXAMINATION RESULT">
+                        <p:column headerText="#{msg['examination.result']}">
                             <h:outputText value="#{appointment.appointmentResult}" />
                         </p:column>
 
-                        <p:column headerText="DATE">
+                        <p:column headerText="#{msg['date']}">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME START">
+                        <p:column headerText="#{msg['time.start']}">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME END">
+                        <p:column headerText="#{msg['time.end']}">
                             <h:outputText value="#{appointment.timeEnd}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="PATIENT">
+                        <p:column headerText="#{msg['patient']}">
                             <h:outputText value="#{appointment.patientId.name}" />
                         </p:column>
 
-                        <p:column headerText="DOCTOR">
+                        <p:column headerText="#{msg['doctor']}">
                             <h:outputText value="#{appointment.doctorId.secondName}" />
                         </p:column>
 
-                        <p:column style="width:75px">
-                            <p:commandButton value="EDIT" action="#{editExaminationManageBean.getExaminationToEdit(examination)}" />
+                        <p:column style="width:100px">
+                            <p:commandButton value="#{msg['edit']}" action="#{editAppointmentManageBean.getAppointmentToEdit(appointment)}" />
                         </p:column>
                         <p:column style="width:105px">
-                            <p:commandButton value="DELETE"  action="#{deleteExaminationPageBean.deleteExamination(examination)}"/>
+                            <p:commandButton value="#{msg['delete']}" actionListener="allAppointments" action="#{deleteAppointmentPageBean.deleteAppointment(appointment)}">
+                                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" /> 
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:commandButton>
                         </p:column>
 
                     </p:dataTable>

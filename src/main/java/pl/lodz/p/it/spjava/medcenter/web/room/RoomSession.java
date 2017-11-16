@@ -36,7 +36,7 @@ public class RoomSession implements Serializable {
         return editingRoom;
     }
 
-    public void saveEditedRoom() {
+    public void saveEditedRoom()throws AppBaseException {
         if (null == editingRoom) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

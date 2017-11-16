@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AccountEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 
 @Named(value = "listAccountPageBean")
@@ -38,7 +39,7 @@ public class ListAccountsPageBean {
         List<Account> allAccounts = accountSession.getAllAccounts();
         for (Account account : allAccounts) {
             if(account.getType().equals("Doctor")){
-                doctorNameList.add(account.getName());
+                doctorNameList.add(account.getSecondName());
             }
             if(!account.isConfirmed()){
                 accountsListToConfirm.add(account);
@@ -49,7 +50,7 @@ public class ListAccountsPageBean {
     }
     private static final Logger LOG = Logger.getLogger(ListAccountsPageBean.class.getName());
     
-    public String confirmRegistration(Account account){
+    public String confirmRegistration(Account account) throws AppBaseException{
         confirmedAccount = accountEndpoint.getAccountById(account);
         confirmedAccount.setActive(true);
         confirmedAccount.setConfirmed(true);

@@ -8,6 +8,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
+import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
@@ -46,8 +47,13 @@ public class CategoryEndpoint {
         return categoryEntity;
     }
 
-    public void saveEditedCategory(Category c) {
-        categoryFacade.edit(c);
+    public void saveEditedCategory(Category c) throws AppBaseException {
+        try{
+            categoryFacade.edit(c);   
+            ContextUtils.emitSuccessMessage("");
+        } catch (GeneralOptimisticLockException ce){
+            ContextUtils.emitInternationalizedMessage(null, GeneralOptimisticLockException.KEY_OPTIMISTIC_LOCK);
+        }
     }
 
     public String deleteCategory(Category category) {

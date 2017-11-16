@@ -14,43 +14,51 @@
             <ui:define name="content">
                 <h:form>
                     <p:dataTable id="appoitnmentList" var="appointment" 
-                                 value="#{listAppointmentPageBean.myMedicalHistory}"
-                                 emptyMessage="No medical history found.">
+                                 value="#{listAppointmentPageBean.myAppointments}"
+                                 emptyMessage="You have no active appointments.">
                         <f:facet name="header">
+
                         </f:facet>
 
-                        <p:column headerText="EXAMINATION TYPE">
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
 
-                        <p:column headerText="ROOM">
+                        <p:column headerText="#{msg['room']}">
                             <h:outputText value="#{appointment.roomId.roomNumber}" />
                         </p:column>
 
-                        <p:column headerText="DATE">
+                        <p:column headerText="#{msg['date']}">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME START">
+                        <p:column headerText="#{msg['time.start']}">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME END">
+                        <p:column headerText="#{msg['time.end']}">
                             <h:outputText value="#{appointment.timeEnd}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="RESULT">
-                            <h:outputText value="#{appointment.appointmentResult}" />
+
+                        <p:column headerText="#{msg['doctor']}">
+                            <h:outputText value="#{appointment.doctorId.secondName}" />
                         </p:column>
 
-                        <p:column headerText="DOCTOR">
-                            <h:outputText value="#{appointment.doctorId.secondName}" />
+                        <p:column style="width:200px">
+                            <p:commandButton value="#{msg['cancel.appointment']}" action="#{findAppointmentPageBean.cancelAppointment(appointment)}">
+                                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" />
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:commandButton>
                         </p:column>
 
                     </p:dataTable>

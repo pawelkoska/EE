@@ -11,26 +11,26 @@
     <ui:param name="pageBean" value="#{editAccountPageBean}" />
     <ui:define name="content">
         <h:form>
-            <h3>EDITING ACCOUNT:</h3>
+            <h3>#{msg['edit.account']}:</h3>
             <h4>#{pageBean.account}</h4>
             <h:panelGrid columns="3">
-                <ui:include src="_commonDataEditTemplate.xhtml"/>
+                <ui:include src="../account/_commonDataEditTemplate.xhtml"/>
                 <c:if test="#{pageBean.account.type == 'Doctor'}">
                     <ui:include src="_doctorDataEditTemplate.xhtml"/>
                 </c:if>
             </h:panelGrid>
             <br />
             <p:commandButton                                          
-                value="UPDATE" 
+                value="#{msg['update']}" 
                 action="accountDetails"
                 actionListener="#{pageBean.saveAccount()}" > 
-                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" /> 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
             </p:commandButton>
-            <p:commandButton value="BACK" action="accountDetails" immediate="true" />
+            <p:commandButton value="#{msg['cancel']}" action="accountDetails" immediate="true" />
         </h:form>
     </ui:define>
 

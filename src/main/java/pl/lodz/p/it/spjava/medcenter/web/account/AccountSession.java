@@ -88,16 +88,14 @@ public class AccountSession implements Serializable {
         return "editAccount";
     }
 
-    public String saveEditedAccount(Account account) {
+    public void saveEditedAccount(Account account) throws AppBaseException {
         accountEndpoint.saveEditedAccount(account);
-        return "successEditedAccount";
     }
 
-    public String createAdmin(Admin admin) throws AppBaseException{
+    public void createAdmin(Admin admin) throws AppBaseException{
         createAdmin = admin;
         accountEndpoint.createAccount(createAdmin);
         createAdmin = null;
-        return "createAccountSuccess";
     }
 
     public String createPatient(Patient patient) throws AppBaseException{

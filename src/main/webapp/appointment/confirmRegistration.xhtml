@@ -16,63 +16,63 @@
                         <f:facet name="header">
 
                         </f:facet>
-                        <p:column headerText="ID">
+                        <p:column headerText="#{msg['id']}">
                             <p:outputLabel value="#{account.id}" />
                         </p:column>
 
-                        <p:column headerText="LOGIN">
+                        <p:column headerText="#{msg['login.input']}">
                             <p:outputLabel value="#{account.login}" />
                         </p:column>
 
-                        <p:column headerText="PASSWORD">
+                        <p:column headerText="#{msg['password.input']}">
                             <p:outputLabel value="#{account.password}" />
                         </p:column>
 
-                        <p:column headerText="TYPE">
+                        <p:column headerText="#{msg['type']}">
                             <p:outputLabel value="#{account.type}" />
                         </p:column>
 
-                        <p:column headerText="ACTIVE">
+                        <p:column headerText="#{msg['active']}">
                             <p:outputLabel value="#{account.active}" />
                         </p:column>
 
-                        <p:column headerText="CONFIRMED">
+                        <p:column headerText="#{msg['confirmed']}">
                             <p:outputLabel value="#{account.confirmed}" />
                         </p:column>
 
-                        <p:column headerText="PESEL">
+                        <p:column headerText="#{msg['pesel']}">
                             <p:outputLabel value="#{account.pesel}" />
                         </p:column>
 
-                        <p:column headerText="NAME">
+                        <p:column headerText="#{msg['name']}">
                             <p:outputLabel value="#{account.name}" />
                         </p:column>
 
-                        <p:column headerText="SURNAME">
+                        <p:column headerText="#{msg['surname']}">
                             <p:outputLabel value="#{account.secondName}" />
                         </p:column>
 
-                        <p:column headerText="BIRTH DATE">
+                        <p:column headerText="#{msg['birthDay']}">
                             <p:outputLabel value="#{account.birthDate}" />
                         </p:column>
 
-                        <p:column headerText="EMAIL">
+                        <p:column headerText="#{msg['email']}">
                             <p:outputLabel value="#{account.email}" />
                         </p:column>
 
-                        <p:column headerText="PHONE NUMBER">
+                        <p:column headerText="#{msg['phone']}">
                             <p:outputLabel value="#{account.phoneNumber}" />
                         </p:column>
 
                         <p:column style="width:130px">
                             <p:commandButton                                          
-                                value="CONFIRM" 
+                                value="#{msg['confirm']}" 
                                 action="confirmRegistration"
                                 actionListener="#{listAccountPageBean.confirmRegistration(account)}" > 
-                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" /> 
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog>
                             </p:commandButton>
                         </p:column>

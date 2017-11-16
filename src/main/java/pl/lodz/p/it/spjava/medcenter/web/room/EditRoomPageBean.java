@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.endpoint.RoomEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 @Named(value = "editRoomManageBean")
@@ -25,9 +26,8 @@ public class EditRoomPageBean {
         return "editRoom";
     }
 
-    public String saveEditedRoom() {
+    public void saveEditedRoom()throws AppBaseException {
         roomSession.saveEditedRoom();
-        return "editRoomSuccess";
     }
 
     public Room getEditingRoom() {

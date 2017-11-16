@@ -25,27 +25,27 @@
                         <f:facet name="header">
 
                         </f:facet>
-                        <p:column headerText="ID">
+<!--                        <p:column headerText="#{msg['id']}">
                             <h:outputText value="#{category.id}" />
-                        </p:column>
+                        </p:column>-->
 
-                        <p:column headerText="NAME">
+                        <p:column headerText="#{msg['category.name']}">
                             <h:outputText value="#{category.name}" />
                         </p:column>
 
-                        <p:column headerText="DESCRIPTION">
+                        <p:column headerText="#{msg['description']}">
                             <h:outputText value="#{category.categoryDescription}" />
                         </p:column>
 
-                        <p:column style="width:75px">
-                            <p:commandButton value="EDIT" action="#{editCategoryManageBean.getCategoryToEdit(category)}" />
+                        <p:column style="width:100px">
+                            <p:commandButton value="#{msg['edit']}" action="#{editCategoryManageBean.getCategoryToEdit(category)}" />
                         </p:column>
                         <p:column style="width:105px">
-                            <p:commandButton value="DELETE" action="#{deleteCategoryPageBean.deleteCategory(category)}" >
-                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                            <p:commandButton value="#{msg['delete']}" action="#{deleteCategoryPageBean.deleteCategory(category)}" >
+                                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" /> 
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog>
                             </p:commandButton>
                         </p:column>

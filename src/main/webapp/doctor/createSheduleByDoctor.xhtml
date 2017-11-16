@@ -11,31 +11,32 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="createAppointment">
-                    <h3>CREATE YOUR SHEDULE:</h3><br/>    
+                    <h3>#{msg['create.shedule']}:</h3><br/>    
 
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
-                        
-                        <p:outputLabel for="examination" value="Examination type: " />
+
+                        <p:outputLabel for="examination" value="#{msg['examination']}: " />
                         <p:selectOneMenu id="examination"  
                                          required="true"
                                          value="#{createAppointmentPageBean.appointmentDto.examination}">
                             <p:ajax listener="#{createAppointmentPageBean.onExaminationChange()}" update="room" />
-                            <f:selectItem itemLabel="Select examination" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{msg['select.examination']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.examinations}" />
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="room" value="Room number: " />
+                        <p:outputLabel for="room" value="#{msg['room']}: " />
                         <p:selectOneMenu id="room"
                                          required="true"
                                          value="#{createAppointmentPageBean.appointmentDto.roomNumber}">
-                            <f:selectItem itemLabel="Select room" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{msg['select.room']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.filteredRooms}" />
                         </p:selectOneMenu>
 
                         <p:separator /><br/>
 
-                        <h:outputLabel for="date" value="Date: " />
+                        <h:outputLabel for="date" value="#{msg['date']}: " />
                         <p:calendar id="birthDate" 
                                     required="true"
                                     value="#{createAppointmentPageBean.appointmentDto.date}" 
@@ -44,18 +45,19 @@
                                     placeholder="dd/MM/yyyy"
                                     pattern="dd/MM/yyyy" />
 
-                        <h:outputLabel for="timeStart"  value="Time start:" />
+                        <h:outputLabel for="timeStart"  value="#{msg['time.start']}: " />
                         <p:calendar id="timeStart" 
                                     required="true" 
-                                    placeholder="e.g 12:20" 
+                                    placeholder="e.g 12:00" 
                                     value="#{createAppointmentPageBean.appointmentDto.timeStart}" 
                                     pattern="HH:mm"
+                                    stepMinute="30"
                                     timeOnly="true"  />
 
-                        <h:outputLabel for="timeEnd"  value="Time end:" />
+                        <h:outputLabel for="timeEnd"  value="#{msg['time.end']}: " />
                         <p:calendar id="timeEnd" 
                                     required="true" 
-                                    placeholder="e.g 14:20"
+                                    placeholder="e.g 14:30"
                                     value="#{createAppointmentPageBean.appointmentDto.timeEnd}" 
                                     pattern="HH:mm" 
                                     timeOnly="true"  />
@@ -63,7 +65,7 @@
                     </h:panelGrid>
                     <p:separator />
 
-                    <h:commandButton action="#{createAppointmentPageBean.createAppointmentByDoctor()}" value="create" />
+                    <p:commandButton action="#{createAppointmentPageBean.createAppointmentByDoctor()}" value="#{msg['create']}" update=":exceptionInfo"/>
 
                 </h:form>
             </ui:define>

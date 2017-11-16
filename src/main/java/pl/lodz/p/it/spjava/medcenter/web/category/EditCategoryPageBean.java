@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.endpoint.CategoryEndpoint;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 
 @Named(value = "editCategoryManageBean")
@@ -25,9 +26,8 @@ public class EditCategoryPageBean {
         return "editCategory";
     }
 
-    public String saveEditedCategory() {
+    public void saveEditedCategory() throws AppBaseException{
         categorySession.saveEditedCategory();
-        return "editSuccess";
     }
 
     public Category getEditingCategory() {

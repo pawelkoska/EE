@@ -15,14 +15,14 @@
             </div>
             <div class="login-container">
                 <c:if test="#{request.remoteUser == null}">
-                    <c:if test="#{request.remoteUser == null}">Welcome, Guest!</c:if><br/>
-                    <p:link value="LOGIN" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>               
-                    <p:link value="REGISTER" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
+                    <c:if test="#{request.remoteUser == null}">#{msg['welcome']}, Guest!</c:if><br/>
+                    <p:link value="#{msg['login']}" outcome="login" style="font-size: 25px; font-weight: bold;"/><br/>               
+                    <p:link value="#{msg['register']}" outcome="register" style="font-size: 25px; font-weight: bold;"/><br/>
                 </c:if>
                 <c:if test="#{request.remoteUser != null}">
                     <c:if test="#{request.remoteUser != null}">Welcome, #{request.remoteUser}!</c:if><br/>
-                    <p:commandLink value="LOGOUT" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
-                    <p:link value="MY ACCOUNT" outcome="myAccount"/>
+                    <p:commandLink value="#{msg['logout']}" action="#{accountSession.logOut()}" style="font-size: 25px; font-weight: bold;"/><br/><br/>
+                    <p:link value="#{msg['my.account']}" outcome="myAccount"/>
                 </c:if>
             </div>
         </div>

@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.utils.AccountUtils;
 
@@ -28,8 +29,8 @@ public class EditAccountPageBean {
         account = accountSession.getEditedAccount();
     }
 
-    public String saveAccount() {
-        return accountSession.saveEditedAccount(account);
+    public void saveAccount() throws AppBaseException{
+        accountSession.saveEditedAccount(account);
     }
 
     public String getAccountToEdit(Account account) {

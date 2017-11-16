@@ -27,7 +27,10 @@ import static pl.lodz.p.it.spjava.medcenter.model.Account_.name;
  * @author pawkos
  */
 @Entity
-@Table(name = "APPOINTMENT", uniqueConstraints = @UniqueConstraint(columnNames = {"ROOM", "DOCTOR", "APPOINTMENT_DATE", "TIME_START", "TIME_END"}))
+@Table(name = "APPOINTMENT", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"ROOM", "APPOINTMENT_DATE", "TIME_START", "TIME_END"}),
+    @UniqueConstraint(columnNames = {"DOCTOR", "APPOINTMENT_DATE", "TIME_START", "TIME_END"})
+})
 public class Appointment extends AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

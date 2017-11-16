@@ -13,6 +13,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
@@ -23,9 +24,11 @@ import javax.persistence.criteria.Root;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
+import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment_;
+import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
 /**
@@ -39,8 +42,6 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
 
     private static final Logger LOG = Logger.getLogger(AppointmentFacade.class.getName());
 
-    
-    
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -66,15 +67,25 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
             }
         }
     }
-    
+
+    @Override
+    public void edit(Appointment entity) throws AppBaseException {
+        try {
+            super.edit(entity);
+            em.flush();
+        } catch (OptimisticLockException oe) {
+            throw GeneralOptimisticLockException.createWithOptimisticLockKey(oe);
+        }
+    }
+
     public List<Appointment> matchAppointments(Examination examination) {
-        
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Appointment> query = cb.createQuery(Appointment.class);
         Root<Appointment> from = query.from(Appointment.class);
         query = query.select(from);
         Predicate criteria = cb.conjunction();
-        
+
         if (null != examination) {
             criteria = cb.and(criteria, cb.equal(from.get(Appointment_.examinationId), examination));
         }
@@ -84,7 +95,7 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
 //        if (appointmentDto.getDate() != null) {
 //            criteria = cb.and(criteria, cb.greaterThan(from.get(Appointment_.date), appointmentDto.getDate()));
 //        }
-        
+
         query = query.where(criteria);
         TypedQuery<Appointment> tq = em.createQuery(query);
         return tq.getResultList();

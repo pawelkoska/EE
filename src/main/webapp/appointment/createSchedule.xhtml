@@ -14,55 +14,55 @@
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createAppointment">
 
-                    <h3>CREATE SCHEDULE FOR DOCTOR:</h3><br/>    
+                    <h3>#{msg['create.schedule.for.doctor']}</h3><br/>    
 
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
 
-                        <p:outputLabel for="examination" value="Examination type: " />
+                        <p:outputLabel for="examination" value="#{msg['examination']}: " />
                         <p:selectOneMenu id="examination"  
                                          required="true"
-                                         requiredMessage="Examination field is required"
+                                         requiredMessage="#{msg['examination.field.required']}"
                                          value="#{createAppointmentPageBean.appointmentDto.examination}">
                             <p:ajax listener="#{createAppointmentPageBean.onExaminationChange()}" update="room doctor" />
                             <f:selectItem itemLabel="Select examination" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.examinations}" />
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="room" value="Room number: " />
+                        <p:outputLabel for="room" value="#{msg['room']}: " />
                         <p:selectOneMenu id="room"
                                          required="true"
-                                         requiredMessage="Room field is required"
+                                         requiredMessage="#{msg['room.field.required']}"
                                          validatorMessage="my custom message"
                                          value="#{createAppointmentPageBean.appointmentDto.roomNumber}">
-                            <f:selectItem itemLabel="Select room" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{msg['select.room']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.filteredRooms}" />
                         </p:selectOneMenu>
 
                         <p:separator /><br/>
 
-                        <h:outputLabel for="date" value="Date:  *" />
+                        <h:outputLabel for="date" value="#{msg['birthDay']}:  *" />
                         <p:calendar id="birthDate" 
                                     required="true"
-                                    requiredMessage="Date field is required"
+                                    requiredMessage="#{msg['date.field.required']}"
                                     value="#{createAppointmentPageBean.appointmentDto.date}" 
                                     locale="de"
                                     navigator="true" 
                                     placeholder="dd/MM/yyyy"
                                     pattern="dd/MM/yyyy" />
 
-                        <h:outputLabel for="timeStart"  value="Time start:  *" />
+                        <h:outputLabel for="timeStart"  value="#{msg['time.start']}:  *" />
                         <p:calendar id="timeStart" 
                                     required="true"
-                                    requiredMessage="Time start field is required"
+                                    requiredMessage="#{msg['time.start.field.required']}"
                                     placeholder="e.g 12:20" 
                                     value="#{createAppointmentPageBean.appointmentDto.timeStart}" 
                                     pattern="HH:mm"
                                     timeOnly="true"  />
 
-                        <h:outputLabel for="timeEnd"  value="Time end:  *" />
+                        <h:outputLabel for="timeEnd"  value="#{msg['time.end']}:  *" />
                         <p:calendar id="timeEnd" 
                                     required="true" 
-                                    requiredMessage="Time end field is required"
+                                    requiredMessage="#{msg['time.end.field.required']}"
                                     placeholder="e.g 14:20"
                                     value="#{createAppointmentPageBean.appointmentDto.timeEnd}" 
                                     pattern="HH:mm" 
@@ -70,19 +70,19 @@
 
                         <p:separator /><br/>
 
-                        <p:outputLabel for="doctor" value="Doctor: " />
+                        <p:outputLabel for="doctor" value="#{msg['doctor']} " />
                         <p:selectOneMenu id="doctor"     
                                          required="true"
-                                         requiredMessage="Doctor field is required"
+                                         requiredMessage="#{msg['doctor.field.required']}"
                                          value="#{createAppointmentPageBean.appointmentDto.doctor}">
-                            <f:selectItem itemLabel="Select doctor" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItem itemLabel="#{msg['select.doctor']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.filteredDoctors}" />
                         </p:selectOneMenu>
 
                     </h:panelGrid>
                     <p:separator />
 
-                    <p:commandButton action="#{createAppointmentPageBean.createAppointment()}" value="create" update=":exceptionInfo"/>
+                    <p:commandButton action="#{createAppointmentPageBean.createAppointment()}" value="#{msg['create']}" update=":exceptionInfo"/>
 
                 </h:form>
             </ui:define>

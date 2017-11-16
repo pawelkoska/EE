@@ -8,50 +8,50 @@
         
 
         <p:menu rendered="#{request.isUserInRole('Admin')}">
-            <p:submenu label="ACCOUNTS">
-                <p:menuitem value="ALL ACCOUNTS" outcome="allAccounts"/>
-                <p:menuitem value="ADD ADMIN" outcome="createAdmin"/>
-                <p:menuitem value="ADD DOCTOR" outcome="createDoctor"/>
-                <p:menuitem value="ADD PATIENT" outcome="createPetient"/>
-                <p:menuitem value="ADD RECEPTION" outcome="createReception"/>
+            <p:submenu label="#{msg['accounts']}">
+                <p:menuitem value="#{msg['all.accounts']}" outcome="allAccounts"/>
+                <p:menuitem value="#{msg['add.admin']}" outcome="createAdmin"/>
+                <p:menuitem value="#{msg['add.doctor']}" outcome="createDoctor"/>
+                <p:menuitem value="#{msg['add.patient']}" outcome="createPetient"/>
+                <p:menuitem value="#{msg['add.reception']}" outcome="createReception"/>
             </p:submenu>
         </p:menu> 
 
         <p:menu rendered="#{request.isUserInRole('Patient')}">
-            <p:menuitem value="OUR OFFER" outcome="ourOffer"/>
-            <p:menuitem value="MAKE AN APPOINTMENT" outcome="findAppointment" />
-            <p:menuitem value="MY APPOINTMENTS" outcome="myAppointments" />
-            <p:menuitem value="MY MEDICAL HISTORY" outcome="myMedicalHistory"/>
+            <p:menuitem value="#{msg['our.offer']}" outcome="ourOffer"/>
+            <p:menuitem value="#{msg['make.an.appointment']}" outcome="findAppointment" />
+            <p:menuitem value="#{msg['my.appointments']}" outcome="myAppointments" />
+            <p:menuitem value="#{msg['my.medical.history']}" outcome="myMedicalHistory"/>
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Doctor')}">
-            <p:menuitem value="SHOW MY DAILY SHEDULE" outcome="showMyDailyShedule" />
-            <p:menuitem value="SHOW MY GENERAL SHEDULE" outcome="showMyGeneralyShedule" />
-            <p:menuitem value="MEDICAL HISTORY" outcome="doctorMedicalHistory" />
-            <p:menuitem value="CREATE MY SHEDULE" outcome="createSheduleByDoctor" />
+            <p:menuitem value="#{msg['show.my.daily.shedule']}" outcome="showMyDailyShedule" />
+            <p:menuitem value="#{msg['show.my.general.shedule']}" outcome="showMyGeneralyShedule" />
+            <p:menuitem value="#{msg['medical.history']}" outcome="doctorMedicalHistory" />
+            <p:menuitem value="#{msg['create.shedule.by.doctor']}" outcome="createSheduleByDoctor" />
         </p:menu>   
 
         <p:menu rendered="#{request.isUserInRole('Reception')}">
-            <p:submenu label="CATEGORIES">
-                <p:menuitem value="ALL CATEGORIES" outcome="allCategories" />
-                <p:menuitem value="ADD CATEGORY" outcome="createCategory"/>
+            <p:submenu label="#{msg['categories']}">
+                <p:menuitem value="#{msg['all.categories']}" outcome="allCategories" />
+                <p:menuitem value="#{msg['add.category']}" outcome="createCategory"/>
             </p:submenu>
-            <p:submenu label="EXAMINATIONS">
-                <p:menuitem value="ALL EXAMINATIONS" outcome="allExaminations"/>
-                <p:menuitem value="ADD EXAMINATION" outcome="createExamination"/>
+            <p:submenu label="#{msg['examination']}">
+                <p:menuitem value="#{msg['all.examinations']}" outcome="allExaminations"/>
+                <p:menuitem value="#{msg['add.examination']}" outcome="createExamination"/>
             </p:submenu>          
-            <p:submenu label="ROOMS">
-                <p:menuitem value="ALL ROOMS" outcome="allRooms"/>
-                <p:menuitem value="ADD ROOM" outcome="addRoom"/>
+            <p:submenu label="#{msg['rooms']}">
+                <p:menuitem value="#{msg['all.rooms']}" outcome="allRooms"/>
+                <p:menuitem value="#{msg['add.room']}" outcome="addRoom"/>
             </p:submenu>          
-            <p:submenu label="APPOINTMENTS">
-                <p:menuitem value="ALL APPOINTMENTS" outcome="allAppointments"/>
-                <p:menuitem value="CREATE SCHEDULE" outcome="createSchedule"/>
+            <p:submenu label="#{msg['appointments']}">
+                <p:menuitem value="#{msg['all.appointments']}" outcome="allAppointments"/>
+                <p:menuitem value="#{msg['create.shedule']}" outcome="createSchedule"/>
             </p:submenu>
-            <p:submenu label="PETIENT SERVICE">
-                <p:menuitem value="REGISTER PATIENT" outcome="register" />
-                <p:menuitem value="CONFIRM REGISTRATION" outcome="confirmRegistration" />
-                <p:menuitem value="MAKE PATIENT APPOINTMENT" outcome="allCategories" />
+            <p:submenu label="#{msg['patient.service']}">
+                <p:menuitem value="#{msg['register.patient']}" outcome="register" />
+                <p:menuitem value="#{msg['confirm.registration']}" outcome="confirmRegistration" />
+                <p:menuitem value="#{msg['make.patient.appointment']}" outcome="allCategories" />
             </p:submenu>
         </p:menu>   
 

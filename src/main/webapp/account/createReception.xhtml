@@ -2,12 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="./../template/template.xhtml">
         <ui:param name="pageBean" value="#{createReceptionPageBean}" />
         <ui:define name="content">
-            <h2>CREATING RECEPTION</h2>
+            <h2>#{msg['create.registration']}</h2>
+            <p:messages id="exceptionInfo"/>
             <h:form id="createReceptionForm">
                 <h:panelGrid columns="3">
                     <ui:include src="_loginEditTemplate.xhtml"/>
@@ -15,9 +17,9 @@
                     <ui:include src="_commonDataEditTemplate.xhtml"/>
                 </h:panelGrid>
                 <br />
-                <h:commandButton actionListener="#{pageBean.createReception()}" action="createAccountSuccess" value="create" />
+                <p:commandButton actionListener="#{pageBean.createReception()}" value="#{msg['create']}" update=":exceptionInfo"/>
                 <br />
-                <h:commandButton value="cancel" action="cancelAction" immediate="true" />
+                <p:commandButton value="#{msg['cancel']}" action="allAccounts" immediate="true"/>
             </h:form>
         </ui:define>
     </ui:composition>

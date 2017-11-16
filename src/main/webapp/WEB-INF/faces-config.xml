@@ -19,32 +19,38 @@
         </navigation-case> 
         
         <navigation-case>
+            <from-outcome>editAppointment</from-outcome>
+            <to-view-id>/appointment/editAppointment.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
             <from-outcome>showMyGeneralyShedule</from-outcome>
-            <to-view-id>/appointment/showMyGeneralyShedule.xhtml</to-view-id>
+            <to-view-id>/doctor/showMyGeneralyShedule.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>createSheduleByDoctor</from-outcome>
-            <to-view-id>/appointment/createSheduleByDoctor.xhtml</to-view-id>
+            <to-view-id>/doctor/createSheduleByDoctor.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>confirmRegistration</from-outcome>
-            <to-view-id>/account/confirmRegistration.xhtml</to-view-id>
+            <to-view-id>/appointment/confirmRegistration.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>doctorMedicalHistory</from-outcome>
-            <to-view-id>/appointment/doctorMedicalHistory.xhtml</to-view-id>
+            <to-view-id>/doctor/doctorMedicalHistory.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>myMedicalHistory</from-outcome>
-            <to-view-id>/appointment/myMedicalHistory.xhtml</to-view-id>
+            <to-view-id>/patient/myMedicalHistory.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
@@ -56,25 +62,19 @@
         
         <navigation-case>
             <from-outcome>setAppointmentResultPage</from-outcome>
-            <to-view-id>/appointment/setAppointmentResultPage.xhtml</to-view-id>
+            <to-view-id>/doctor/setAppointmentResultPage.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>showMyDailyShedule</from-outcome>
-            <to-view-id>/appointment/showMyDailyShedule.xhtml</to-view-id>
-            <redirect />
-        </navigation-case> 
-        
-        <navigation-case>
-            <from-outcome>myAppointmentHistory</from-outcome>
-            <to-view-id>/appointment/myAppointmentHistory.xhtml</to-view-id>
+            <to-view-id>/doctor/showMyDailyShedule.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>myAppointments</from-outcome>
-            <to-view-id>/appointment/myAppointments.xhtml</to-view-id>
+            <to-view-id>/patient/myAppointments.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
@@ -86,13 +86,13 @@
         
         <navigation-case>
             <from-outcome>findAppointment</from-outcome>
-            <to-view-id>/appointment/findAppointment.xhtml</to-view-id>
+            <to-view-id>/patient/findAppointment.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
         
         <navigation-case>
             <from-outcome>appointmentResult</from-outcome>
-            <to-view-id>/appointment/resultListAppointment.xhtml</to-view-id>
+            <to-view-id>/patient/resultListAppointment.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
           
@@ -158,7 +158,7 @@
          
         <navigation-case>
             <from-outcome>ourOffer</from-outcome>
-            <to-view-id>/examination/ourOffer.xhtml</to-view-id>
+            <to-view-id>/common/ourOffer.xhtml</to-view-id>
             <redirect />
         </navigation-case>   
          
@@ -277,7 +277,19 @@
         
         <navigation-case>
             <from-outcome>myAccount</from-outcome>
-            <to-view-id>/account/accountDetails.xhtml</to-view-id>
+            <to-view-id>/common/accountDetails.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>editAccount</from-outcome>
+            <to-view-id>/account/editAccount.xhtml</to-view-id>
+            <redirect />
+        </navigation-case> 
+        
+        <navigation-case>
+            <from-outcome>editMyAccount</from-outcome>
+            <to-view-id>/common/editMyAccount.xhtml</to-view-id>
             <redirect />
         </navigation-case> 
        

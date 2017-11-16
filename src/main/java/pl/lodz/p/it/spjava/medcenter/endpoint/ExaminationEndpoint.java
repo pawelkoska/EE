@@ -13,6 +13,7 @@ import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
+import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
@@ -79,13 +80,18 @@ public class ExaminationEndpoint {
         return examinationEntity;
     }
 
-    public void saveEditedExamination(Examination e) {            
+    public void saveEditedExamination(Examination e) throws AppBaseException {            
         List<Category> categories = categoryFacade.findAll();
         for (Category category : categories) {
             if (category.getName().equals(e.getCategoryId().getName())) {
                 e.setCategoryId(category);
             }
         }
-        examinationFacade.edit(e);
+        try{
+            examinationFacade.edit(e); 
+            ContextUtils.emitSuccessMessage("");
+        }catch(GeneralOptimisticLockException gole){
+            ContextUtils.emitInternationalizedMessage(null, GeneralOptimisticLockException.KEY_OPTIMISTIC_LOCK);
+        }
     }
 }

@@ -11,16 +11,21 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="editRoom">
-                        Room number: <h:inputText id="roomNumber" value="#{editRoomManageBean.editingRoom.roomNumber}" />
-                        <h:message for="roomNumber"/><br/>
-                        <p:outputLabel for="examinationType" value="Examination type: " />
+                    <p:panelGrid columns="2" transient="true">
+
+                        <p:outputLabel for="roomNumber" value="#{msg['room']}: " />
+                        <h:inputText id="roomNumber" value="#{editRoomManageBean.editingRoom.roomNumber}" />
+
+                        <p:outputLabel for="examinationType" value="#{msg['examination']}: " />
                         <p:selectOneMenu id="examinationType" value="#{editRoomManageBean.editingRoom.examinationType.name}">
                             <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
-                        </p:selectOneMenu><br/>
+                        </p:selectOneMenu>
                         
-                        <h:commandButton action="#{editRoomManageBean.saveEditedRoom()}" value="OK"/>
-                        <h:commandButton value="BACK" action="allRooms" immediate="true"/>
+                    </p:panelGrid>
+                    <p:commandButton action="#{editRoomManageBean.saveEditedRoom()}" value="#{msg['update']}" update=":exceptionInfo"/>
+                    <p:commandButton value="#{msg['cancel']}" action="allRooms" immediate="true"/>
                 </h:form>
             </ui:define>
 

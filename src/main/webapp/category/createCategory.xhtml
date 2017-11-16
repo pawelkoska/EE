@@ -13,13 +13,13 @@
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createCategory">
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
-                        <h:outputLabel for="name" value="Category name: " />
-                        <h:inputText id="name" value="#{createCategoryPageBean.category.name}" />
+                        <h:outputLabel value="#{msg['category.name']}: " />
+                        <h:inputText  value="#{createCategoryPageBean.category.name}" />
 
-                        <h:outputLabel for="categoryDescription" value="Category description: " />
-                        <h:inputText id="categoryDescription" value="#{createCategoryPageBean.category.categoryDescription}" />
+                        <h:outputLabel  value="#{msg['description']}: " />
+                        <h:inputText value="#{createCategoryPageBean.category.categoryDescription}" />
 
-                        <p:commandButton value="create" action="#{createCategoryPageBean.createCategory()}" update=":exceptionInfo"/>
+                        <p:commandButton value="#{msg['create']}" action="#{createCategoryPageBean.createCategory()}" update=":exceptionInfo"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>

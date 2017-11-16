@@ -21,12 +21,12 @@ public class CreateAdminPageBean {
     private Admin account = new Admin();
     private String passwordRepeat = "";
 
-    public String createAdmin() throws AppBaseException{
+    public void createAdmin() throws AppBaseException{
         if (!(passwordRepeat.equals(account.getPassword()))) {
             ContextUtils.emitInternationalizedMessage("createAdminaForm:passwordRepeat", "passwords.not.matching");
-            return null;
+            return;
         }
-        return accountSession.createAdmin(account);
+        accountSession.createAdmin(account);
     }
 
     public Admin getAccount() {

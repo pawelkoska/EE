@@ -11,24 +11,32 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="editCategory">
                     <p:panelGrid columns="2" transient="true">
-                        Name: <h:inputText id="examinationName" value="#{editExaminationManageBean.editingExamination.name}" />
+                        #{msg['examination']}: <p:inputText id="examinationName"
+                                           value="#{editExaminationManageBean.editingExamination.name}"
+                                           required="true"
+                                           requiredMessage="Examination name can not be empy."/>
 
-                        Description: <h:inputText id="examinationDescription" value="#{editExaminationManageBean.editingExamination.examinationDescription}" /> 
+                        #{msg['description']}: <p:inputText id="examinationDescription" 
+                                                  value="#{editExaminationManageBean.editingExamination.examinationDescription}" 
+                                                  required="true"
+                                                  requiredMessage="Examination description can not be empy."/> 
 
-                        Category:
-                        <p:selectOneMenu id="examinationCategory" value="#{editExaminationManageBean.editingExamination.categoryId.name}">
+                        #{msg['category.id']}:
+                        <p:selectOneMenu id="examinationCategory" 
+                                         value="#{editExaminationManageBean.editingExamination.categoryId.name}">
                             <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
                         
-                        Duration:
+                        #{msg['duration']} (mins):
                         <p:selectOneMenu id="examinationDuration" value="#{editExaminationManageBean.editingExamination.duration}">
                             <f:selectItems value="#{createExaminationPageBean.durationList}" />
                         </p:selectOneMenu>
 
-                        <h:commandButton action="#{editExaminationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="UPDATE" />
-                        <h:commandButton value="BACK" action="allExaminations" immediate="true"/>
+                        <p:commandButton action="#{editExaminationManageBean.saveEditedExamination()}" actionListener="allExaminations" value="#{msg['update']}" update=":exceptionInfo"/>
+                        <p:commandButton value="#{msg['cancel']}" action="allExaminations" immediate="true"/>
                     </p:panelGrid>
                 </h:form>
             </ui:define>

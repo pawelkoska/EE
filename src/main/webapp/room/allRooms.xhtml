@@ -14,21 +14,21 @@
                     <p:dataTable id="rooms" var="room" value="#{listRoomPageBean.roomObjList}">
                         <f:facet name="header">
                         </f:facet>
-                        <p:column headerText="ID">
+<!--                        <p:column headerText="#{msg['id']}">
                             <h:outputText value="#{room.id}" />
-                        </p:column>
-                        <p:column headerText="ROOM NUMBER">
+                        </p:column>-->
+                        <p:column headerText="#{msg['room']}">
                             <h:outputText value="#{room.roomNumber}" />
                         </p:column>
-                        <p:column headerText="EXAMINATION TYPE">
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{room.examinationType.name}" />
                         </p:column>
-                        <p:column style="width:75px">
-                            <p:commandButton value="EDIT" action="editRoom" actionListener="#{editRoomManageBean.getRoomToEdit(room)}" />
+                        <p:column style="width:100px">
+                            <p:commandButton value="#{msg['edit']}" action="editRoom" actionListener="#{editRoomManageBean.getRoomToEdit(room)}" />
                         </p:column>
                         <p:column style="width:105px">
                             <p:commandButton                                          
-                                value="DELETE" 
+                                value="#{msg['delete']}" 
                                 action="allRooms"
                                 actionListener="#{deleteRoomPageBean.deleteRoom(room)}" > 
                                 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 

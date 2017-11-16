@@ -22,28 +22,28 @@
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createExamination">
                     <p:panelGrid columns="2" transient="true">
-                        <p:outputLabel for="examinationName" value="Examination name: " />
+                        <p:outputLabel for="examinationName" value="#{msg['examination']}: " />
                         <p:inputText id="examinationName" 
                                      value="#{createExaminationPageBean.examinationDto.name}"
                                      required="true"
                                      requiredMessage="Examination name is required"/>
 
-                        <p:outputLabel for="examinationDescription" value="Examination description: " />
+                        <p:outputLabel for="examinationDescription" value="#{msg['description']}: " />
                         <p:inputText id="examinationDescription" 
                                      value="#{createExaminationPageBean.examinationDto.examinationDescription}"
                                      required="true"
                                      requiredMessage="Examination description is required"/>
 
-                        <p:outputLabel for="category" value="Category: " />
+                        <p:outputLabel for="category" value="#{msg['category.id']}: " />
                         <p:selectOneMenu id="category"
                                          value="#{createExaminationPageBean.examinationDto.examinationCategory}"
                                          required="true"
-                                         requiredMessage="Category field is required">
+                                         requiredMessage="Examination field is required">
                             <f:selectItem itemLabel="Select doctor" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="duration" value="Duration: " />
+                        <p:outputLabel for="duration" value="#{msg['duration']}: " />
                         <p:selectOneMenu id="duration" 
                                          value="#{createExaminationPageBean.examinationDto.examinationDuration}"
                                          required="true"
@@ -52,7 +52,7 @@
                             <f:selectItems value="#{createExaminationPageBean.durationList}" />
                         </p:selectOneMenu>
 
-                        <p:commandButton value="create" action="#{createExaminationPageBean.createExamination()}" update=":exceptionInfo"/>
+                        <p:commandButton value="#{msg['create']}" action="#{createExaminationPageBean.createExamination()}" update=":exceptionInfo"/>
                     </p:panelGrid>
 
                 </h:form>

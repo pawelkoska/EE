@@ -42,7 +42,7 @@ public class CreateExamiantionPageBean {
     private List<Integer> durationList = new ArrayList<>();
 
     public List<Integer> getDurationList() {
-        durationList.add(15);
+//        durationList.add(15);
         durationList.add(30);
         durationList.add(60);
         return durationList;

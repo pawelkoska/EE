@@ -10,15 +10,14 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                <p:messages id="exceptionInfo"/>
                 <h:form id="editCategory">
                     <p:panelGrid columns="2" transient="true">
-                        Name: <h:inputText id="categoryName" value="#{editCategoryManageBean.editingCategory.name}" />
-                        <h:message for="categoryName"/>
-                        Description: <h:inputText id="categoryDescription" value="#{editCategoryManageBean.editingCategory.categoryDescription}" />                         
-                        <h:message for="categoryDescription"/>
+                        #{msg['category.name']}: <p:inputText value="#{editCategoryManageBean.editingCategory.name}" />
+                        #{msg['description']} <p:inputTextarea value="#{editCategoryManageBean.editingCategory.categoryDescription}" />                         
                         
-                        <h:commandButton action="#{editCategoryManageBean.saveEditedCategory()}" value="OK"/>
-                        <h:commandButton value="BACK" action="allCategories" immediate="true"/>
+                        <p:commandButton action="#{editCategoryManageBean.saveEditedCategory()}" value="#{msg['update']}" update=":exceptionInfo"/>
+                        <p:commandButton value="#{msg['cancel']}" action="allCategories" immediate="true"/>
                     </p:panelGrid>
                 </h:form>
             </ui:define>

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <h:outputStylesheet library="css" name="registerForm.css"  />
@@ -11,18 +12,19 @@
             @import url('https://fonts.googleapis.com/css?family=Roboto');          
         </style>  
     </h:head>
-    <h:body>         
+    <h:body>
+        <p:messages id="exceptionInfo"/>
         <ui:param name="pageBean" value="#{createPatientPageBean}" />
-        <span class="header">REGISTER</span>
         <h:form id="createPatientForm">
+        <h1 style="color: grey" class="header">#{msg['register']}:</h1>
             <h:panelGrid columns="3">
                 <ui:include src="../account/_loginEditTemplate.xhtml"/>
                 <ui:include src="../account/_passwordEditTemplate.xhtml"/>
                 <ui:include src="../account/_commonDataEditTemplate.xhtml"/>
             </h:panelGrid>
             <br />
-            <h:commandButton action="#{pageBean.createPatient()}" value="create" />
-            <h:commandButton value="cancel" action="home" immediate="true" />
+            <p:commandButton action="#{pageBean.createPatient()}" value="#{msg['register']}" update=":exceptionInfo"/>
+            <p:commandButton value="#{msg['cancel']}" action="home" immediate="true" />
         </h:form>
     </h:body>
 </html>

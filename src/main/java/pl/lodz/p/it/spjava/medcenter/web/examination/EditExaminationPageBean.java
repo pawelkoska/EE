@@ -4,6 +4,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
+import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
 @Named(value = "editExaminationManageBean")
@@ -32,9 +33,8 @@ public class EditExaminationPageBean {
         return "editExamination";
     }
 
-    public String saveEditedExamination() {
+    public void saveEditedExamination()throws AppBaseException {
         examinationSession.saveEditedExamination();
-        return "editSuccess";
     }
 
     public Examination getEditingExamination() {

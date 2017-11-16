@@ -38,7 +38,7 @@ public class ExaminationSession implements Serializable {
         return editingExamination;
     }
 
-    public void saveEditedExamination() {
+    public void saveEditedExamination() throws AppBaseException{
         if (null == editingExamination) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

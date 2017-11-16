@@ -10,7 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
-import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 
 @Named(value = "appointmentSession")
@@ -56,7 +55,7 @@ public class AppointmentSession implements Serializable {
         return editingAppointment;
     }
 
-    public void saveEditedAppointment() {
+    public void saveEditedAppointment()throws AppBaseException {
         if (null == editingAppointment) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

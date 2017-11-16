@@ -13,9 +13,9 @@
     <h:body>
         <form class="loginForm" method="post" action="j_security_check">
             <span class="logo">M E D   C E N T E R</span>
-            <input type="text" placeholder=" username*" name= "j_username"/>
-            <input type="password" placeholder=" password*" name= "j_password" />
-            <input type="submit" value="LOGIN" />
+            <input type="text" placeholder=" #{msg['username']}*" name= "j_username"/>
+            <input type="password" placeholder=" #{msg['password']}*" name= "j_password" />
+            <input type="submit" value="#{msg['login']}" />
         </form>
     </h:body>
 </html>

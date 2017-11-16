@@ -18,35 +18,35 @@
                         <f:facet name="header">
 
                         </f:facet>
-                        <p:column headerText="ID">
+<!--                        <p:column headerText="#{msg['id']}">
                             <h:outputText value="#{examination.id}" />
-                        </p:column>
+                        </p:column>-->
 
-                        <p:column headerText="NAME">
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{examination.name}" />
                         </p:column>
 
-                        <p:column headerText="DESCRIPTION">
+                        <p:column headerText="#{msg['description']}">
                             <h:outputText value="#{examination.examinationDescription}" />
                         </p:column>
 
-                        <p:column headerText="DURATION">
+                        <p:column headerText="#{msg['duration']}">
                             <h:outputText value="#{examination.duration}" />
                         </p:column>
 
-                        <p:column headerText="CATEGORY_ID">
+                        <p:column headerText="#{msg['category.id']}">
                             <h:outputText value="#{examination.categoryId.name}" />
                         </p:column>
 
-                        <p:column style="width:75px">
-                            <p:commandButton value="EDIT" action="#{editExaminationManageBean.getExaminationToEdit(examination)}" />
+                        <p:column style="width:100px">
+                            <p:commandButton value="#{msg['edit']}" action="#{editExaminationManageBean.getExaminationToEdit(examination)}" />
                         </p:column>
                         <p:column style="width:105px">
-                            <p:commandButton value="DELETE"  action="#{deleteExaminationPageBean.deleteExamination(examination)}">
-                                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                            <p:commandButton value="#{msg['delete']}"  action="#{deleteExaminationPageBean.deleteExamination(examination)}">
+                                <p:confirm header="Confirmation" message="#{msg['are.you.sure']}" icon="ui-icon-alert" /> 
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    <p:commandButton value="#{msg['yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="#{msg['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                 </p:confirmDialog></p:commandButton>
                         </p:column>
 

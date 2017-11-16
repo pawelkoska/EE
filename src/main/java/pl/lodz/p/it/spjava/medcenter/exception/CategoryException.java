@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pl.lodz.p.it.spjava.medcenter.exception;
+
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 
 /**
@@ -21,7 +22,7 @@ public class CategoryException extends AppBaseException {
     private CategoryException(String message, Throwable cause) {
         super(message, cause);
     }
-    
+
     private Category category;
 
     public Category getCategory() {
@@ -30,7 +31,7 @@ public class CategoryException extends AppBaseException {
 
     static public CategoryException createWithDbCheckConstraintKey(Category category, Throwable cause) {
         CategoryException ze = new CategoryException(KEY_DB_CONSTRAINT, cause);
-        ze.category=category;
+        ze.category = category;
         return ze;
     }
 }

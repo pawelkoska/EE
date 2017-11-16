@@ -13,37 +13,37 @@
             <ui:define name="content">
                 <h:form>
                     <p:messages autoUpdate="true" />
-                    <h2>Result page for appointment:</h2>
+                    <h2>#{msg['appointment.result']}:</h2>
                     
-                    <label style="font-weight: bold;">  Patient: </label>
+                    <label style="font-weight: bold;">  #{msg['patient']} </label>
                     <h:outputText 
                         value="#{findAppointmentPageBean.updatingAppointment.patientId.name} #{findAppointmentPageBean.updatingAppointment.patientId.secondName}" /><br/>
                     
-                    <label style="font-weight: bold;">  Examination type: </label>
+                    <label style="font-weight: bold;">  #{msg['examination']}: </label>
                     <h:outputText value="#{findAppointmentPageBean.updatingAppointment.examinationId.name}" /><br/>
                     
-                   <label style="font-weight: bold;">  Date: </label>
+                   <label style="font-weight: bold;">  #{msg['date']} </label>
                     <h:outputText value="#{findAppointmentPageBean.updatingAppointment.date}">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText><br/>
                     
-                    <label style="font-weight: bold;">  Time: </label>
+                    <label style="font-weight: bold;">  #{msg['time']}: </label>
                     <h:outputText value="#{findAppointmentPageBean.updatingAppointment.timeStart}">
                         <f:convertDateTime pattern="HH:mm" />
                     </h:outputText><br/><br/>
 
-                    <h:outputLabel for="result" value="Appointment result: " /><br/>
+                    <h:outputLabel for="result" value="#{msg['appointment.result']}: " /><br/>
                     <h:inputTextarea style="width: 600px; height: 400px;" id="result" value="#{findAppointmentPageBean.updatingAppointment.appointmentResult}" /><br/>
 
-                    <h:commandButton                                          
-                        value="SET RESULT" 
+                    <p:commandButton                                          
+                        value="#{msg['set.result']}" 
                         action="#{findAppointmentPageBean.setAppointmentResult()}"> 
                         <!--                        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
                                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                                                     <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                                 </p:confirmDialog>-->
-                    </h:commandButton>
+                    </p:commandButton>
 
                 </h:form>
             </ui:define>

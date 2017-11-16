@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -12,48 +11,42 @@
         <ui:composition template="./../template/template.xhtml">
 
             <ui:define name="content">
+                
+                <p:messages id="accountNotConfirmed" />
+                
                 <h:form>
-                    <p:dataTable id="appoitnmentList" var="appointment" 
-                                 value="#{listAppointmentPageBean.myGeneralSheduleList}"
-                                 emptyMessage="You have no active appointments.">
+                    <p:dataTable id="appointments" var="appointment" value="#{findAppointmentPageBean.totalResult}">
                         <f:facet name="header">
 
                         </f:facet>
-
-                        <p:column headerText="EXAMINATION TYPE">
+                        
+                        <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
 
-                        <p:column headerText="PATIENT">
-                            <h:outputText value="#{appointment.patientId.name} #{appointment.patientId.secondName}" />
+                        <p:column headerText="#{msg['doctor']}">
+                            <h:outputText value="#{appointment.doctorId.name}" />
                         </p:column>
 
-                        <p:column headerText="ROOM">
-                            <h:outputText value="#{appointment.roomId.roomNumber}" />
-                        </p:column>
-
-                        <p:column headerText="DATE">
+                        <p:column headerText="#{msg['doctor']}">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME START">
+                        <p:column headerText="#{msg['time.start']}">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME END">
-                            <h:outputText value="#{appointment.timeEnd}" >
-                                <f:convertDateTime pattern="HH:mm" />
-                            </h:outputText>
+                        <p:column style="width:150px">
+                            <p:commandButton value="#{msg['reserve']}" action="#{findAppointmentPageBean.makeAnAppointment(appointment)}" update=":accountNotConfirmed"/>
                         </p:column>
 
                     </p:dataTable>
                 </h:form>
             </ui:define>
-
 
         </ui:composition>
 

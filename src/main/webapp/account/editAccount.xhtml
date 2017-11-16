@@ -10,17 +10,18 @@
 
     <ui:param name="pageBean" value="#{editAccountPageBean}" />
     <ui:define name="content">
+        <p:messages id="exceptionInfo"/>
         <h:form>
-            <h3>EDITING ACCOUNT:</h3>
+            <h3>#{msg['edit.account']}:</h3>
             <h4>#{pageBean.account}</h4>
             <h:panelGrid columns="3">
                 <ui:include src="_commonDataEditTemplate.xhtml"/>
                 
-                <h:outputText value="confirmed: " />
+                <h:outputText value="#{msg['confirmed']}: " />
                 <p:selectBooleanCheckbox value="#{pageBean.account.confirmed}" />
                 <h:messages for="confirmed" />
 
-                <h:outputText value="active: " />
+                <h:outputText value="#{msg['active']}: " />
                 <p:selectBooleanCheckbox value="#{pageBean.account.active}" />
                 <h:messages for="active" />
                 
@@ -30,16 +31,16 @@
             </h:panelGrid>
             <br />
             <p:commandButton                                          
-                value="EDIT" 
-                action="allAccounts"
-                actionListener="#{pageBean.saveAccount()}" > 
-                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
+                value="#{msg['edit']}" 
+                actionListener="#{pageBean.saveAccount()}" 
+                update=":exceptionInfo"> 
+<!--                <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" /> 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
+                </p:confirmDialog>-->
             </p:commandButton>
-            <p:commandButton value="BACK" action="allAccounts" immediate="true" />
+            <p:commandButton value="#{msg['cancel']}" action="allAccounts" immediate="true" />
         </h:form>
     </ui:define>
 

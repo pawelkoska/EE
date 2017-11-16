@@ -12,35 +12,33 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.myDailyShedule}">
+                    <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.doctorMedicalHistory}">
                         <f:facet name="header">
 
                         </f:facet>
                         
-                        <p:column headerText="EXAMINATION:">
+                        <p:column headerText="#{msg['examination']}: ">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
 
-                        <p:column headerText="DATE: ">
+                        <p:column headerText="#{msg['date']}: ">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="TIME: ">
+                        <p:column headerText="#{msg['time']}: ">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
                         
-                        <p:column headerText="PATIENT: ">
-                            <h:outputText value="#{appointment.patientId.name} #{appointment.patientId.name}"/>
+                        <p:column headerText="#{msg['patient']}: ">
+                            <h:outputText value="#{appointment.patientId.name} #{appointment.patientId.secondName}"/>
                         </p:column>
-
-                        <p:column style="width:150px">
-                            <p:commandButton value="SET RESULT" 
-                                             action="setAppointmentResultPage" 
-                                             actionListener="#{findAppointmentPageBean.getAppointmentDetails(appointment)}"/>
+                        
+                        <p:column headerText="#{msg['appointment.result']}: ">
+                            <h:outputText value="#{appointment.appointmentResult}"/>
                         </p:column>
 
                     </p:dataTable>

@@ -18,6 +18,7 @@ import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
 import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
+import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
@@ -25,6 +26,7 @@ import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
+import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
@@ -54,23 +56,23 @@ public class AppointmentEndpoint {
 
     @EJB
     private ExaminationFacade examinationFacade;
-    
+
     @Inject
     private AccountSession accountSession;
-    
+
     @Resource
     protected SessionContext sctx;
 
     private static final Logger LOG = Logger.getLogger(AppointmentEndpoint.class.getName());
-    
+
     public void createAppointment(AppointmentDTO appointment) throws AppBaseException {
- 
+
         List<Examination> examinations = examinationFacade.findAll();
         List<Doctor> doctors = accountFacade.getAllDoctors();
         Examination selectedExamination = null;
         Doctor selectedDoctor = null;
         List<Room> rooms = roomFacade.findAll();
-        
+
         for (Examination examination : examinations) {
             if (examination.getName().equals(appointment.getExamination())) {
                 selectedExamination = examination;
@@ -81,21 +83,21 @@ public class AppointmentEndpoint {
             throw new IllegalArgumentException("Błędna nazwa badania"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
         }
 
-        if (appointment.getDoctor() == null){
+        if (appointment.getDoctor() == null) {
             String accountType;
             accountType = accountFacade.findLogin(sctx.getCallerPrincipal().getName()).getType();
-            if (accountType.equals("Doctor")){
-                selectedDoctor = (Doctor)accountFacade.findLogin(sctx.getCallerPrincipal().getName());
+            if (accountType.equals("Doctor")) {
+                selectedDoctor = (Doctor) accountFacade.findLogin(sctx.getCallerPrincipal().getName());
             }
         }
-          
+
         for (Doctor d : doctors) {
             if (d.getSecondName().equals(appointment.getDoctor())) {
                 selectedDoctor = d;
                 break;
-            } 
+            }
         }
-        
+
         if (selectedDoctor == null) {
             throw new IllegalArgumentException("Błędna nazwa lekarza");
         }
@@ -113,14 +115,14 @@ public class AppointmentEndpoint {
 
         long totalDurationMillisecond = appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime();
         long totalDurationMinutes = TimeUnit.MILLISECONDS.toMinutes(appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime());
-        double timeSlotAmount = (double)totalDurationMinutes / selectedExamination.getDuration();
-        long examinationSlotMillis = totalDurationMillisecond / (long)timeSlotAmount;
+        double timeSlotAmount = (double) totalDurationMinutes / selectedExamination.getDuration();
+        long examinationSlotMillis = totalDurationMillisecond / (long) timeSlotAmount;
 
-        try{
+        try {
             if (timeSlotAmount % 1 != 0) {
                 throw AppointmentException.createWithInvalidTimeSlots();
-            }           
-        }catch(AppointmentException ae){
+            }
+        } catch (AppointmentException ae) {
             ContextUtils.emitInternationalizedMessage(null, AppointmentException.KEY_APPOINTMENT_INVALID_TIMESLOT);
             return;
         }
@@ -128,7 +130,7 @@ public class AppointmentEndpoint {
         long timeStartHolder = appointment.getTimeStart().getTime();
 
         try {
-            
+
             for (int i = 0; i < timeSlotAmount; i++) {
                 long timeEndHolder = 0;
                 Appointment appointmentEntity = new Appointment();
@@ -140,11 +142,10 @@ public class AppointmentEndpoint {
                 timeEndHolder = timeStartHolder + examinationSlotMillis;
                 appointmentEntity.setTimeEnd(new Date(timeEndHolder));
                 appointmentFacade.create(appointmentEntity);
-                LOG.log(Level.INFO, appointmentEntity.toString());
                 timeStartHolder = timeEndHolder;
             }
             ContextUtils.emitSuccessMessage("appointment");
-        }catch(AppointmentException ae){
+        } catch (AppointmentException ae) {
             LOG.log(Level.INFO, ae.getCause().toString());
             ContextUtils.emitInternationalizedMessage(null, AppointmentException.KEY_DB_CONSTRAINT);
         }
@@ -160,8 +161,27 @@ public class AppointmentEndpoint {
         return appointmentEntity;
     }
 
-    public void saveEditedAppointment(Appointment a) {
-        appointmentFacade.edit(a);
+    public void saveEditedAppointment(Appointment a) throws AppBaseException {
+
+        List<Examination> examinations = examinationFacade.findAll();
+        for (Examination examination : examinations) {
+            if (examination.getName().equals(a.getExaminationId().getName())) {
+                a.setExaminationId(examination);
+            }
+        }
+
+        List<Room> rooms = roomFacade.findAll();
+        for (Room room : rooms) {
+            if (room.getRoomNumber().equals(a.getRoomId().getRoomNumber())) {
+                a.setRoomId(room);
+            }
+        }
+        try {
+            appointmentFacade.edit(a); 
+            ContextUtils.emitSuccessMessage("appointment");
+        } catch (GeneralOptimisticLockException gole){
+             ContextUtils.emitInternationalizedMessage(null, GeneralOptimisticLockException.KEY_OPTIMISTIC_LOCK);
+        }
     }
 
     public String deleteAppointment(Appointment appointment) {
@@ -179,8 +199,7 @@ public class AppointmentEndpoint {
 
     public void updateAppointment(Appointment updatingAppointment) throws AppBaseException {
         appointmentFacade.edit(updatingAppointment);
-            
-        
+
     }
 
 }
