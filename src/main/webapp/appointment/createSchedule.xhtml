@@ -57,6 +57,7 @@
                                     placeholder="e.g 12:20" 
                                     value="#{createAppointmentPageBean.appointmentDto.timeStart}" 
                                     pattern="HH:mm"
+                                    stepMinute="30"
                                     timeOnly="true"  />
 
                         <h:outputLabel for="timeEnd"  value="#{msg['time.end']}:  *" />
@@ -66,6 +67,7 @@
                                     placeholder="e.g 14:20"
                                     value="#{createAppointmentPageBean.appointmentDto.timeEnd}" 
                                     pattern="HH:mm" 
+                                    stepMinute="30"
                                     timeOnly="true"  />
 
                         <p:separator /><br/>

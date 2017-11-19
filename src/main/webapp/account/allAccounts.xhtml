@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -13,31 +14,24 @@
             <ui:define name="content">
                 <h:form>
                     <p:dataTable id="accounts" var="account" value="#{listAccountPageBean.accountObjList}" scrollable="true" scrollWidth="2700">
-                        <f:facet name="header">
-
-                        </f:facet>
-<!--                        <p:column headerText="#{msg['id']}">
-                            <p:outputLabel value="#{account.id}" />
-                        </p:column>-->
+                        <f:facet name="header"></f:facet>
 
                         <p:column  headerText="#{msg['login.input']}">
                             <p:outputLabel value="#{account.login}" />
-                        </p:column>
-
-                        <p:column  headerText="#{msg['password.input']}">
-                            <p:outputLabel value="#{account.password}" />
-                        </p:column>
+                        </p:column>s
 
                         <p:column  headerText="#{msg['type']}">
                             <p:outputLabel value="#{account.type}" />
                         </p:column>
 
-                        <p:column  headerText="#{msg['active']}">
-                            <p:outputLabel value="#{account.active}" />
+                        <p:column  headerText="#{msg['active']}">                                                                              
+                            <p:outputLabel value="#{msg['yes']}" rendered="#{account.active eq true}" />
+                            <p:outputLabel value="#{msg['no']}" rendered="#{account.active eq false}" />
                         </p:column>
 
-                        <p:column  headerText="#{msg['confirmed']}">
-                            <p:outputLabel value="#{account.confirmed}" />
+                        <p:column  headerText="#{msg['confirmed']}">                                                                              
+                            <p:outputLabel value="#{msg['yes']}" rendered="#{account.confirmed eq true}" />
+                            <p:outputLabel value="#{msg['no']}" rendered="#{account.confirmed eq false}" />
                         </p:column>
 
                         <p:column  headerText="#{msg['pesel']}">

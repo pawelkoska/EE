@@ -32,12 +32,14 @@
                             <p:outputLabel value="#{account.type}" />
                         </p:column>
 
-                        <p:column headerText="#{msg['active']}">
-                            <p:outputLabel value="#{account.active}" />
+                        <p:column  headerText="#{msg['active']}">                                                                              
+                            <p:outputLabel value="#{msg['yes']}" rendered="#{account.active eq true}" />
+                            <p:outputLabel value="#{msg['no']}" rendered="#{account.active eq false}" />
                         </p:column>
 
-                        <p:column headerText="#{msg['confirmed']}">
-                            <p:outputLabel value="#{account.confirmed}" />
+                        <p:column  headerText="#{msg['confirmed']}">                                                                              
+                            <p:outputLabel value="#{msg['yes']}" rendered="#{account.confirmed eq true}" />
+                            <p:outputLabel value="#{msg['no']}" rendered="#{account.confirmed eq false}" />
                         </p:column>
 
                         <p:column headerText="#{msg['pesel']}">

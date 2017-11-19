@@ -23,7 +23,7 @@ public class CreateAdminPageBean {
 
     public void createAdmin() throws AppBaseException{
         if (!(passwordRepeat.equals(account.getPassword()))) {
-            ContextUtils.emitInternationalizedMessage("createAdminaForm:passwordRepeat", "passwords.not.matching");
+            ContextUtils.emitInternationalizedMessage("createAdminForm:passwordRepeat", "passwords.not.matching");
             return;
         }
         accountSession.createAdmin(account);

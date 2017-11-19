@@ -29,7 +29,7 @@ public class CategoryEndpoint {
     public String createCategory(Category category) throws AppBaseException{
         try{
             categoryFacade.create(category);  
-            ContextUtils.emitSuccessMessage("categoryListForm:categoryList");
+            ContextUtils.emitSuccessMessage("createCategory");
             return "allCategories";
         }catch(CategoryException ce){
             ContextUtils.emitInternationalizedMessage(null, CategoryException.KEY_DB_CONSTRAINT);

@@ -1,7 +1,6 @@
 package pl.lodz.p.it.spjava.medcenter.endpoint;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
@@ -13,7 +12,6 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.exception.AccountException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
-import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
@@ -47,9 +45,9 @@ public class AccountEndpoint {
         account.setConfirmed(false);
         try {
             accountFacade.create(account);
-            ContextUtils.emitSuccessMessage("account");
+            ContextUtils.emitSuccessMessage("createAdminForm");
         } catch (AccountException ae) {
-            ContextUtils.emitInternationalizedMessage(null, AccountException.KEY_DB_CONSTRAINT);
+            ContextUtils.emitInternationalizedMessage("createAdminForm" , AccountException.KEY_DB_CONSTRAINT);
         }
     }
 

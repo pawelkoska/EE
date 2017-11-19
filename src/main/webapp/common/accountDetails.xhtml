@@ -14,18 +14,28 @@
             <h3>#{msg['account.details']}:</h3>
 
             <label>#{msg['login.input']}: </label><span>#{pageBean.account.login}</span><br/>             
-            <label>#{msg['type']}:</label><span>#{pageBean.account.type}</span><br/><br/>            
-            <label>#{msg['name']}:</label><span>#{pageBean.account.name}</span><br/>            
-            <label>#{msg['surname']}:</label><span>#{pageBean.account.secondName}</span><br/>             
-            <label>#{msg['birthDay']}:</label><span>#{pageBean.account.birthDate}</span><br/>              
+            <label>#{msg['type']}: </label><span>#{pageBean.account.type}</span><br/><br/>            
+            <label>#{msg['name']}: </label><span>#{pageBean.account.name}</span><br/>            
+            <label>#{msg['surname']}: </label><span>#{pageBean.account.secondName}</span><br/>             
+            <label>#{msg['birthDay']}: </label><p:outputLabel value="#{pageBean.account.birthDate}" >
+                <f:convertDateTime pattern="dd/MM/yyyy" />
+            </p:outputLabel> <br/>            
             <c:if test="#{pageBean.doctor}">
-                <label>#{msg['specialization']}:</label><span>#{pageBean.account.specialization.name}</span> <br/> <br/> 
+                <label>#{msg['specialization']}: </label><span>#{pageBean.account.specialization.name}</span> <br/> <br/> 
             </c:if>   
-            <label>#{msg['email']}:</label><span>#{pageBean.account.email}</span><br/>           
-            <label>#{msg['pesel']}:</label><span>#{pageBean.account.pesel}</span><br/>            
-            <label>#{msg['phone']}:</label><span>#{pageBean.account.phoneNumber}</span><br/>            
-            <label>#{msg['confirmed']}:</label><span>#{pageBean.account.confirmed}</span><br/>             
-            <label>#{msg['active']}:</label><span>#{pageBean.account.active}</span><br/>                         
+            <label>#{msg['email']}: </label><span>#{pageBean.account.email}</span><br/>           
+            <label>#{msg['pesel']}: </label><span>#{pageBean.account.pesel}</span><br/>            
+            <label>#{msg['phone']}: </label><span>#{pageBean.account.phoneNumber}</span><br/>            
+            <label>#{msg['confirmed']}: </label>
+            <span>
+                <c:if test="#{pageBean.account.confirmed == true}">#{msg['yes']}</c:if>
+                <c:if test="#{pageBean.account.confirmed == false}">#{msg['no']}</c:if>
+            </span><br/>             
+            <label>#{msg['active']}: </label>
+            <span>
+                <c:if test="#{pageBean.account.active == true}">#{msg['yes']}</c:if>
+                <c:if test="#{pageBean.account.active == false}">#{msg['no']}</c:if>
+            </span><br/>                         
 
             <p:commandButton value="#{msg['edit']}" action="editMyAccount" actionListener="#{editAccountPageBean.getAccountToEdit(pageBean.account)}" />
             <p:commandButton value="#{msg['cancel']}" action="home" immediate="true" />

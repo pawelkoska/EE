@@ -293,24 +293,17 @@
             <redirect />
         </navigation-case> 
        
-        <application>
-            <locale-config>
-                <default-locale>en</default-locale>
-                <supported-locale>pl</supported-locale>
-                <supported-locale>en</supported-locale>
-            </locale-config>
-            <resource-bundle>
-                <base-name>i18n.messages</base-name>
-                <var>msg</var>
-            </resource-bundle>
-            <message-bundle>
-                i18n.jsf_messages
-            </message-bundle>
-            <resource-bundle>
-                <base-name>/Bundle</base-name>
-                <var>bundle</var>
-            </resource-bundle>
-        </application>
+    <application>
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>        
+        <resource-bundle>
+            <base-name>i18n.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
                        
     </navigation-rule>
 </faces-config>

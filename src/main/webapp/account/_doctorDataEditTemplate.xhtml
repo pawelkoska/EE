@@ -6,7 +6,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:outputLabel value="#{msg['specialization']} " />
+    <p:outputLabel value="#{msg['specialization']}: *" />
     <p:selectOneMenu value="#{createDoctorPageBean.doctorDto.category}">
         <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
     </p:selectOneMenu><br/>

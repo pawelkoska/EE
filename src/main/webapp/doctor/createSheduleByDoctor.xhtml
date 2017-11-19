@@ -36,7 +36,7 @@
 
                         <p:separator /><br/>
 
-                        <h:outputLabel for="date" value="#{msg['date']}: " />
+                        <h:outputLabel for="date" value="#{msg['date']}: *" />
                         <p:calendar id="birthDate" 
                                     required="true"
                                     value="#{createAppointmentPageBean.appointmentDto.date}" 
@@ -45,7 +45,7 @@
                                     placeholder="dd/MM/yyyy"
                                     pattern="dd/MM/yyyy" />
 
-                        <h:outputLabel for="timeStart"  value="#{msg['time.start']}: " />
+                        <h:outputLabel for="timeStart"  value="#{msg['time.start']}: *" />
                         <p:calendar id="timeStart" 
                                     required="true" 
                                     placeholder="e.g 12:00" 
@@ -54,12 +54,13 @@
                                     stepMinute="30"
                                     timeOnly="true"  />
 
-                        <h:outputLabel for="timeEnd"  value="#{msg['time.end']}: " />
+                        <h:outputLabel for="timeEnd"  value="#{msg['time.end']}: *" />
                         <p:calendar id="timeEnd" 
                                     required="true" 
                                     placeholder="e.g 14:30"
                                     value="#{createAppointmentPageBean.appointmentDto.timeEnd}" 
                                     pattern="HH:mm" 
+                                    stepMinute="30"
                                     timeOnly="true"  />
                         <p:separator /><br/>
                     </h:panelGrid>

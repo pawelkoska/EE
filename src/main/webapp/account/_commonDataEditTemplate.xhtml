@@ -5,22 +5,22 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:outputLabel value="#{msg['name']}" />
+    <p:outputLabel value="#{msg['name']}: *" />
     <p:inputText value="#{pageBean.account.name}" title="name" placeholder="eg. John" required="true" ></p:inputText><br/>
 
-    <p:outputLabel value="#{msg['surname']}" />
+    <p:outputLabel value="#{msg['surname']}: *" />
     <p:inputText value="#{pageBean.account.secondName}" title="surname" placeholder="eg. Smith" required="true" ></p:inputText><br/>
 
-    <p:outputLabel value="#{msg['birthDay']}"  />
+    <p:outputLabel value="#{msg['birthDay']}: *"  />
     <p:calendar value="#{pageBean.account.birthDate}" placeholder="dd/MM/yyyy" pattern="dd/MM/yyyy" /><br/>
 
-    <p:outputLabel value="#{msg['email']}" />
+    <p:outputLabel value="#{msg['email']}: *" />
     <p:inputText value="#{pageBean.account.email}" title="email" placeholder="eg. johntsmith@gmail.com" required="true" ></p:inputText><br/>
 
-    <p:outputLabel value="#{msg['phone']}" />
+    <p:outputLabel value="#{msg['phone']}: *" />
     <p:inputText value="#{pageBean.account.phoneNumber}" title="phone" placeholder="eg. 540 122 320" required="false" ></p:inputText><br/>
 
-    <p:outputLabel value="#{msg['pesel']}" />
+    <p:outputLabel value="#{msg['pesel']}: *" />
     <p:inputText value="#{pageBean.account.pesel}" title="pesel" placeholder="eg. 58509088921" required="true" ></p:inputText><br/>
 
 </ui:composition>
