@@ -15,7 +15,7 @@
                 <h:form>
                     <p:dataTable id="appoitnmentList" var="appointment" 
                                  value="#{listAppointmentPageBean.myAppointments}"
-                                 emptyMessage="You have no active appointments.">
+                                 emptyMessage="#{msg['no.active.appointments']}">
                         <f:facet name="header">
 
                         </f:facet>

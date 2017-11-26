@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.4" status="GENERATED" sm="false" id="_151120239643894" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity abs="false" class="Account" v="true" xre="false" m="false" rootElement="_151120239643894" id="_151120239643895">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="type" id="_1511202396438103">
+                <jpa:column name="TYPE" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT" length="31"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="active" id="_1511202396438104">
+                <jpa:column name="ACTIVE" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="short" v="true" name="confirmed" id="_1511202396438105">
+                <jpa:column name="CONFIRMED" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="login" id="_1511202396438106">
+                <jpa:column name="LOGIN" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT" length="32"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="password" id="_1511202396438107">
+                <jpa:column name="PASSWORD" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT" length="256"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_1511202396438108">
+                <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="ACCOUNT"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_151120239643898" connected-attribute-id="_1511202396438124" v="true" name="appointmentCollection" id="_1511202396438109"/>
+            <jpa:one-to-many own="false" connected-entity-id="_151120239643898" connected-attribute-id="_1511202396438125" v="true" name="appointmentCollection1" id="_1511202396438110"/>
+            <jpa:one-to-one own="true" connected-entity-id="_151120239643899" connected-attribute-id="_1511202396438135" v="true" name="personalData" id="_1511202396438111"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438102">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="ACCOUNT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ACCOUNT">
+            <jpa:unique-constraint>
+                <jpa:column-name>LOGIN</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="DoctorData" v="true" xre="false" m="false" rootElement="_151120239643894" id="_151120239643896">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="long" v="true" name="categoryId" id="_1511202396438113">
+                <jpa:column name="CATEGORY_ID" unique="false" nullable="false" insertable="true" updatable="true" table="DOCTOR_DATA"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438112">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="DOCTOR_DATA"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="DOCTOR_DATA"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Category" v="true" xre="false" m="false" rootElement="_151120239643894" id="_151120239643897">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="description" id="_1511202396438115">
+                <jpa:column name="DESCRIPTION" unique="false" nullable="false" insertable="true" updatable="true" table="CATEGORY" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_1511202396438116">
+                <jpa:column name="NAME" unique="false" nullable="false" insertable="true" updatable="true" table="CATEGORY" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_1511202396438117">
+                <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="CATEGORY"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438114">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="CATEGORY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="CATEGORY">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Appointment" v="true" xre="false" m="false" rootElement="_151120239643894" id="_151120239643898">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="appointmentResult" id="_1511202396438119">
+                <jpa:column name="APPOINTMENT_RESULT" unique="false" nullable="true" insertable="true" updatable="true" table="APPOINTMENT" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" name="appointmentDate" id="_1511202396438120">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="APPOINTMENT_DATE" unique="false" nullable="false" insertable="true" updatable="true" table="APPOINTMENT"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" name="timeEnd" id="_1511202396438121">
+                <jpa:temporal>TIME</jpa:temporal>
+                <jpa:column name="TIME_END" unique="false" nullable="false" insertable="true" updatable="true" table="APPOINTMENT"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" name="timeStart" id="_1511202396438122">
+                <jpa:temporal>TIME</jpa:temporal>
+                <jpa:column name="TIME_START" unique="false" nullable="false" insertable="true" updatable="true" table="APPOINTMENT"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_1511202396438123">
+                <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="APPOINTMENT"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" connected-entity-id="_151120239643895" connected-attribute-id="_1511202396438109" v="true" name="doctor" id="_1511202396438124">
+                <jpa:join-column name="DOCTOR" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one connected-entity-id="_151120239643895" connected-attribute-id="_1511202396438110" v="true" name="patient" id="_1511202396438125">
+                <jpa:join-column name="PATIENT" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="false" connected-entity-id="_1511202396438100" connected-attribute-id="_1511202396438142" v="true" name="examinationId" id="_1511202396438126">
+                <jpa:join-column name="EXAMINATION_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one optional="false" connected-entity-id="_1511202396438101" connected-attribute-id="_1511202396438147" v="true" name="room" id="_1511202396438127">
+                <jpa:join-column name="ROOM" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438118">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="APPOINTMENT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="APPOINTMENT">
+            <jpa:unique-constraint>
+                <jpa:column-name>ROOM</jpa:column-name>
+                <jpa:column-name>APPOINTMENT_DATE</jpa:column-name>
+                <jpa:column-name>TIME_START</jpa:column-name>
+                <jpa:column-name>TIME_END</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="PersonalData" v="true" xre="false" m="false" rootElement="_151120239643894" id="_151120239643899">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" name="birthdate" id="_1511202396438129">
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="BIRTHDATE" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="email" id="_1511202396438130">
+                <jpa:column name="EMAIL" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="64"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_1511202396438131">
+                <jpa:column name="NAME" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="32"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="pesel" id="_1511202396438132">
+                <jpa:column name="PESEL" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="11"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="phonenumber" id="_1511202396438133">
+                <jpa:column name="PHONENUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="PERSONAL_DATA" length="12"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="secondname" id="_1511202396438134">
+                <jpa:column name="SECONDNAME" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA" length="32"/>
+            </jpa:basic>
+            <jpa:one-to-one optional="false" connected-entity-id="_151120239643895" connected-attribute-id="_1511202396438111" v="true" name="account" id="_1511202396438135">
+                <jpa:join-column name="ID" rc="ID" unique="false" nullable="true" insertable="false" updatable="false"/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438128">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="PERSONAL_DATA"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="PERSONAL_DATA">
+            <jpa:unique-constraint>
+                <jpa:column-name>PESEL</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Examination" v="true" xre="false" m="false" rootElement="_151120239643894" id="_1511202396438100">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="int" v="true" name="duration" id="_1511202396438137">
+                <jpa:column name="DURATION" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="description" id="_1511202396438138">
+                <jpa:column name="DESCRIPTION" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="name" id="_1511202396438139">
+                <jpa:column name="NAME" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_1511202396438140">
+                <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="EXAMINATION"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="long" v="true" name="categoryId" id="_1511202396438141">
+                <jpa:column name="CATEGORY_ID" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" connected-entity-id="_151120239643898" connected-attribute-id="_1511202396438126" v="true" name="appointmentCollection" id="_1511202396438142"/>
+            <jpa:one-to-many own="false" connected-entity-id="_1511202396438101" connected-attribute-id="_1511202396438148" v="true" name="roomCollection" id="_1511202396438143"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438136">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="EXAMINATION"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="EXAMINATION">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Room" v="true" xre="false" m="false" rootElement="_151120239643894" id="_1511202396438101">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" name="roomNumber" id="_1511202396438145">
+                <jpa:column name="ROOM_NUMBER" unique="false" nullable="false" insertable="true" updatable="true" table="ROOM" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="Integer" v="true" name="version" id="_1511202396438146">
+                <jpa:column name="VERSION" unique="false" nullable="true" insertable="true" updatable="true" table="ROOM"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="false" connected-entity-id="_1511202396438100" connected-attribute-id="_1511202396438143" v="true" name="examinationId" id="_1511202396438148">
+                <jpa:join-column name="EXAMINATION_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" connected-entity-id="_151120239643898" connected-attribute-id="_1511202396438127" v="true" name="appointmentCollection" id="_1511202396438147"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_1511202396438144">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="ROOM"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ROOM">
+            <jpa:unique-constraint>
+                <jpa:column-name>ROOM_NUMBER</jpa:column-name>
+                <jpa:column-name>EXAMINATION_ID</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the Jeddict
+ */</jpa:snp>
+</jpa:entity-mappings>

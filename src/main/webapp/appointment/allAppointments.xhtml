@@ -13,7 +13,13 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable style="label: 10px !important;" id="appoitnmentList" var="appointment" scrollable="true" scrollWidth="700" value="#{listAppointmentPageBean.appointmentObjList}">
+                    <p:dataTable style="label: 10px !important;" 
+                                 id="appoitnmentList" 
+                                 var="appointment" 
+                                 scrollable="true" 
+                                 scrollWidth="2000" 
+                                 emptyMessage="#{msg['no.appointments.found']}"
+                                 value="#{listAppointmentPageBean.appointmentObjList}">
                         <f:facet name="header">
 
                         </f:facet>

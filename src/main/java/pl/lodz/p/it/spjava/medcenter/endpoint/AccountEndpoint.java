@@ -20,6 +20,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
 import pl.lodz.p.it.spjava.medcenter.model.utils.AccountUtils;
 import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -43,6 +44,7 @@ public class AccountEndpoint {
     public void createAccount(Account account) throws AppBaseException {
         account.setActive(false);
         account.setConfirmed(false);
+        account.setPassword(DigestUtils.sha256Hex(account.getPassword()));
         try {
             accountFacade.create(account);
             ContextUtils.emitSuccessMessage("createAdminForm");
