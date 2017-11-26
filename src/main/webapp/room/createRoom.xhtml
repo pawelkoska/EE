@@ -18,14 +18,14 @@
                         <h:inputText id="roomNumber" 
                                      value="#{createRoomPageBean.roomDTO.roomNumber}" 
                                      required="true"
-                                     requiredMessage="Room number is required"/>
+                                     requiredMessage="#{msg['room.is.required']}"/>
 
 
                         <p:outputLabel for="examinationType" value="#{msg['examination']}: " />
                         <p:selectOneMenu id="examinationType" 
                                          value="#{createRoomPageBean.roomDTO.examinationType}"
                                          required="true"
-                                         requiredMessage="Examination type is required">
+                                         requiredMessage="#{msg['examination.is.required']}">
                             <f:selectItem itemLabel="#{msg['select.examination']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
                         </p:selectOneMenu>

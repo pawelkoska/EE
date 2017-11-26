@@ -26,19 +26,19 @@
                         <p:inputText id="examinationName" 
                                      value="#{createExaminationPageBean.examinationDto.name}"
                                      required="true"
-                                     requiredMessage="Examination name is required"/>
+                                     requiredMessage="#{msg['examination.is.required']}"/>
 
                         <p:outputLabel for="examinationDescription" value="#{msg['description']}: " />
                         <p:inputText id="examinationDescription" 
                                      value="#{createExaminationPageBean.examinationDto.examinationDescription}"
                                      required="true"
-                                     requiredMessage="Examination description is required"/>
+                                     requiredMessage="#{msg['description.is.required']}"/>
 
                         <p:outputLabel for="category" value="#{msg['category.id']}: " />
                         <p:selectOneMenu id="category"
                                          value="#{createExaminationPageBean.examinationDto.examinationCategory}"
                                          required="true"
-                                         requiredMessage="Examination field is required">
+                                         requiredMessage="#{msg['category.is.required']}">
                             <f:selectItem itemLabel="Select doctor" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
                         </p:selectOneMenu>
@@ -47,7 +47,7 @@
                         <p:selectOneMenu id="duration" 
                                          value="#{createExaminationPageBean.examinationDto.examinationDuration}"
                                          required="true"
-                                         requiredMessage="Duration field is required">
+                                         requiredMessage="#{msg['duration.is.required']}">
                             <f:selectItem itemLabel="Select doctor" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createExaminationPageBean.durationList}" />
                         </p:selectOneMenu>

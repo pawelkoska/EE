@@ -6,6 +6,6 @@
                 xmlns:p="http://primefaces.org/ui">
     
     <p:outputLabel value="#{msg['login.input']}: *" />
-    <p:inputText value="#{pageBean.account.login}" title="login" placeholder="login" required="true" ></p:inputText> <br/>
+    <p:inputText value="#{pageBean.account.login}" title="login" placeholder="login" required="true" requiredMessage="#{msg['login.is.required']}"></p:inputText> <br/>
     
 </ui:composition>

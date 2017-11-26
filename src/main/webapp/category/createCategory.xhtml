@@ -14,10 +14,10 @@
                 <h:form id="createCategory">
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
                         <h:outputLabel value="#{msg['category.name']}: *" />
-                        <h:inputText  value="#{createCategoryPageBean.category.name}" />
+                        <h:inputText  value="#{createCategoryPageBean.category.name}" required="true" requiredMessage="#{msg['category.is.required']}"/>
 
                         <h:outputLabel  value="#{msg['description']}: *" />
-                        <h:inputText value="#{createCategoryPageBean.category.categoryDescription}" />
+                        <h:inputText value="#{createCategoryPageBean.category.categoryDescription}" required="true" requiredMessage="#{msg['description.is.required']}"/>
 
                         <p:commandButton value="#{msg['create']}" action="#{createCategoryPageBean.createCategory()}" update=":exceptionInfo"/>
                     </h:panelGrid>

@@ -7,7 +7,7 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <p:outputLabel value="#{msg['specialization']}: *" />
-    <p:selectOneMenu value="#{createDoctorPageBean.doctorDto.category}">
+    <p:selectOneMenu value="#{createDoctorPageBean.doctorDto.category}" required="true" requiredMessage="#{msg['category.is.required']}">
         <f:selectItems value="#{listCategoryPageBean.categoryNamesList}" />
     </p:selectOneMenu><br/>
 
