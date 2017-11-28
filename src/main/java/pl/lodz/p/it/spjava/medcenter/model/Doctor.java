@@ -7,11 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DOCTOR_DATA")
-//@DiscriminatorValue("DOCTOR")
-//@NamedQueries({
-//    @NamedQuery(name = "Pracownik.findAll", query = "SELECT d FROM Pracownik d"),
-//    @NamedQuery(name = "Pracownik.findByIntercom", query = "SELECT d FROM Pracownik d WHERE d.intercom = :intercom")
-//})
+
 public class Doctor extends Account implements Serializable {
 
     public Doctor() {
@@ -24,10 +20,6 @@ public class Doctor extends Account implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctorId")
     private List<Appointment> appointmentList = new ArrayList<>();
 
-    
-    
-    
-    
     public List<Appointment> getAppointmentList() {
         return appointmentList;
     }

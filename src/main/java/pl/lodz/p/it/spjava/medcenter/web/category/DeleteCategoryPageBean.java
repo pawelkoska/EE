@@ -16,7 +16,6 @@ public class DeleteCategoryPageBean {
     @EJB
     private CategoryEndpoint categoryEndpoint;
 
-
     public String deleteCategory(Category category) {
         categoryEndpoint.deleteCategory(category);
         return "deleteCategorySuccess";

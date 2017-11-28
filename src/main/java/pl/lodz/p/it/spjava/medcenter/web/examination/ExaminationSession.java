@@ -26,7 +26,7 @@ public class ExaminationSession implements Serializable {
         return deletedExamination;
     }
 
-    public void createExamination(ExaminationDTO examination) throws ParseException, AppBaseException{
+    public void createExamination(ExaminationDTO examination) throws ParseException, AppBaseException {
         examinationEndpoint.createExamination(examination);
     }
 
@@ -38,7 +38,7 @@ public class ExaminationSession implements Serializable {
         return editingExamination;
     }
 
-    public void saveEditedExamination() throws AppBaseException{
+    public void saveEditedExamination() throws AppBaseException {
         if (null == editingExamination) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

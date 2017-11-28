@@ -18,7 +18,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 @Named(value = "listAppointmentPageBean")
 @RequestScoped
 public class listAppointmentPageBean {
-    
+
     private static final Logger LOG = Logger.getLogger(listAppointmentPageBean.class.getName());
 
     public listAppointmentPageBean() {
@@ -83,8 +83,6 @@ public class listAppointmentPageBean {
         this.myGeneralSheduleList = myGeneralSheduleList;
     }
 
-    
-    
     public List<Appointment> getDoctorMedicalHistory() {
         doctorMedicalHistory = null;
         doctorMedicalHistory = new ArrayList<>();
@@ -110,12 +108,12 @@ public class listAppointmentPageBean {
     }
 
     public List<Appointment> getMyDailyShedule() {
-        
+
         myDailyShedule = null;
         myDailyShedule = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String currentDate = dateFormat.format(new Date());
-        
+
         String doctorName = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
         for (Appointment a : appointmentEndpoint.getAllAppointments()) {
             if (a.getPatientId() != null && a.getDoctorId().getLogin().equals(doctorName) && a.getAppointmentResult() == null

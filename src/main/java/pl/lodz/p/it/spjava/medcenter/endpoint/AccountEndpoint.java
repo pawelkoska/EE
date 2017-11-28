@@ -49,7 +49,7 @@ public class AccountEndpoint {
             accountFacade.create(account);
             ContextUtils.emitSuccessMessage("createAdminForm");
         } catch (AccountException ae) {
-            ContextUtils.emitInternationalizedMessage("createAdminForm" , AccountException.KEY_DB_CONSTRAINT);
+            ContextUtils.emitInternationalizedMessage("createAdminForm", AccountException.KEY_DB_CONSTRAINT);
         }
     }
 
@@ -92,7 +92,7 @@ public class AccountEndpoint {
         } catch (GeneralOptimisticLockException ce) {
             ContextUtils.emitInternationalizedMessage(null, GeneralOptimisticLockException.KEY_OPTIMISTIC_LOCK);
         }
-        
+
         accountEditHandler = null;
     }
 

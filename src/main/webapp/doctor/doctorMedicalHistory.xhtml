@@ -7,16 +7,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
                 <h:form>
                     <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.doctorMedicalHistory}">
                         <f:facet name="header">
 
                         </f:facet>
-                        
+
                         <p:column headerText="#{msg['examination']}: ">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
@@ -32,11 +30,11 @@
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
                         </p:column>
-                        
+
                         <p:column headerText="#{msg['patient']}: ">
                             <h:outputText value="#{appointment.patientId.name} #{appointment.patientId.secondName}"/>
                         </p:column>
-                        
+
                         <p:column headerText="#{msg['appointment.result']}: ">
                             <h:outputText value="#{appointment.appointmentResult}"/>
                         </p:column>
@@ -44,8 +42,6 @@
                     </p:dataTable>
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

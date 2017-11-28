@@ -8,7 +8,6 @@ import java.util.Date;
  */
 public class AppointmentDTO {
 
-      
     private String category;
     private String examination;
     private String doctor;
@@ -31,8 +30,6 @@ public class AppointmentDTO {
         this.timeEnd = timeEnd;
         this.roomNumber = roomNumber;
     }
-    
-
 
     public String getCategory() {
         return category;
@@ -102,12 +99,5 @@ public class AppointmentDTO {
     public String toString() {
         return "AppointmentDTO{" + "category=" + category + ", examination=" + examination + ", doctor=" + doctor + ", patient=" + patient + ", date=" + date + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + ", roomNumber=" + roomNumber + '}';
     }
-
-
-    
-    
-
-
-
 
 }

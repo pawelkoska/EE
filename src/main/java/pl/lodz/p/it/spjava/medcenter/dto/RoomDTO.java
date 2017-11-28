@@ -5,10 +5,10 @@ package pl.lodz.p.it.spjava.medcenter.dto;
  * @author pawkos
  */
 public class RoomDTO {
-    
+
     public RoomDTO() {
     }
-    
+
     private String roomNumber;
     private String examinationType;
 
@@ -27,7 +27,5 @@ public class RoomDTO {
     public void setExaminationType(String examinationType) {
         this.examinationType = examinationType;
     }
-    
-    
-   
+
 }

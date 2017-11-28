@@ -23,7 +23,7 @@ public class CreateRoomPageBean {
 
     private RoomDTO roomDTO = new RoomDTO();
 
-    public void createRoom() throws AppBaseException{
+    public void createRoom() throws AppBaseException {
         roomSession.createRoom(roomDTO);
     }
 

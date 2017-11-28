@@ -25,7 +25,7 @@ public class CategorySession implements Serializable {
         return deletedCategory;
     }
 
-    public void createCategory(Category category) throws AppBaseException{
+    public void createCategory(Category category) throws AppBaseException {
         createCategory = category;
         categoryEndpoint.createCategory(category);
     }
@@ -38,7 +38,7 @@ public class CategorySession implements Serializable {
         return editingCategory;
     }
 
-    public void saveEditedCategory() throws AppBaseException{
+    public void saveEditedCategory() throws AppBaseException {
         if (null == editingCategory) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

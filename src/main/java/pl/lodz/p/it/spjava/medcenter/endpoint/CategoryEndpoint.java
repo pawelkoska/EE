@@ -43,7 +43,6 @@ public class CategoryEndpoint {
 
     public Category getCategoryToEdit(Category category) {
         Category categoryEntity = categoryFacade.find(category.getId());
-//        kontoFacade.refresh(encja);
         return categoryEntity;
     }
 

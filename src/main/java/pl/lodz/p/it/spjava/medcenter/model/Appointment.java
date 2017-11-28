@@ -28,7 +28,8 @@ import static pl.lodz.p.it.spjava.medcenter.model.Account_.name;
  */
 @Entity
 @Table(name = "APPOINTMENT", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"ROOM", "APPOINTMENT_DATE", "TIME_START", "TIME_END"}),
+    @UniqueConstraint(columnNames = {"ROOM", "APPOINTMENT_DATE", "TIME_START", "TIME_END"})
+    ,
     @UniqueConstraint(columnNames = {"DOCTOR", "APPOINTMENT_DATE", "TIME_START", "TIME_END"})
 })
 public class Appointment extends AbstractEntity implements Serializable {
@@ -163,8 +164,6 @@ public class Appointment extends AbstractEntity implements Serializable {
     public String toString() {
         return "Appointment: " + id + roomId + timeStart + timeEnd + date;
     }
-    
-    
 
     @Override
     protected Object getBusinessKey() {

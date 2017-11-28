@@ -48,6 +48,14 @@ public class Room extends AbstractEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomId")
     private List<Appointment> appointmentList = new ArrayList<>();
 
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
     public String getRoomNumber() {
         return roomNumber;
     }

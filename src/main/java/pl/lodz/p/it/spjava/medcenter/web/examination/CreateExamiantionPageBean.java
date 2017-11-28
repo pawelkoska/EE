@@ -1,11 +1,8 @@
 package pl.lodz.p.it.spjava.medcenter.web.examination;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -29,12 +26,9 @@ public class CreateExamiantionPageBean {
 
     @Inject
     private ExaminationSession examinationSession;
-    
-    
+
     private static final Logger LOG = Logger.getLogger(CreateExamiantionPageBean.class.getName());
 
-    
-    
     private List<Examination> examinationObjList = new ArrayList<>();
 
     private ExaminationDTO examinationDto = new ExaminationDTO();
@@ -52,7 +46,7 @@ public class CreateExamiantionPageBean {
         this.durationList = durationList;
     }
 
-    public void createExamination() throws ParseException, AppBaseException{
+    public void createExamination() throws ParseException, AppBaseException {
         examinationSession.createExamination(examinationDto);
     }
 

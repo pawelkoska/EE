@@ -1,14 +1,11 @@
 package pl.lodz.p.it.spjava.medcenter.web.examination;
 
-import pl.lodz.p.it.spjava.medcenter.web.category.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import pl.lodz.p.it.spjava.medcenter.endpoint.CategoryEndpoint;
 import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
@@ -41,7 +38,7 @@ public class ListExaminationPageBean {
     public void setExaminationObjList(List<Examination> examinationObjList) {
         this.examinationObjList = examinationObjList;
     }
-    
+
     public List<Examination> getExaminationsByCategory(Category category) {
         return examinationSession.getExaminationsByCategory(category);
     }

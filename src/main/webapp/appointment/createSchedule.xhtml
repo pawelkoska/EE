@@ -7,9 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createAppointment">
@@ -80,16 +78,11 @@
                             <f:selectItem itemLabel="#{msg['select.doctor']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{createAppointmentPageBean.filteredDoctors}" />
                         </p:selectOneMenu>
-
                     </h:panelGrid>
                     <p:separator />
-
                     <p:commandButton action="#{createAppointmentPageBean.createAppointment()}" value="#{msg['create']}" update=":exceptionInfo"/>
-
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

@@ -7,47 +7,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
                 <h:form>
                     <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.myDailyShedule}">
-                        <f:facet name="header">
-
-                        </f:facet>
-                        
+                        <f:facet name="header"></f:facet>                     
                         <p:column headerText="#{msg['examination']}">
                             <h:outputText value="#{appointment.examinationId.name}" />
                         </p:column>
-
                         <p:column headerText="#{msg['date']}: ">
                             <h:outputText value="#{appointment.date}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-
                         <p:column headerText="#{msg['time']}: ">
                             <h:outputText value="#{appointment.timeStart}" >
                                 <f:convertDateTime pattern="HH:mm" />
                             </h:outputText>
-                        </p:column>
-                        
+                        </p:column>                       
                         <p:column headerText="#{msg['patient']}: ">
                             <h:outputText value="#{appointment.patientId.name} #{appointment.patientId.name}"/>
                         </p:column>
-
                         <p:column style="width:150px">
                             <p:commandButton value="#{msg['result']}" 
                                              action="setAppointmentResultPage" 
                                              actionListener="#{findAppointmentPageBean.getAppointmentDetails(appointment)}"/>
                         </p:column>
-
                     </p:dataTable>
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

@@ -15,7 +15,7 @@ public class ListRoomPageBean {
 
     public ListRoomPageBean() {
     }
-   
+
     @EJB
     private RoomEndpoint roomEndpoint;
 
@@ -46,5 +46,5 @@ public class ListRoomPageBean {
     public void setRoomNumberList(List<String> roomNumberList) {
         this.roomNumberList = roomNumberList;
     }
- 
+
 }

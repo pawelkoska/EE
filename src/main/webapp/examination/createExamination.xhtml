@@ -7,17 +7,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="top">
                 top
             </ui:define>
-
             <ui:define name="left">
                 left
             </ui:define>
-
             <ui:define name="content">
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createExamination">
@@ -54,11 +50,8 @@
 
                         <p:commandButton value="#{msg['create']}" action="#{createExaminationPageBean.createExamination()}" update=":exceptionInfo"/>
                     </p:panelGrid>
-
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

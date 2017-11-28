@@ -7,16 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
                 <p:messages id="exceptionInfo"/>
                 <h:form id="createAppointment">
                     <h3>#{msg['create.shedule']}:</h3><br/>    
-
                     <h:panelGrid columns="2" transient="true" cellpadding="10" >
-
                         <p:outputLabel for="examination" value="#{msg['examination']}: " />
                         <p:selectOneMenu id="examination"  
                                          required="true"
@@ -65,13 +61,9 @@
                         <p:separator /><br/>
                     </h:panelGrid>
                     <p:separator />
-
                     <p:commandButton action="#{createAppointmentPageBean.createAppointmentByDoctor()}" value="#{msg['create']}" update=":exceptionInfo"/>
-
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

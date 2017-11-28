@@ -12,7 +12,6 @@
     <ui:define name="content">
         <h:form>
             <h3>#{msg['account.details']}:</h3>
-
             <label>#{msg['login.input']}: </label><span>#{pageBean.account.login}</span><br/>             
             <label>#{msg['type']}: </label><span>#{pageBean.account.type}</span><br/><br/>            
             <label>#{msg['name']}: </label><span>#{pageBean.account.name}</span><br/>            
@@ -36,10 +35,8 @@
                 <c:if test="#{pageBean.account.active == true}">#{msg['yes']}</c:if>
                 <c:if test="#{pageBean.account.active == false}">#{msg['no']}</c:if>
             </span><br/>                         
-
             <p:commandButton value="#{msg['edit']}" action="editMyAccount" actionListener="#{editAccountPageBean.getAccountToEdit(pageBean.account)}" />
             <p:commandButton value="#{msg['cancel']}" action="home" immediate="true" />
-            <!--<p:commandButton value="CHANGE PASSWORD" action="home" immediate="true" />-->
         </h:form>
     </ui:define>
 

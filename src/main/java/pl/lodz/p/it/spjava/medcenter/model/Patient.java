@@ -20,4 +20,14 @@ public class Patient extends Account implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientId")
     private List<Appointment> appointmentList = new ArrayList<>();
 
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
+    
+    
 }

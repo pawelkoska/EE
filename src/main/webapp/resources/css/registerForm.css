@@ -9,7 +9,12 @@ and open the template in the editor.
 */
 
 body {
-
+    background-image: url("backgroundLogin.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:  cover;
+    display: flex;
+    height: 100px;
 }
 
 #createPatientForm {

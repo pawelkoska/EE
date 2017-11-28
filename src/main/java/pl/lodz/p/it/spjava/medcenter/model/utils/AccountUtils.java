@@ -41,10 +41,4 @@ public class AccountUtils {
             targetDoctor.setSpecialization(sourceDoctor.getSpecialization());
         }
     }
-//    
-//    public static String wyliczSkrotHasla(String hasloJawne){
-//        //TODO: wstawić algorytm skrótu hasła
-//        return hasloJawne;
-//    }
-
 }

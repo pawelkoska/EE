@@ -16,7 +16,6 @@ public class DeleteExaminationPageBean {
     @EJB
     private ExaminationEndpoint examinationEndpoint;
 
-
     public String deleteExamination(Examination examination) {
         examinationEndpoint.deleteExamination(examination);
         return "deleteExaminationSuccess";

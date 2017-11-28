@@ -1,8 +1,6 @@
 package pl.lodz.p.it.spjava.medcenter.endpoint;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -11,7 +9,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.ExaminationDTO;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
-import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
@@ -45,9 +42,9 @@ public class ExaminationEndpoint {
                 break;
             }
         }
-        if (selectedCategory == null) {
-            throw new IllegalArgumentException("Błędna nazwa kategorii"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
-        }
+//        if (selectedCategory == null) {
+//            throw new IllegalArgumentException("Błędna nazwa kategorii"); 
+//        }
 
         Examination examinationEntity = new Examination();
         examinationEntity.setName(examination.getName());
@@ -76,7 +73,6 @@ public class ExaminationEndpoint {
 
     public Examination getExaminationToEdit(Examination examination) {
         Examination examinationEntity = examinationFacade.find(examination.getId());
-//        kontoFacade.refresh(encja);
         return examinationEntity;
     }
 

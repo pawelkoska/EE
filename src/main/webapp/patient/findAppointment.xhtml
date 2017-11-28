@@ -10,9 +10,7 @@
     <body>
 
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
-
                 <h:form id="findAppointment">
                     <h:panelGrid columns="2" transient="true" cellpadding="10">
                         <p:outputLabel for="examination" value="#{msg['examination']}: " />
@@ -20,28 +18,10 @@
                             <f:selectItem itemLabel="#{msg['select.examination']}" itemValue="#{null}" noSelectionOption="true" />
                             <f:selectItems value="#{listExaminationPageBean.examinationNameList}" />
                         </p:selectOneMenu>
-
-<!--                        <p:outputLabel for="doctorName" value="#{msg['doctor']}: " />
-                        <p:selectOneMenu id="doctorName" value="#{findAppointmentPageBean.appointmentDto.doctor}">
-                            <f:selectItem itemLabel="#{msg['select.doctor']}" itemValue="#{null}" noSelectionOption="true" />
-                            <f:selectItems value="#{listAccountPageBean.doctorNameList}" />
-                        </p:selectOneMenu>
-
-                        <p:outputLabel for="date" value="#{msg['date']}: " />
-                        <p:calendar id="date" 
-                                    value="#{findAppointmentPageBean.appointmentDto.date}" 
-                                    locale="de" navigator="true" 
-                                    placeholder="dd/MM/yyyy" 
-                                    pattern="dd/MM/yyyy" />-->
-
                         <p:commandButton value="#{msg['find']}" action="appointmentResult" actionListener="#{findAppointmentPageBean.setAppointmentResultList()}" />
-
                     </h:panelGrid>
                 </h:form>
-
             </ui:define>
-
-
         </ui:composition>
 
     </body>

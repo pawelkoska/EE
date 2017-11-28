@@ -5,12 +5,12 @@ package pl.lodz.p.it.spjava.medcenter.dto;
  * @author pawkos
  */
 public class ExaminationDTO {
-    
+
     public ExaminationDTO(String name, String examinationDescription) {
         this.name = name;
         this.examinationDescription = examinationDescription;
     }
-    
+
     private String name;
     private String examinationDescription;
     private String examinationCategory;
@@ -23,8 +23,6 @@ public class ExaminationDTO {
     public void setExaminationDuration(int examinationDuration) {
         this.examinationDuration = examinationDuration;
     }
-    
-    
 
     public String getExaminationCategory() {
         return examinationCategory;
@@ -57,6 +55,5 @@ public class ExaminationDTO {
     public String toString() {
         return "ExaminationDTO{" + "name=" + name + ", examinationDescription=" + examinationDescription + ", examinationCategory=" + examinationCategory + ", examinationDuration=" + examinationDuration + '}';
     }
-    
-    
+
 }

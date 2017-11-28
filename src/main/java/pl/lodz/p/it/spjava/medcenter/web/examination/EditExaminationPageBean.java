@@ -33,7 +33,7 @@ public class EditExaminationPageBean {
         return "editExamination";
     }
 
-    public void saveEditedExamination()throws AppBaseException {
+    public void saveEditedExamination() throws AppBaseException {
         examinationSession.saveEditedExamination();
     }
 

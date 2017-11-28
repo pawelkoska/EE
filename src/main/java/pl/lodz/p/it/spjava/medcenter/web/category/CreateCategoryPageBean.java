@@ -28,7 +28,7 @@ public class CreateCategoryPageBean {
     private List<String> categoryNamesList = new ArrayList<>();
     private Category category = new Category();
 
-    public void createCategory() throws AppBaseException{
+    public void createCategory() throws AppBaseException {
         categorySession.createCategory(category);
     }
 

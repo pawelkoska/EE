@@ -26,13 +26,12 @@ public class EditCategoryPageBean {
         return "editCategory";
     }
 
-    public void saveEditedCategory() throws AppBaseException{
+    public void saveEditedCategory() throws AppBaseException {
         categorySession.saveEditedCategory();
     }
 
     public Category getEditingCategory() {
         return categorySession.getEditingCategory();
     }
-
 
 }

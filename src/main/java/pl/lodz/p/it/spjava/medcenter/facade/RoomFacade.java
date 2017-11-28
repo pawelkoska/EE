@@ -16,11 +16,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
-import pl.lodz.p.it.spjava.medcenter.exception.ExaminationException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.exception.RoomException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
-import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 /**

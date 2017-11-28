@@ -17,7 +17,6 @@ import javax.interceptor.Interceptors;
 import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppointmentException;
-import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.facade.AccountFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.AppointmentFacade;
@@ -26,7 +25,6 @@ import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
-import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
@@ -79,9 +77,9 @@ public class AppointmentEndpoint {
                 break;
             }
         }
-        if (selectedExamination == null) {
-            throw new IllegalArgumentException("Błędna nazwa badania"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
-        }
+//        if (selectedExamination == null) {
+//            throw new IllegalArgumentException("Błędna nazwa badania"); 
+//        }
 
         if (appointment.getDoctor() == null) {
             String accountType;
@@ -98,9 +96,9 @@ public class AppointmentEndpoint {
             }
         }
 
-        if (selectedDoctor == null) {
-            throw new IllegalArgumentException("Błędna nazwa lekarza");
-        }
+//        if (selectedDoctor == null) {
+//            throw new IllegalArgumentException("Błędna nazwa lekarza");
+//        }
 
         Room selectedRoom = null;
         for (Room r : rooms) {
@@ -109,9 +107,9 @@ public class AppointmentEndpoint {
                 break;
             }
         }
-        if (selectedDoctor == null) {
-            throw new IllegalArgumentException("Błędna nazwa pokoju"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
-        }
+//        if (selectedDoctor == null) {
+//            throw new IllegalArgumentException("Błędna nazwa pokoju"); 
+//        }
 
         long totalDurationMillisecond = appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime();
         long totalDurationMinutes = TimeUnit.MILLISECONDS.toMinutes(appointment.getTimeEnd().getTime() - appointment.getTimeStart().getTime());
@@ -157,7 +155,6 @@ public class AppointmentEndpoint {
 
     public Appointment getAppointmentToEdit(Appointment appointment) {
         Appointment appointmentEntity = appointmentFacade.find(appointment.getId());
-//        kontoFacade.refresh(encja);
         return appointmentEntity;
     }
 

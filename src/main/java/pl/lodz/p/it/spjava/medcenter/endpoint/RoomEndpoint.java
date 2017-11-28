@@ -10,11 +10,9 @@ import pl.lodz.p.it.spjava.medcenter.dto.RoomDTO;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.exception.RoomException;
-import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
-import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
@@ -45,7 +43,7 @@ public class RoomEndpoint {
             }
         }
         if (selectedExamination == null) {
-            throw new IllegalArgumentException("Błędna nazwa kategorii"); //TODO: w tym miejscu wymagane zgłoszenie wyjątku aplikacyjnego
+            throw new IllegalArgumentException("Błędna nazwa kategorii");
         }
 
         Room roomEntity = new Room();
@@ -66,7 +64,6 @@ public class RoomEndpoint {
 
     public Room getRoomToEdit(Room room) {
         Room roomEntity = roomFacade.find(room.getId());
-//        kontoFacade.refresh(encja);
         return roomEntity;
     }
 

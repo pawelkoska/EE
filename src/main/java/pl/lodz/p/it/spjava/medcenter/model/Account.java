@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ACCOUNT")
 @SecondaryTable(name = "PERSONAL_DATA")
 @NamedQueries({
-    @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'Doctor'"),
-    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'Patient'"),
-    @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a"),
-    @NamedQuery(name = "Account.getById", query = "SELECT a FROM Account a WHERE a.id = :id"),
-    
-})
-//@TableGenerator(name = "AccountIdGen", table = "GENERATOR", pkColumnName = "ENTITY_NAME", valueColumnName = "ID_RANGE", pkColumnValue = "Account", initialValue = 100)
+    @NamedQuery(name = "Account.getAllDoctors", query = "SELECT d FROM Account d WHERE d.type = 'Doctor'")
+    ,
+    @NamedQuery(name = "Account.getAllPatients", query = "SELECT p FROM Account p WHERE p.type = 'Patient'")
+    ,
+    @NamedQuery(name = "Account.getAllAccounts", query = "SELECT a FROM Account a")
+    ,
+    @NamedQuery(name = "Account.getById", query = "SELECT a FROM Account a WHERE a.id = :id"),})
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
 @DiscriminatorValue("ACCOUNT")
@@ -39,12 +39,12 @@ public class Account extends AbstractEntity implements Serializable {
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 6, message = "{constraint.string.length.tooshort}")
-    @Column(name = "PASSWORD", length = 256, nullable = false)
+    @Column(name = "PASSWORD", length = 64, nullable = false)
     private String password;
 
     @NotNull(message = "{constraint.notnull}")
     @Size(min = 11, max = 11, message = "{constraint.string.length.tooshort}")
-    @Column(name = "pesel", table = "PERSONAL_DATA", length = 11, unique=true, nullable = false)
+    @Column(name = "pesel", table = "PERSONAL_DATA", length = 11, unique = true, nullable = false)
     private String pesel;
 
     @Column(name = "confirmed", nullable = false)
@@ -65,7 +65,7 @@ public class Account extends AbstractEntity implements Serializable {
     @Size(min = 3, max = 32, message = "{constraint.string.length.notinrange}")
     @Column(name = "secondName", table = "PERSONAL_DATA", length = 32, nullable = false)
     private String secondName;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "birthDate", table = "PERSONAL_DATA", nullable = false)
     private Date birthDate;

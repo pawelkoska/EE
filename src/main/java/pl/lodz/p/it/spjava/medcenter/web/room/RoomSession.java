@@ -24,7 +24,7 @@ public class RoomSession implements Serializable {
         return deletedRoom;
     }
 
-    public void createRoom(RoomDTO room) throws AppBaseException{
+    public void createRoom(RoomDTO room) throws AppBaseException {
         roomEndpoint.createRoom(room);
     }
 
@@ -36,7 +36,7 @@ public class RoomSession implements Serializable {
         return editingRoom;
     }
 
-    public void saveEditedRoom()throws AppBaseException {
+    public void saveEditedRoom() throws AppBaseException {
         if (null == editingRoom) {
             throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }

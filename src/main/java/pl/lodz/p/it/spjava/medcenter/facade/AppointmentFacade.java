@@ -28,7 +28,6 @@ import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment_;
-import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
 
 /**
@@ -89,12 +88,6 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
         if (null != examination) {
             criteria = cb.and(criteria, cb.equal(from.get(Appointment_.examinationId), examination));
         }
-//        if (null != appointmentDto.getDoctor()&& !(appointmentDto.getDoctor().isEmpty())) {
-//            criteria = cb.and(criteria, cb.like(from.<String>get(Appointment_.doctorId.getName()), appointmentDto.getDoctor()));
-//        }
-//        if (appointmentDto.getDate() != null) {
-//            criteria = cb.and(criteria, cb.greaterThan(from.get(Appointment_.date), appointmentDto.getDate()));
-//        }
 
         query = query.where(criteria);
         TypedQuery<Appointment> tq = em.createQuery(query);

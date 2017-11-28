@@ -26,13 +26,12 @@ public class EditRoomPageBean {
         return "editRoom";
     }
 
-    public void saveEditedRoom()throws AppBaseException {
+    public void saveEditedRoom() throws AppBaseException {
         roomSession.saveEditedRoom();
     }
 
     public Room getEditingRoom() {
         return roomSession.getEditingRoom();
     }
-
 
 }

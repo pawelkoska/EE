@@ -7,7 +7,6 @@ package pl.lodz.p.it.spjava.medcenter.facade;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -24,16 +23,12 @@ import javax.persistence.criteria.Root;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import pl.lodz.p.it.spjava.medcenter.exception.AccountException;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
-import pl.lodz.p.it.spjava.medcenter.exception.CategoryException;
 import pl.lodz.p.it.spjava.medcenter.exception.GeneralOptimisticLockException;
-import pl.lodz.p.it.spjava.medcenter.exception.RoomException;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
 import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Account_;
-import pl.lodz.p.it.spjava.medcenter.model.Category;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Patient;
-import pl.lodz.p.it.spjava.medcenter.model.Room;
 
 /**
  *

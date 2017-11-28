@@ -16,7 +16,6 @@ public class DeleteRoomPageBean {
     @EJB
     private RoomEndpoint roomEndpoint;
 
-
     public String deleteRoom(Room room) {
         roomEndpoint.deleteRoom(room);
         return "deleteRoomSuccess";

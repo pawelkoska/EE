@@ -6,23 +6,18 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./../template/template.xhtml">
-
             <ui:define name="content">
                 <p:messages id="exceptionInfo"/>
                 <h:form id="editCategory">
                     <p:panelGrid columns="2" transient="true">
                         #{msg['category.name']}: *<p:inputText value="#{editCategoryManageBean.editingCategory.name}" />
-                        #{msg['description']}: * <p:inputTextarea value="#{editCategoryManageBean.editingCategory.categoryDescription}" />                         
-                        
+                        #{msg['description']}: * <p:inputTextarea value="#{editCategoryManageBean.editingCategory.categoryDescription}" />                                              
                         <p:commandButton action="#{editCategoryManageBean.saveEditedCategory()}" value="#{msg['update']}" update=":exceptionInfo"/>
                         <p:commandButton value="#{msg['cancel']}" action="allCategories" immediate="true"/>
                     </p:panelGrid>
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

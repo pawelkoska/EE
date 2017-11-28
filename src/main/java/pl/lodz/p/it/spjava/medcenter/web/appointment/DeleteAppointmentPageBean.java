@@ -16,7 +16,6 @@ public class DeleteAppointmentPageBean {
     @EJB
     private AppointmentEndpoint appointmentEndpoint;
 
-
     public String deleteAppointment(Appointment appointment) {
         appointmentEndpoint.deleteAppointment(appointment);
         return "allAppointments";
