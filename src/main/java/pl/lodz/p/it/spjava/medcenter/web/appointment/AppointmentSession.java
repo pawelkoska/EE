@@ -11,6 +11,7 @@ import pl.lodz.p.it.spjava.medcenter.dto.AppointmentDTO;
 import pl.lodz.p.it.spjava.medcenter.endpoint.AppointmentEndpoint;
 import pl.lodz.p.it.spjava.medcenter.exception.AppBaseException;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
+import pl.lodz.p.it.spjava.medcenter.model.Patient;
 
 @Named(value = "appointmentSession")
 @SessionScoped
@@ -37,8 +38,6 @@ public class AppointmentSession implements Serializable {
         this.myAppointments = myAppointments;
     }
     
-    
-
     public Appointment getDeletedAppointment() {
         return deletedAppointment;
     }
@@ -52,12 +51,13 @@ public class AppointmentSession implements Serializable {
     }
 
     public Appointment getEditingAppointment() {
+        editingAppointment.setPatientId(new Patient());
         return editingAppointment;
     }
 
     public void saveEditedAppointment()throws AppBaseException {
         if (null == editingAppointment) {
-            throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
+//            throw new IllegalArgumentException("Proba edytacji z pominieciem formularza");
         }
         appointmentEndpoint.saveEditedAppointment(editingAppointment);
         editingAppointment = null;

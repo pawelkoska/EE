@@ -57,6 +57,13 @@
 
                         <p:separator /><br/>
 
+                        <p:outputLabel value="#{msg['patient']}: " />
+                        <p:selectOneMenu value="#{editAppointmentManageBean.editingAppointment.patientId.login}">
+                            <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{listAccountPageBean.patientNameList}" />
+                        </p:selectOneMenu>
+
+
                         <p:commandButton action="#{editAppointmentManageBean.saveEditedAppointment()}" value="#{msg['update']}" update=":exceptionInfo"/>
                         <p:commandButton value="#{msg['cancel']}" action="allAppointments" immediate="true"/>
                     </p:panelGrid>

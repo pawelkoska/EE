@@ -32,6 +32,7 @@ public class ListAccountsPageBean {
     
     private List<String> accountNameList = new ArrayList<>();
     private List<String> doctorNameList = new ArrayList<>();
+    private List<String> patientNameList = new ArrayList<>();
 
     @PostConstruct
     public void getAllAccounts() {
@@ -40,6 +41,11 @@ public class ListAccountsPageBean {
             if(account.getType().equals("Doctor")){
                 doctorNameList.add(account.getSecondName());
             }
+            
+            if(account.getType().equals("Patient")){
+                patientNameList.add(account.getLogin());
+            }
+            
             if(!account.isConfirmed()){
                 accountsListToConfirm.add(account);
             }
@@ -66,7 +72,18 @@ public class ListAccountsPageBean {
     public void setAccountsListToConfirm(List<Account> accountsToConfirm) {
         this.accountsListToConfirm = accountsToConfirm;
     }
-    
+
+    public List<String> getPatientNameList() {
+        
+        
+        
+        
+        return patientNameList;
+    }
+
+    public void setPatientNameList(List<String> patientNameList) {
+        this.patientNameList = patientNameList;
+    }
     
 
     public List<Account> getAccountObjList() {

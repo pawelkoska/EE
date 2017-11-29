@@ -24,9 +24,11 @@ import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
+import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
+import pl.lodz.p.it.spjava.medcenter.model.Patient;
 import pl.lodz.p.it.spjava.medcenter.model.Room;
 import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
 import pl.lodz.p.it.spjava.medcenter.web.account.AccountSession;
@@ -164,6 +166,13 @@ public class AppointmentEndpoint {
         for (Examination examination : examinations) {
             if (examination.getName().equals(a.getExaminationId().getName())) {
                 a.setExaminationId(examination);
+            }
+        }
+        
+        List<Patient> patients = accountFacade.getAllPatients();
+        for (Patient patient : patients) {
+            if (patient.getLogin().equals(a.getPatientId().getLogin())) {
+                a.setPatientId(patient);
             }
         }
 

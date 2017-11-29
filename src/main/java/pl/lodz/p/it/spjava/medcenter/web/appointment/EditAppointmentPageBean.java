@@ -46,6 +46,7 @@ public class EditAppointmentPageBean {
     }
 
     public Appointment getEditingAppointment() {
+        
         return appointmentSession.getEditingAppointment();
     }
 
