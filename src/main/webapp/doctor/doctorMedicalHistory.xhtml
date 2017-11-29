@@ -10,7 +10,10 @@
         <ui:composition template="./../template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="appointments" var="appointment" value="#{listAppointmentPageBean.doctorMedicalHistory}">
+                    <p:dataTable id="appointments" 
+                                 var="appointment"
+                                 value="#{listAppointmentPageBean.doctorMedicalHistory}"
+                                 emptyMessage="#{msg['no.medical.history']}">
                         <f:facet name="header">
 
                         </f:facet>

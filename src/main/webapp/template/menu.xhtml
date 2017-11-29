@@ -5,8 +5,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
     <h:form id="menu">
-        
-
         <p:menu rendered="#{request.isUserInRole('Admin')}">
             <p:submenu label="#{msg['accounts']}">
                 <p:menuitem value="#{msg['all.accounts']}" outcome="allAccounts"/>

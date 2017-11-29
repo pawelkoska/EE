@@ -10,7 +10,10 @@
         <ui:composition template="./../template/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:dataTable id="accounts" var="account" value="#{listAccountPageBean.accountsListToConfirm}">
+                    <p:dataTable id="accounts" 
+                                 var="account" 
+                                 value="#{listAccountPageBean.accountsListToConfirm}"
+                                 scrollable="true" scrollWidth="2700">
                         <f:facet name="header">
 
                         </f:facet>
@@ -22,9 +25,9 @@
                             <p:outputLabel value="#{account.login}" />
                         </p:column>
 
-                        <p:column headerText="#{msg['password.input']}">
+<!--                        <p:column headerText="#{msg['password.input']}">
                             <p:outputLabel value="#{account.password}" />
-                        </p:column>
+                        </p:column>-->
 
                         <p:column headerText="#{msg['type']}">
                             <p:outputLabel value="#{account.type}" />
@@ -53,7 +56,9 @@
                         </p:column>
 
                         <p:column headerText="#{msg['birthDay']}">
-                            <p:outputLabel value="#{account.birthDate}" />
+                            <p:outputLabel value="#{account.birthDate}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:outputLabel>
                         </p:column>
 
                         <p:column headerText="#{msg['email']}">

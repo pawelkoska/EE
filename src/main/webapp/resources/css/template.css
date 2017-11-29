@@ -1,6 +1,6 @@
 .ui-layout-container {
     width: 90% !important;
-    margin: 10px auto !important;
+    margin: 30px auto !important;
     background-image: url("backgroundLogin.jpg");
     
 }
@@ -14,5 +14,12 @@
 
 body {
     font-size: 15px;
+}
+.ui-menu{
+    width: 95% !important;
+}
+
+.ui-layout-unit {
+    opacity: 0.92;
 }
 
