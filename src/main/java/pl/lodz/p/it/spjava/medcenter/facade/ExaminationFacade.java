@@ -8,6 +8,7 @@ package pl.lodz.p.it.spjava.medcenter.facade;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -32,9 +33,10 @@ import pl.lodz.p.it.spjava.medcenter.model.Examination;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
+@RolesAllowed("Admin")
 public class ExaminationFacade extends AbstractFacade<Examination> {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0")
     private EntityManager em;
     private static final Logger LOG = Logger.getLogger(ExaminationFacade.class.getName());
     

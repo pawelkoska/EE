@@ -30,7 +30,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Room;
 @Interceptors(LoggingInterceptor.class)
 public class RoomFacade extends AbstractFacade<Room> {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0")
     private EntityManager em;
 
     @Override

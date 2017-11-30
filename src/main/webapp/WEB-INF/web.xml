@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-value>Production</param-value>
     </context-param>
     <context-param>
         <param-name>resourceBundle.path</param-name>
@@ -23,6 +23,10 @@
         <param-value>true</param-value>
     </context-param>
     
+    <error-page>
+        <exception-type>javax.ejb.EJBAccessException</exception-type>
+        <location>/faces/error/errorRolesAllowed.xhtml</location>
+    </error-page>
     
     <error-page>
         <error-code>403</error-code>
@@ -106,8 +110,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>dbMedCenterRealm</realm-name>
         <form-login-config>
-            <form-login-page>/login/loginForm.xhtml</form-login-page>
-            <form-error-page>/login/loginFormError.xhtml</form-error-page>
+            <form-login-page>/faces/login/loginForm.xhtml</form-login-page>
+            <form-error-page>/faces/login/loginFormError.xhtml</form-error-page>
         </form-login-config>
     </login-config>
     

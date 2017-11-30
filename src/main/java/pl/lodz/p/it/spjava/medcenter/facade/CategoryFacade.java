@@ -30,7 +30,7 @@ import pl.lodz.p.it.spjava.medcenter.model.Category;
 @Interceptors(LoggingInterceptor.class)
 public class CategoryFacade extends AbstractFacade<Category> {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0")
     private EntityManager em;
 
     @Override
