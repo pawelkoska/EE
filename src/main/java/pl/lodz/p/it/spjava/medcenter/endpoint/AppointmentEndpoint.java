@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
@@ -24,7 +25,6 @@ import pl.lodz.p.it.spjava.medcenter.facade.CategoryFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.ExaminationFacade;
 import pl.lodz.p.it.spjava.medcenter.facade.RoomFacade;
 import pl.lodz.p.it.spjava.medcenter.interceptor.LoggingInterceptor;
-import pl.lodz.p.it.spjava.medcenter.model.Account;
 import pl.lodz.p.it.spjava.medcenter.model.Appointment;
 import pl.lodz.p.it.spjava.medcenter.model.Doctor;
 import pl.lodz.p.it.spjava.medcenter.model.Examination;
@@ -38,6 +38,7 @@ import pl.lodz.p.it.spjava.medcenter.web.account.AccountSession;
  * @author pawkos
  */
 @Stateful
+@RolesAllowed({"Reception", "Doctor", "Patient"})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class AppointmentEndpoint {
@@ -65,6 +66,7 @@ public class AppointmentEndpoint {
 
     private static final Logger LOG = Logger.getLogger(AppointmentEndpoint.class.getName());
 
+    
     public void createAppointment(AppointmentDTO appointment) throws AppBaseException {
 
         List<Examination> examinations = examinationFacade.findAll();

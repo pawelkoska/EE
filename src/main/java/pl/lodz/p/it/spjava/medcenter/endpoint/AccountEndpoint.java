@@ -3,6 +3,7 @@ package pl.lodz.p.it.spjava.medcenter.endpoint;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
@@ -27,6 +28,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author pawkos
  */
 @Stateful
+@PermitAll
 @LocalBean
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)

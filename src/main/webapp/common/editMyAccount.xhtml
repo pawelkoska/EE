@@ -16,7 +16,7 @@
             <h:panelGrid columns="3">
                 <ui:include src="../account/_commonDataEditTemplate.xhtml"/>
                 <c:if test="#{pageBean.account.type == 'Doctor'}">
-                    <ui:include src="_doctorDataEditTemplate.xhtml"/>
+                    <ui:include src="../account/_doctorDataEditTemplate.xhtml"/>
                 </c:if>
             </h:panelGrid>
             <br />

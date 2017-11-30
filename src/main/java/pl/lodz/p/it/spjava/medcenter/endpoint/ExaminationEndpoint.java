@@ -25,7 +25,7 @@ import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
  * @author pawkos
  */
 @Stateful
-@RolesAllowed("Reception")
+@RolesAllowed({"Reception", "Doctor"})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class ExaminationEndpoint {
@@ -61,11 +61,12 @@ public class ExaminationEndpoint {
             ContextUtils.emitInternationalizedMessage(null, ExaminationException.KEY_DB_CONSTRAINT);
         }
     }
-
+    @RolesAllowed({"Patient", "Admin", "Reception", "Doctor"})
     public List<Examination> getExaminationsByCategory(Category category) {
         return examinationFacade.getExaminationsByCategory(category);
     }
-
+    
+    @RolesAllowed({"Patient", "Admin", "Reception", "Doctor"})
     public List<Examination> getAllExaminations() {
         return examinationFacade.findAll();
     }

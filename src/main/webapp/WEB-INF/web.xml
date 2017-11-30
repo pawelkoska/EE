@@ -24,7 +24,7 @@
     </context-param>
     
     <error-page>
-        <exception-type>javax.ejb.EJBAccessException</exception-type>
+        <exception-type>javax.ejb.AccessLocalException</exception-type>
         <location>/faces/error/errorRolesAllowed.xhtml</location>
     </error-page>
     

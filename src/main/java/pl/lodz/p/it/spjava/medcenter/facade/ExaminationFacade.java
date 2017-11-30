@@ -33,7 +33,6 @@ import pl.lodz.p.it.spjava.medcenter.model.Examination;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
-@RolesAllowed("Admin")
 public class ExaminationFacade extends AbstractFacade<Examination> {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_MedCenter_war_1.0")

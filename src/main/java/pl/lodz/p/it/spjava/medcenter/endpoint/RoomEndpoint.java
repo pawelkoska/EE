@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.medcenter.endpoint;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -22,6 +23,7 @@ import pl.lodz.p.it.spjava.medcenter.model.utils.ContextUtils;
  * @author pawkos
  */
 @Stateful
+@RolesAllowed({"Reception", "Doctor"})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class RoomEndpoint {
